@@ -10,5 +10,7 @@ package classes;
  * @author cdi314
  */
 public class test {
+    public void test(){
     
+    }
 }
