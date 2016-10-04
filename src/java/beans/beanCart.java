@@ -10,32 +10,32 @@ import java.util.HashMap;
 
 public class beanCart implements Serializable {
     
-    HashMap<String, Item> map;
+    HashMap<String, CartLine> map;
 
     public beanCart() {
         this.map = new HashMap();
     }
     
     
-//    public HashMap<String, Item> tempFillCart() {
-//        HashMap<String, Item> testFillCart = new HashMap(); 
-//        Item it01 = new Item("Harry Potter", 3, 16.99f);
-//        Item it02 = new Item("Le métronome", 1, 9.99f);
-//        Item it03 = new Item("Brésil", 2, 12.99f);
+//    public HashMap<String, CartLine> tempFillCart() {
+//        HashMap<String, CartLine> testFillCart = new HashMap(); 
+//        CartLine it01 = new CartLine("Harry Potter", 3, 16.99f);
+//        CartLine it02 = new CartLine("Le métronome", 1, 9.99f);
+//        CartLine it03 = new CartLine("Brésil", 2, 12.99f);
 //        testFillCart.put(it01.getTitle(), it01);
 //        testFillCart.put(it02.getTitle(), it02);
 //        testFillCart.put(it03.getTitle(), it03);
 //        return testFillCart;
 //    }
     
-//    public Item createItem(Book bk) {
+//    public CartLine createItem(Book bk) {
 //        String isbn = bk.getIsbn();
 //        String title = bk.getTitle();
 //        String picture = bk.getPicture();
 //        int qty = 1;
 //        float unitPriceHT = bk.getPrice();
 //        float totalPrice = bk.getPrice() * qty;
-//        Item itemCreated = new Item(isbn, title, picture, qty, unitPriceHT);
+//        CartLine itemCreated = new CartLine(isbn, title, picture, qty, unitPriceHT);
 //        return itemCreated;
 //    }
     
@@ -47,13 +47,13 @@ public class beanCart implements Serializable {
         add(isbn, qty);
     }
     
-//    public Item createItem(Book bk, int qty) {
+//    public CartLine createItem(Book bk, int qty) {
 //        String isbn = bk.getIsbn();
 //        String title = bk.getTitle();
 //        String picture = bk.getPicture();
 //        float unitPrice = bk.getPrice();
 //        float totalPrice = bk.getPrice() * qty;
-//        Item itemCreated = new Item(isbn, title, picture, qty, unitPrice);
+//        CartLine itemCreated = new CartLine(isbn, title, picture, qty, unitPrice);
 //        return itemCreated;
 //    }
     
@@ -68,21 +68,21 @@ public class beanCart implements Serializable {
     }
     public void add(Book bk, int qty){
         if(map.containsKey(bk.getIsbn())){
-            Item i = map.get(bk.getIsbn());
+            CartLine i = map.get(bk.getIsbn());
 //            b.setQty(i.getQty()+qty);
             i.change(qty);
         }else{
-            map.put(bk.getIsbn(), new Item(bk, qty));
+            map.put(bk.getIsbn(), new CartLine(bk, qty));
         }
     }
     
     public void add(String isbn, int qty){
         if(map.containsKey(isbn)){
-            Item i = map.get(isbn);
+            CartLine i = map.get(isbn);
 //            b.setQty(i.getQty()+qty);
             i.change(qty);
         }else{
-            map.put(isbn, new Item(isbn, qty));
+            map.put(isbn, new CartLine(isbn, qty));
         }
     }
     
@@ -98,7 +98,7 @@ public class beanCart implements Serializable {
         map.remove(isbn);
     }
     
-    public Collection<Item> list(){
+    public Collection<CartLine> list(){
         return map.values();
     }
     
