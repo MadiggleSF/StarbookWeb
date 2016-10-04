@@ -1,8 +1,4 @@
-<%-- 
-    Document   : jsp01
-    Created on : 3 oct. 2016, 14:45:59
-    Author     : cdi314
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +8,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello test!</h1>
     </body>
 </html>
