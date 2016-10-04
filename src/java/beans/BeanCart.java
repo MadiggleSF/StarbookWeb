@@ -14,11 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class beanCart2 implements Serializable {
+public class BeanCart implements Serializable {
     
     HashMap<String, CartLine> map;
 
-    public beanCart2() {
+    public BeanCart() {
         this.map = new HashMap();
     }
     
