@@ -14,7 +14,12 @@
         <h3>Récapitulatif de la commande</h3>
         <jsp:include page="/controller?section=displayOrder" flush="true"/>
     <c:forEach var="i" items="${orderLines}">
-    </c:forEach> ${i.book}
+        ${i.title} 
+        (ISBN : ${i.isbn}) 
+        Prix unitaire : ${i.bookTaxedPrice} 
+        Quantité : ${i.qty}
+        Prix : ${i.finalLinePrice}
+    </c:forEach> 
         
         
         <a href="">Retour à la modification</a>

@@ -47,6 +47,18 @@ public class controllerBen extends HttpServlet {
         
         
         
+        HashMap<String, CartLine> map = new HashMap();
+        Tax t1 = new Tax(1, "Basic", 19.5f);
+        Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
+        Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
+        CartLine cl = new CartLine(bk1, 4);
+        CartLine cl2 = new CartLine(bk2, 9);
+        map.put("cl", cl2);
+        map.put("cl2", cl2);
+        session.setAttribute("shoppingCart",map);
+        
+        
+        
         if ("displayOrder".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspValidateOrder.jsp";
             HashMap hm = new HashMap();
