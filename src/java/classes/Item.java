@@ -3,30 +3,54 @@ package classes;
 
 
 public class Item {
-    
-    
-    private String ref;
+    private Book bk;
+//    private String isbn;
+//    private String title;
+//    private String picture;
     private int qty;
-    private float unitPrice;
-    private float totalPrice;
+//    private float unitPrice;
+//    private float totalPrice;
 
-    public Item(String ref, int qty, float unitPrice) {
-        this.ref = ref;
+    public Item(Book bk, int qty) {
+        this.bk = bk;
         this.qty = qty;
-        this.unitPrice = unitPrice;
-        this.totalPrice = unitPrice * qty;
     }
+
+//    public DisplayableItem displayItem(String isbn, String title, String picture, int qty, float unitPrice) {
+//        this.isbn = isbn;
+//        this.title = title;
+//        this.picture = picture;
+//        this.qty = qty;
+//        this.unitPrice = unitPrice;
+//        this.totalPrice = unitPrice * qty;
+//    }
+
+    
+    
+//    public Item getItem() {
+//        ConnectionPool cp = new ConnectionPool();
+//            
+//    try (Connection cnn = cp.setConnection();) {
+//    String query = "";
+//
+//    /////////////////
+//
+//    } catch (SQLException ex) {
+//        Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//    return 
+//            }
     
     public void change(int qty){
         this.qty += qty;
     }
 
-    public String getRef() {
-        return ref;
+    public Book getBk() {
+        return bk;
     }
 
-    public void setRef(String ref) {
-        this.ref = ref;
+    public void setBk(Book bk) {
+        this.bk = bk;
     }
 
     public int getQty() {
@@ -36,16 +60,4 @@ public class Item {
     public void setQty(int qty) {
         this.qty = qty;
     }
-
-    public float getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(float unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-    
-    public float getTotalPrice() {
-        return totalPrice = unitPrice * qty;
-    }  
 }
