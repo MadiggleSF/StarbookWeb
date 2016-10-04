@@ -32,10 +32,11 @@ public class ConnectionPool {
 }
 
 
+
 // -----------  UTILISATION  --------------
-
-
-//        try (Connection cnn = setConnection();) {
+//        ConnectionPool cp = new ConnectionPool();
+            
+//        try (Connection cnn = cp.setConnection();) {
 //        String query = "";
 //        
 //        /////////////////

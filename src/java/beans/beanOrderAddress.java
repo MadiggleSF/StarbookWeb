@@ -18,7 +18,7 @@ public class beanOrderAddress implements Serializable {
     private HashMap<String, Address> map;
     ConnectionPool cp = new ConnectionPool();
 
-    private void getBilling() {
+    public Address getBilling() {
         
         Address a1 = null;
             try (Connection cnn = cp.setConnection();) {
@@ -38,7 +38,7 @@ public class beanOrderAddress implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        
+        return a1;
     }
 
     private void getDelivery() {

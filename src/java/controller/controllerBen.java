@@ -5,8 +5,10 @@
  */
 package controller;
 
+import beans.*;
+import classes.*;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +28,11 @@ public class controllerBen extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String url = "";
+        String url = "/WEB-INF/jspOrder.jsp";
         HttpSession session = request.getSession();
+        beanOrderAddress oa = new beanOrderAddress();
+        Address a1 = oa.getBilling();
+        
         
         //section1
         
