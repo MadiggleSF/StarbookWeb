@@ -13,7 +13,11 @@
     </head>
     <body>
         <h1>Hello Fill Cart!</h1>
+        
         <form method="POST" action="controllerML">
+        <input type="hidden" name="section" value="fillCart" />    
+            Fill cart (temporary) <input type="submit" name="fillCart" value="Fill Cart" /><br>
         </form>
+        
     </body>
 </html>
