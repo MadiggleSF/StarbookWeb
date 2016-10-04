@@ -22,13 +22,9 @@ public class Address {
     private String city; 
     private String country; 
     
-    // constructeur par défaut
-
+    //c
     public Address() {
     }
-    
-    
-    // constructeur avec les champs obligatoires
 
     public Address(int id, String zipcode, String city, String country) {
         this.id = id;
@@ -36,9 +32,6 @@ public class Address {
         this.city = city;
         this.country = country;
     }
-    
-    // surcharge du constructeur avec l'ajout des champs non obligatoires
-
     
     public Address(int id, String street, String other, String zipcode, String city, String country) {
         this(id, zipcode, city, country);
@@ -103,6 +96,11 @@ public class Address {
         return info;
     }
 
+    
+    /* ------------    suppression du SQL dans les classes ?! 
+    
+    
+    
     public void add(DataSource ds){
        
         try (Connection co = ds.getConnection()){
@@ -153,6 +151,8 @@ public class Address {
             System.err.println("error: sql exception: " + ex.getMessage());
         }
     }
+    
+    */
     
     
 }

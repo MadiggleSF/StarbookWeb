@@ -1,45 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
-import java.beans.*;
+import classes.*;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author cdi313
- */
 public class beanOrderAddress implements Serializable {
-    
-    public static final String PROP_SAMPLE_PROPERTY = "sampleProperty";
-    
-    private String sampleProperty;
-    
-    private PropertyChangeSupport propertySupport;
-    
-    public beanOrderAddress() {
-        propertySupport = new PropertyChangeSupport(this);
+
+   
+
+    private HashMap<String, Address> map;
+    ConnectionPool cp = new ConnectionPool();
+
+    private void getBilling() {
+        
+        Address a1 = null;
+            try (Connection cnn = cp.setConnection();) {
+        String query = "select * from sb_address where address_id = 1;";
+        Statement stm = cnn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while (rs.next()) {
+                a1 = new Address(rs.getInt("address_id"),
+                        
+                        rs.getString("address_street"),
+                        rs.getString("address_other"),
+                        rs.getString("address_zipcode"),
+                        rs.getString("address_city"),
+                        rs.getString("address_country"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        
     }
-    
-    public String getSampleProperty() {
-        return sampleProperty;
+
+    private void getDelivery() {
+
     }
-    
-    public void setSampleProperty(String value) {
-        String oldValue = sampleProperty;
-        sampleProperty = value;
-        propertySupport.firePropertyChange(PROP_SAMPLE_PROPERTY, oldValue, sampleProperty);
+
+    private void getAll() {
+        getBilling();
+        getDelivery();
     }
-    
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertySupport.addPropertyChangeListener(listener);
+
+    private Collection<Address> list() {
+        return map.values();
     }
-    
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertySupport.removePropertyChangeListener(listener);
-    }
-    
 }

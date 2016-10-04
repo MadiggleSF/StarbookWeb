@@ -9,9 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Starbook</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Commande</h1>
+        
+        <h3>Recapitulatif de la commande</h3>
+        
+        
+        <a href="">Retour à la modification</a>
+        
+        <h3>Méthode de livraison</h3>
+        
+        <h3>Adresse de livraison</h3>
+        
+        <h3>Adresse de facturation</h3>
+        
+        <a href="">Paiement</a>
     </body>
 </html>
