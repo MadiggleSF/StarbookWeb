@@ -34,7 +34,7 @@ public class controllerML extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String url = "";
+        String url = "/WEB-INF/TempJspFillCart.jsp";
         HttpSession session = request.getSession();
         
         //section1

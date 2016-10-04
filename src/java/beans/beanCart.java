@@ -16,6 +16,12 @@ public class beanCart implements Serializable {
     }
     
     
+    public HashMap<String, Item> tempFillCart() {
+        HashMap<String, Item> testFillCart = new HashMap(); 
+        Item it01 = new Item();
+    }
+    
+    
     
     public void create(String ref){ 
         create(ref,+1);
