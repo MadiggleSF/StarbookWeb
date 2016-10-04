@@ -1,51 +1,98 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
+import beans.beanLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author cdi313
+/*
+Gab
  */
 @WebServlet(name = "controllerGab", urlPatterns = {"/controllerGab"})
 public class controllerGab extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+ 
+     private Cookie getCookie(Cookie[] cookies, String name) {
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
+     
+     
+     
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        
-        String url = "";
+        String url = "/WEB-INF/jspLogin.jsp";
         HttpSession session = request.getSession();
         
-        //section1
         
-        //section2
         
-        //section...
-        
-         
+        if ("login".equals(request.getParameter("section"))) {
+            if (request.getParameter("Connexion") != null) {
+                beanLogin bLogin = (beanLogin) session.getAttribute("beanLogin");
+                if (bLogin == null) {
+                    bLogin = new beanLogin();
+                    session.setAttribute("beanLogin", bLogin);
+                }
+                if (bLogin.check(request.getParameter("login"),
+                        request.getParameter("password"))) {
+                    url = "/WEB-INF/jspWelcome.jsp";
+                    request.setAttribute("welcome", request.getParameter("login"));
+                    Cookie c = new Cookie("LOGIN", request.getParameter("login"));
+                    response.addCookie(c);
+                    c = new Cookie("try", "");
+                    c.setMaxAge(0);
+                    response.addCookie(c);
+                } else {
+                    url = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("msg", "ERREUR:Login/Mot de passe invalide !!!");
+                    Cookie c = getCookie(request.getCookies(), "try");
+                    if (c == null) {
+                        c = new Cookie("try", "*");
+                    } else {
+                        c.setValue(c.getValue() + "*");
+                    }
+                    c.setMaxAge(45);
+                    response.addCookie(c);
+                    if (c.getValue().length() > 3) {
+                        url = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalerror", "Trop de tentatives !!!");
+                    }
+                }
+            }
+
+            Cookie cccc = getCookie(request.getCookies(), "login");
+            if (request.getParameter("deconnect") != null) {
+                if (cccc != null) {
+                    url = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", cccc.getValue());
+                    cccc.setValue("");
+                    cccc.setMaxAge(0);
+                    response.addCookie(cccc);
+                }
+            }
+        }
+
         request.getRequestDispatcher(url).include(request, response);
     }
+
+       
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
