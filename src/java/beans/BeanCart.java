@@ -119,16 +119,19 @@ public class BeanCart implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return bk;
-        
+        return bk;       
     }
     
     public void testCart() {
-        HashMap<String, CartLine> map = new HashMap();
-        Book bk01 = testReturnBookFromIsbn(null);
-        
-        
+        HashMap<String, CartLine> testFillCart = new HashMap();
+        Book bk01 = testReturnBookFromIsbn("978-2070468508");
+        Book bk02 = testReturnBookFromIsbn("978-2211215350");
+        Book bk03 = testReturnBookFromIsbn("978-2253067078");
+        add(bk01, 3);
+        add(bk02, 1);
+        add(bk03, 2);
     }
+    
     public void inc (Book bk) {
         add(bk, +1);   
     }
