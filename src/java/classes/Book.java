@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 
@@ -38,11 +40,9 @@ public class Book {
         this.isbn = isbn;
         this.title = title;
         this.subtitle = subtitle;
-        
+
         this.price = price;
     }
-    
-    
 
     public Book(String isbn, Publisher publisher, String title, Date date, float price, Tax tax, int quantity) {
         this.isbn = isbn;
@@ -67,7 +67,6 @@ public class Book {
         this.print = print;
         this.weight = weight;
     }
-    
 
     //g&s
     public String getIsbn() {
@@ -198,18 +197,17 @@ public class Book {
     public String toString() {
         return title;
     }
-    
-    
-    public void updateBook(DataSource ds, String isbn, Publisher p, int tax_id, String title, 
-            String subtitle, Date publication_date, String picture, String summary, 
+/*
+    public void updateBook(DataSource ds, String isbn, Publisher p, int tax_id, String title,
+            String subtitle, Date publication_date, String picture, String summary,
             String idiom, Float price, int quantity, int pages, String print, int weight) {
 
-        try (Connection co = ds.getConnection()){
+        try (Connection co = ds.getConnection()) {
             String query = "UPDATE sb_book SET publisher_isbn = ?, tax_id = ?, "
                     + "book_title = ?, book_subtitle = ?, book_date = ?, "
                     + "book_picture = ?, book_summary = ?, book_idiom = ?, "
                     + "book_price = ?, book_quantity = ?, book_pages = ?, "
-                    + "book_print = ?, book_weight = ? WHERE book_isbn = '" + isbn+"'";
+                    + "book_print = ?, book_weight = ? WHERE book_isbn = '" + isbn + "'";
             PreparedStatement stmt = co.prepareStatement(query);
             stmt.setString(1, p.getCode());
             stmt.setInt(2, tax_id);
@@ -231,10 +229,10 @@ public class Book {
             return;
         }
     }
-    
+
     public void insertBook(DataSource ds) {
 
-        try (Connection co = ds.getConnection()){
+        try (Connection co = ds.getConnection()) {
             String query = "INSERT INTO sb_book VALUES ("
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -254,7 +252,7 @@ public class Book {
             pstmt.setString(13, print);
             pstmt.setInt(14, weight);
             pstmt.execute();
-            
+
             pstmt.close();
 
         } catch (SQLException ex) {
@@ -265,7 +263,7 @@ public class Book {
     public Vector getStatusList(DataSource ds) {
         Vector<BookStatus> statusList = new Vector<BookStatus>();
         String query = "SELECT * FROM sb_bookStatus WHERE book_isbn LIKE '" + isbn + "'";
-        try (Connection co = ds.getConnection()){
+        try (Connection co = ds.getConnection()) {
             Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -282,11 +280,10 @@ public class Book {
         }
         return statusList;
     }
-    
-    
-    public static void insertBookStatus(DataSource ds,int status_number, String book_isbn) {
 
-        try (Connection co = ds.getConnection()){
+    public static void insertBookStatus(DataSource ds, int status_number, String book_isbn) {
+
+        try (Connection co = ds.getConnection()) {
             String query = "INSERT INTO sb_bookStatus VALUES ("
                     + "?, ?, GETDATE())";
 
@@ -299,11 +296,10 @@ public class Book {
             System.err.println("error: sql exception: " + ex.getMessage());
         }
     }
-    
-    
+
     public void insertBookStatus(DataSource ds, Status status) {
 
-        try (Connection co = ds.getConnection()){
+        try (Connection co = ds.getConnection()) {
             String query = "INSERT INTO sb_bookStatus VALUES ("
                     + "?,?,GETDATE())";
 
@@ -311,17 +307,17 @@ public class Book {
             pstmt.setInt(1, status.getNumber());
             pstmt.setString(2, isbn);
             pstmt.execute();
-      
+
             pstmt.close();
 
         } catch (SQLException ex) {
             System.err.println("error: sql exception: " + ex.getMessage());
         }
     }
-    
-     public void insertBookAuthor(DataSource ds, Author aut) {
 
-        try (Connection co = ds.getConnection()){
+    public void insertBookAuthor(DataSource ds, Author aut) {
+
+        try (Connection co = ds.getConnection()) {
             String query = "INSERT INTO sb_writer VALUES ("
                     + "?,?)";
 
@@ -335,4 +331,46 @@ public class Book {
             System.err.println("error: sql exception: " + ex.getMessage());
         }
     }
+
+    public Book returnBookFromIsbn(String isbn) {
+        Book bk = null;
+        ConnectionPool cp = new ConnectionPool();
+        String query = "SELECT sb_book.*, sb_publisher.*,sb_tax.* "
+                + "FROM sb_book, sb_writer, sb_author, sb_publisher, sb_tax "
+                + "WHERE sb_book.book_isbn = ? ";
+        try (Connection cnn = cp.setConnection();) {
+            PreparedStatement stmt = cnn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery(query);
+            stmt.setString(1, isbn);
+            while (rs.next()) {
+                new Book(rs.getString("book_isbn"),
+                        new Publisher(rs.getString("publisher_isbn"),
+                                rs.getString("publisher_name")),
+                        rs.getString("book_title"),
+                        rs.getString("book_subtitle"),
+                        rs.getDate("book_date"),
+                        rs.getString("book_picture"),
+                        rs.getString("book_summary"),
+                        rs.getString("book_idiom"),
+                        rs.getFloat("book_price"),
+                        new Tax(rs.getInt("tax_id"),
+                                rs.getString("tax_name"),
+                                rs.getFloat("tax_rate")),
+                        rs.getInt("book_quantity"),
+                        rs.getString("book_pages"),
+                        rs.getString("book_print"),
+                        rs.getInt("book_weight"));
+            }
+
+            rs.close();
+            stmt.close();
+
+            /////////////////
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bk;
+        
+    }
+*/
 }
