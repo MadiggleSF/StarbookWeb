@@ -8,10 +8,10 @@
 <c:if test="${!panierVide}" var="c">    
     <c:forEach var="i" items="${liste}">
         ${i.title} / ${i.qty} / ${i.bookTaxedPrice} / ${i.linePrice}
-        <a href="controller?section=caddy&inc=${i.title}">+</a>
-        <a href="controller?section=caddy&dec=${i.title}">-</a>
-        <a href="controller?section=caddy&del=${i.title}">X</a>
+        <a href="controllerML?section=caddy&inc=${i.isbn}">+</a>
+        <a href="controllerML?section=caddy&dec=${i.isbn}">-</a>
+        <a href="controllerML?section=caddy&del=${i.isbn}">X</a>
         <br>        
     </c:forEach>  
-        <a href="controller?section=caddy&clean">Vider le panier !</a>
+        <a href="controllerML?section=caddy&clean">Vider le panier !</a>
 </c:if>

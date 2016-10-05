@@ -47,19 +47,17 @@ public class controllerML extends HttpServlet {
                     monPanier = new BeanCart();
                     session.setAttribute("panier", monPanier);
                 }
-            request.setAttribute("panierVide", monPanier.isEmpty());
-            request.setAttribute("liste", monPanier.list());
+                request.setAttribute("panierVide", monPanier.isEmpty());
+                request.setAttribute("liste", monPanier.list());
 
                 url = "/WEB-INF/jspCaddy.jsp";
-
             }
         }
 
         //mécanisme d'affichage du caddy
-        if ("DisplayCaddy".equals(request.getParameter("section"))) {
-            //Il me faut ce que j'ai besoin d'afficher
+        if ("DisplayCaddy".equals(request.getParameter("section"))) {          
             BeanCart monPanier = (BeanCart) session.getAttribute("panier");
-            //Si mon panier n'existe pas dans ce cas là je le crée et je la mets dans l'environnement session
+      
             if (monPanier == null) {
                 monPanier = new BeanCart();
                 session.setAttribute("panier", monPanier);
@@ -67,7 +65,7 @@ public class controllerML extends HttpServlet {
             url = "/WEB-INF/jspCaddy.jsp";
             request.setAttribute("panierVide", monPanier.isEmpty());
             request.setAttribute("liste", monPanier.list());
-          
+
         }
 
         if ("caddy".equals(request.getParameter("section"))) {
@@ -76,7 +74,7 @@ public class controllerML extends HttpServlet {
                 monPanier = new BeanCart();
                 session.setAttribute("panier", monPanier);
             }
-
+// A partir de la page résultat (miniatures) ou de la page zoom
             if (request.getParameter("add") != null) {
                 monPanier.create(monPanier.testReturnBookFromIsbn(request.getParameter("add")));
             }
