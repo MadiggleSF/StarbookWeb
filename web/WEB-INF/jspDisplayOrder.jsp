@@ -15,9 +15,9 @@
             <thead>
                 <tr>
             
-                    <th><b>Article</b></th>
-                    <th><b>ISBN</b></th>
-                    <th><b>Prix unitaire</b></th>
+                    <th><strong>Article</strong></th>
+                    <th><strong>ISBN</strong></th>
+                    <th><strong>Prix unitaire</strong></th>
                     <th><strong>Dont taxe</strong></th>
                     <th><strong>Quantité</strong></th>
                     <th><strong>Réduction</strong></th>                    
@@ -40,6 +40,8 @@
                     </tr>
                 </tbody>
             </c:forEach>
+                
+                <p><strong>Prix total TTC : </strong> €</p>
         </table>
     
         

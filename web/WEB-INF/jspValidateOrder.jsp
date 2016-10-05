@@ -20,13 +20,17 @@
         <a href="">Retour à la modification</a>
 
         <h3>Méthode de livraison</h3>
+        
+        <jsp:include page="/controllerBen?section=shippingType"/>
+        
         <form name="ShippingType" action="controllerBen" method="POST">
             <select name="ShippingTypeList" size="1">
-                <option> ---------- </option>
-                <option >Colissimo</option>
-                <option>Chronopost</option>
+                <option value="noShipping"> ----------- </option>
+                <option value="colissimo">Colissimo</option>
+                <option value="chronopost">Chronopost</option>                
             </select>
         </form>
+        ${msg}
 
         <h3>Adresse de livraison</h3>
         <p>
