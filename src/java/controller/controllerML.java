@@ -7,7 +7,6 @@ package controller;
 
 import beans.BeanCart;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,17 +33,29 @@ public class controllerML extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = "/WEB-INF/TempJspFillCart.jsp";
         HttpSession session = request.getSession();
-        
+
         //section1
-        
         //section2
-        
         //section...
-         //Différencier l'affichage du caddie du traitement du caddie
-        //Appeler mécanisme d'affichage du caddy
+        if ("fillCart".equals(request.getParameter("section"))) {
+            if (request.getParameter("fillCart") != null) {
+                BeanCart monPanier = (BeanCart) session.getAttribute("panier");
+                if (monPanier == null) {
+                    monPanier = new BeanCart();
+                    session.setAttribute("panier", monPanier);
+                }
+            request.setAttribute("panierVide", monPanier.isEmpty());
+            request.setAttribute("liste", monPanier.list());
+
+                url = "/WEB-INF/jspCaddy.jsp";
+
+            }
+        }
+
+        //mécanisme d'affichage du caddy
         if ("DisplayCaddy".equals(request.getParameter("section"))) {
             //Il me faut ce que j'ai besoin d'afficher
             BeanCart monPanier = (BeanCart) session.getAttribute("panier");
@@ -56,44 +67,33 @@ public class controllerML extends HttpServlet {
             url = "/WEB-INF/jspCaddy.jsp";
             request.setAttribute("panierVide", monPanier.isEmpty());
             request.setAttribute("liste", monPanier.list());
+          
         }
 
-        //section traitement du panier qui n'a pas pour vocation d'afficher (donc on supprime l'URL)
         if ("caddy".equals(request.getParameter("section"))) {
-
-            //url = "/WEB-INF/jspCaddy.jsp";
-            //charger le bean panier dans la section (si un bean est important on le charge en variable globale plus haut)
             BeanCart monPanier = (BeanCart) session.getAttribute("panier");
-            //Si mon panier n'existe pas dans ce cas là je le crée et je la mets dans l'environnement session
             if (monPanier == null) {
                 monPanier = new BeanCart();
                 session.setAttribute("panier", monPanier);
             }
 
-            //Recopié de la jspPanier
             if (request.getParameter("add") != null) {
-                monPanier.create(request.getParameter("add"));
+                monPanier.create(monPanier.testReturnBookFromIsbn(request.getParameter("add")));
             }
             if (request.getParameter("inc") != null) {
-                monPanier.inc(request.getParameter("inc"));
+                monPanier.inc(monPanier.testReturnBookFromIsbn(request.getParameter("inc")));
             }
             if (request.getParameter("dec") != null) {
-                monPanier.dec(request.getParameter("dec"));
+                monPanier.dec(monPanier.testReturnBookFromIsbn(request.getParameter("dec")));
             }
             if (request.getParameter("del") != null) {
-                monPanier.del(request.getParameter("del"));
+                monPanier.del(monPanier.testReturnBookFromIsbn(request.getParameter("del")));
             }
             if (request.getParameter("clean") != null) {
                 monPanier.clean();
             }
-
-//            //Préparer le terrain de l'affichage
-//            //Envoyer comme info à ma jsp si mon panier est vide (vrai ou faux)
-//            request.setAttribute("panierVide", monPanier.isEmpty());
-//            //envoyer ma liste
-//            request.setAttribute("liste", monPanier.list());
         }
-         
+
         request.getRequestDispatcher(url).include(request, response);
     }
 

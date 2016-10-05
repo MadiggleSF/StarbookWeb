@@ -7,10 +7,10 @@
 
 <c:if test="${!panierVide}" var="c">    
     <c:forEach var="i" items="${liste}">
-        ${i.ref} / ${i.qty}
-        <a href="controller?section=caddy&inc=${i.ref}">+</a>
-        <a href="controller?section=caddy&dec=${i.ref}">-</a>
-        <a href="controller?section=caddy&del=${i.ref}">X</a>
+        ${i.title} / ${i.qty} / ${i.bookTaxedPrice} / ${i.linePrice}
+        <a href="controller?section=caddy&inc=${i.title}">+</a>
+        <a href="controller?section=caddy&dec=${i.title}">-</a>
+        <a href="controller?section=caddy&del=${i.title}">X</a>
         <br>        
     </c:forEach>  
         <a href="controller?section=caddy&clean">Vider le panier !</a>

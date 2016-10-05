@@ -1,4 +1,3 @@
-
 package beans;
 
 import classes.*;
@@ -13,16 +12,27 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class BeanCart implements Serializable {
-    
-    HashMap<String, CartLine> map;
 
+    HashMap<String, CartLine> map;
+//VRAI CONSTRUCTEUR
+//    public BeanCart() {
+//        this.map = new HashMap();
+//    }
+
+    //CONSTRUCTEUR TEST
     public BeanCart() {
         this.map = new HashMap();
+        Book bk01 = testReturnBookFromIsbn("978-2070468508");
+        Book bk02 = testReturnBookFromIsbn("978-2211215350");
+        Book bk03 = testReturnBookFromIsbn("978-2253067078");
+        add(bk01, 3);
+        add(bk02, 1);
+        add(bk03, 2);
+        
+        System.out.println( this.size());
+        
     }
-    
-    
 //    public HashMap<String, Item> tempFillCart() {
 //        HashMap<String, Item> testFillCart = new HashMap(); 
 //        Item it01 = new Item("Harry Potter", 3, 16.99f);
@@ -33,7 +43,6 @@ public class BeanCart implements Serializable {
 //        testFillCart.put(it03.getTitle(), it03);
 //        return testFillCart;
 //    }
-    
 //    public Item createItem(Book bk) {
 //        String isbn = bk.getIsbn();
 //        String title = bk.getTitle();
@@ -44,18 +53,22 @@ public class BeanCart implements Serializable {
 //        Item itemCreated = new Item(isbn, title, picture, qty, unitPriceHT);
 //        return itemCreated;
 //    }
-    
 //    public void create(String isbn){ 
 //        create(isbn,+1);
 //    }
 //    
-//    public void create (Book bk) {
-//        create(bk.getIsbn(), +1);
-//    }
+
+    public void create(Book bk) {
+        create(bk, +1);
+    }
+
+    public void create(Book bk, int qty) {
+        add(bk, qty);
+    }
 //    public void create(String isbn, int qty){     
 //        add(isbn, qty);
 //    }
-    
+
 //    public Item createItem(Book bk, int qty) {
 //        String isbn = bk.getIsbn();
 //        String title = bk.getTitle();
@@ -65,25 +78,39 @@ public class BeanCart implements Serializable {
 //        Item itemCreated = new Item(isbn, title, picture, qty, unitPrice);
 //        return itemCreated;
 //    }
-    
 //    public void inc(String isbn){
 //        add(isbn,+1);
 //    }
-     
-    public void add(Book bk, int qty){
-        if(map.containsKey(bk.getIsbn())){
+    public void add(Book bk, int qty) {
+        if (bk == null) {
+            return;
+        }
+        if (map.containsKey(bk.getIsbn())) {
             CartLine i = map.get(bk.getIsbn());
 //            b.setQty(i.getQty()+qty);
             i.change(qty);
-            if(i.getQty() < 1) {
+            if (i.getQty() < 1) {
                 //Si la quantité est strictement inférieure à 1, on supprime
                 del(bk);
             }
-        }else{
+        } else {
             map.put(bk.getIsbn(), new CartLine(bk, qty));
         }
     }
-    
+
+//    public void addTest(Book bk, int qty) {
+//        if (map.containsKey(bk.getIsbn())) {
+//            CartLine i = testFillCart.get(bk.getIsbn());
+////            b.setQty(i.getQty()+qty);
+//            i.change(qty);
+//            if (i.getQty() < 1) {
+//                //Si la quantité est strictement inférieure à 1, on supprime
+//                del(bk);
+//            }
+//        } else {
+//            testFillCart.put(bk.getIsbn(), new CartLine(bk, qty));
+//        }
+//    }
     public Book testReturnBookFromIsbn(String isbn) {
         Book bk = null;
         ConnectionPool cp = new ConnectionPool();
@@ -92,8 +119,9 @@ public class BeanCart implements Serializable {
                 + "WHERE sb_book.book_isbn = ? ";
         try (Connection cnn = cp.setConnection();) {
             PreparedStatement stmt = cnn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery(query);
             stmt.setString(1, isbn);
+            ResultSet rs = stmt.executeQuery();
+            // stmt.execute();
             if (rs.next()) {
                 bk = new Book(rs.getString("book_isbn"),
                         new Publisher(rs.getString("publisher_isbn"),
@@ -113,16 +141,16 @@ public class BeanCart implements Serializable {
                         rs.getString("book_print"),
                         rs.getInt("book_weight"));
             }
-
-            rs.close();
             stmt.close();
+            rs.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return bk;       
+        return bk;
     }
-    
-    public void testCart() {
+
+    public HashMap<String, CartLine> testCart() {
         HashMap<String, CartLine> testFillCart = new HashMap();
         Book bk01 = testReturnBookFromIsbn("978-2070468508");
         Book bk02 = testReturnBookFromIsbn("978-2211215350");
@@ -130,10 +158,11 @@ public class BeanCart implements Serializable {
         add(bk01, 3);
         add(bk02, 1);
         add(bk03, 2);
+        return testFillCart;
     }
-    
-    public void inc (Book bk) {
-        add(bk, +1);   
+
+    public void inc(Book bk) {
+        add(bk, +1);
     }
 //    
 //    public void add(String isbn, int qty){
@@ -149,47 +178,44 @@ public class BeanCart implements Serializable {
 //    public void dec(String isbn){
 //        dec(isbn,1);
 //    }
-    
+
 //    public void dec(Book bk) {
 //        dec(bk, 1);
 //    }
-    
 //    public void dec(String isbn, int qty){
 //        add(isbn,-qty);
 //    }
-    
     public void dec(Book bk) {
         add(bk, -1);
     }
-       
+
 //    public void del(String isbn){
 //        map.remove(isbn);
 //    }
-    
-    public void del(Book bk){
+    public void del(Book bk) {
         map.remove(bk.getIsbn());
     }
-    
-    public Collection<CartLine> list(){
+
+    public Collection<CartLine> list() {
         return map.values();
     }
-    
-    public int size(){
+
+    public int size() {
         return map.size();
     }
-            
-    public void clean(){
+
+    public void clean() {
         map.clear();
     }
-    
-    public void save(){       
+
+    public void save() {
     }
-    
-    public void load(){
-        
+
+    public void load() {
+
     }
-   
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return map.isEmpty();
     }
 }
