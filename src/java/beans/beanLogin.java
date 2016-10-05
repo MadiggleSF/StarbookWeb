@@ -8,14 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /*
  * Gab
  */
-public class beanLogin implements Serializable {
+public class BeanLogin implements Serializable {
 
     public boolean check(String login, String password) {
         if (login == null) {
@@ -37,7 +36,7 @@ public class beanLogin implements Serializable {
 //            }
 //        }
 //        
-        
+        // Verification du login et du mot de passe dans la bdd
         ConnectionPool cp = new ConnectionPool();
 
          
