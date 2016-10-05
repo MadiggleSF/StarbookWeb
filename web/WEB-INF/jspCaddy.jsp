@@ -5,13 +5,29 @@
     Panier vide !
 </c:if>
 
-<c:if test="${!panierVide}" var="c">    
-    <c:forEach var="i" items="${liste}">
-        ${i.title} / ${i.qty} / ${i.bookTaxedPrice} / ${i.linePrice}
-        <a href="controllerML?section=caddy&inc=${i.isbn}">+</a>
-        <a href="controllerML?section=caddy&dec=${i.isbn}">-</a>
-        <a href="controllerML?section=caddy&del=${i.isbn}">X</a>
-        <br>        
+<c:if test="${!panierVide}" var="c">  
+    <table>
+        <tr>
+            <th> Titre </th>
+            <th> Quantité </th>
+            <th> Prix unitaire </th>
+            <th> Sous total </th>
+        </tr>
+        
+        <c:forEach var="i" items="${liste}">
+        <tr>
+            <td>${i.title}</td>  
+            <td>${i.qty}</td> 
+            <td>${i.bookTaxedPrice}</td>
+            <td>${i.linePrice}</td>
+            <td><a href="controllerML?section=caddy&inc=${i.isbn}">+</a>
+                <a href="controllerML?section=caddy&dec=${i.isbn}">-</a>
+                <a href="controllerML?section=caddy&del=${i.isbn}">X</a>
+            </td>
+        </tr>        
     </c:forEach>  
-        <a href="controllerML?section=caddy&clean">Vider le panier !</a>
+    </table>
+<a href="controllerML?section=caddy&clean">Vider le panier !</a>
 </c:if>
+
+

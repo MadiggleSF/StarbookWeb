@@ -6,6 +6,7 @@
 package controller;
 
 import beans.BeanCart;
+import classes.Book;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,10 +77,14 @@ public class controllerML extends HttpServlet {
             }
 // A partir de la page résultat (miniatures) ou de la page zoom
             if (request.getParameter("add") != null) {
+                
                 monPanier.create(monPanier.testReturnBookFromIsbn(request.getParameter("add")));
             }
             if (request.getParameter("inc") != null) {
-                monPanier.inc(monPanier.testReturnBookFromIsbn(request.getParameter("inc")));
+                System.out.println("ISBN du livre à incrémenter " + request.getParameter("inc"));
+                Book bk01 = monPanier.testReturnBookFromIsbn(request.getParameter("inc"));
+                System.out.println("Objet book à incrémenter : " + bk01);
+                monPanier.inc(bk01);
             }
             if (request.getParameter("dec") != null) {
                 monPanier.dec(monPanier.testReturnBookFromIsbn(request.getParameter("dec")));
@@ -90,6 +95,9 @@ public class controllerML extends HttpServlet {
             if (request.getParameter("clean") != null) {
                 monPanier.clean();
             }
+            request.setAttribute("panierVide", monPanier.isEmpty());
+            request.setAttribute("liste", monPanier.list());
+            url = "/WEB-INF/jspCaddy.jsp";
         }
 
         request.getRequestDispatcher(url).include(request, response);
