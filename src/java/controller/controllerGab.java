@@ -1,7 +1,7 @@
 
 package controller;
 
-import beans.beanLogin;
+import beans.BeanLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -44,9 +44,9 @@ public class controllerGab extends HttpServlet {
         
         if ("login".equals(request.getParameter("section"))) {
             if (request.getParameter("Connexion") != null) {
-                beanLogin bLogin = (beanLogin) session.getAttribute("beanLogin");
+                BeanLogin bLogin = (BeanLogin) session.getAttribute("beanLogin");
                 if (bLogin == null) {
-                    bLogin = new beanLogin();
+                    bLogin = new BeanLogin();
                     session.setAttribute("beanLogin", bLogin);
                 }
                 if (bLogin.check(request.getParameter("login"),
@@ -89,6 +89,10 @@ public class controllerGab extends HttpServlet {
             }
         }
 
+        
+        
+        
+        
         request.getRequestDispatcher(url).include(request, response);
     }
 

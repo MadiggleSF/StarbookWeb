@@ -18,7 +18,7 @@
             <br><input type="submit" value="Se connecter" name="Connexion" /><br><br>
             <br><input type="submit" value="S'inscrire" name="Inscription" />
         </form>
-${msg}
+    ${msg}
     </body>
 </html>
 
