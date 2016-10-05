@@ -6,8 +6,11 @@
 package controller;
 
 import beans.beanCatalog;
+import beans.beanDisplayBook;
+import classes.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,6 +70,17 @@ public class controllerSeb extends HttpServlet {
             request.setAttribute("catalog", bc.getCatalogList());
         }
         //section2
+        if ("bookDetail".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspBook.jsp";
+            beanDisplayBook bdb = (beanDisplayBook)session.getAttribute("beanDisplayBook");
+            if (bdb == null) {
+                bdb = new beanDisplayBook();
+                session.setAttribute("beanDisplayBook", bdb);
+            }
+           request.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
+           
+           
+        }
         
         //section...
         
