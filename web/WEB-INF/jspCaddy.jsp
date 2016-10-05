@@ -19,7 +19,7 @@
             <td>${i.title}</td>  
             <td>${i.qty}</td> 
             <td>${i.bookTaxedPrice}</td>
-            <td>${i.linePrice}</td>
+            <td>${i.lineTaxedPrice}</td>
             <td><a href="controllerML?section=caddy&inc=${i.isbn}">+</a>
                 <a href="controllerML?section=caddy&dec=${i.isbn}">-</a>
                 <a href="controllerML?section=caddy&del=${i.isbn}">X</a>
