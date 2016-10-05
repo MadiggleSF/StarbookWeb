@@ -155,5 +155,12 @@ public class CartLine {
         lPrice = ((float) ((int) (lPrice * 100))) / 100;
         return lPrice;
     }
+    
+    @Override
+    //pour les tests (changement possible)
+    public String toString(){
+        String inf = getTitle() + " " + getFinalLinePrice()+ "€";
+        return inf;
+    }
 
 }
