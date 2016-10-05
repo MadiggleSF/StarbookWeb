@@ -2,7 +2,7 @@
 
 <c:forEach var="i" items="${catalog}">
     <img src="${i.picture}"  alt="authorImage" />
-    <a href="">${i.title}</a>
+    <a href="controllerSeb?section=bookDetail&bookIsbn=${i.isbn}">${i.title}</a>
     <c:if  var="i.subtitle" test="!= null">
         /${i.subtitle}
     </c:if>
