@@ -184,6 +184,22 @@ public class Book {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+    
+    public String getAuthor(){
+        String author = "";
+        ConnectionPool cp = new ConnectionPool();
+        String query = "SELECT * FROM vueWriters WHERE isbn='"+isbn+"'";
+        try (Connection co =  cp.setConnection()){
+            Statement stmt = co.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                author = rs.getString("PrénomAuteur")+" "+rs.getString("NomAuteur");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error: SQLException: "+ex.getMessage());
+        }
+        return author;
+    }
 
     //m
     public float calculateInclTax() {
@@ -197,6 +213,7 @@ public class Book {
     public String toString() {
         return title;
     }
+ 
 /*
     public void updateBook(DataSource ds, String isbn, Publisher p, int tax_id, String title,
             String subtitle, Date publication_date, String picture, String summary,

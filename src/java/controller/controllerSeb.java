@@ -5,6 +5,7 @@
  */
 package controller;
 
+import beans.beanCatalog;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,11 +35,37 @@ public class controllerSeb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String url = "";
+        String url = "/WEB-INF/jspSearch.jsp";
         HttpSession session = request.getSession();
         
         //section1
-        
+        if ("search".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspSearch.jsp";
+            beanCatalog bc = (beanCatalog) request.getAttribute("beanCatalog");
+            if (request.getParameter("sendResearch") != null) { 
+                if (bc == null) {
+                    bc = new beanCatalog();
+                    session.setAttribute("beanCatalog", bc);
+                }
+                switch (request.getParameter("buttonGroup01")) {
+                    case "title":
+                        bc.fillCatalog(request.getParameter("search"), 1);
+                        break;
+                    case "author":
+                        bc.fillCatalog(request.getParameter("search"), 2);
+                        break;
+                    case "isbn":
+                        bc.fillCatalog(request.getParameter("search"), 3);
+                        break;
+
+                }
+            }
+            if (request.getParameter("adResearch") != null) {
+                url = "";
+            }
+
+            request.setAttribute("catalog", bc.getCatalogList());
+        }
         //section2
         
         //section...
