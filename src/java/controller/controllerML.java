@@ -99,7 +99,13 @@ public class controllerML extends HttpServlet {
             }
             request.setAttribute("cartEmpty", monPanier.isEmpty());
             request.setAttribute("list", monPanier.list());
-            url = "/WEB-INF/jspCaddy.jsp";
+            if ("book".equals(request.getParameter("src"))) {
+                url = "/WEB-INF/jspBook.jsp";
+            }
+            if ("search".equals(request.getParameter("src"))) {
+                url = "/WEB-INF/jspSearch.jsp";
+            }
+            
         }
 
         request.getRequestDispatcher(url).include(request, response);

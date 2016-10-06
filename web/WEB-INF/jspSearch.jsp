@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Hello Search!</h1>
         <form method="POST" action="controllerSeb">
@@ -16,6 +17,7 @@
         ISBN:<input type="radio" name="buttonGroup01" value="isbn" />
         
         <input type="submit" name="sendResearch" value="Ok"/>
+        <a href="controllerSeb?section=eventDetail&eventId=2">Event</a>
         </form>
         <hr>
         <jsp:include page="/WEB-INF/jspCatalog.jsp"/>

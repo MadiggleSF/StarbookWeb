@@ -6,11 +6,15 @@
 package controller;
 
 import beans.beanCatalog;
+import beans.beanDisplayAuthor;
 import beans.beanDisplayBook;
+import beans.beanDisplayEvent;
+import beans.beanEvents;
 import classes.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +42,7 @@ public class controllerSeb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String url = "/WEB-INF/jspSearch.jsp";
+        String url = "/WEB-INF/jspHeader.jsp";
         HttpSession session = request.getSession();
         
         //section1
@@ -63,11 +67,7 @@ public class controllerSeb extends HttpServlet {
 
                 }
             }
-            if (request.getParameter("adResearch") != null) {
-                url = "";
-            }
-
-            request.setAttribute("catalog", bc.getCatalogList());
+            session.setAttribute("catalog", bc.getCatalogList());
         }
         //section2
         if ("bookDetail".equals(request.getParameter("section"))) {
@@ -77,12 +77,40 @@ public class controllerSeb extends HttpServlet {
                 bdb = new beanDisplayBook();
                 session.setAttribute("beanDisplayBook", bdb);
             }
-           request.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
+           session.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
            
            
         }
         
-        //section...
+        //section3
+        if ("authorDetail".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspAuthor.jsp";
+            beanDisplayAuthor bda = (beanDisplayAuthor)session.getAttribute("beanDisplayAuthor");
+            if (bda == null) {
+                bda = new beanDisplayAuthor();
+                session.setAttribute("beanDisplayAuthor", bda);
+            }
+            request.setAttribute("author", bda.getAuthor(Integer.valueOf(request.getParameter("authorId"))));
+        }
+        
+        //section4
+        if ("eventDetail".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspEvent.jsp";
+            beanDisplayEvent bde = (beanDisplayEvent)session.getAttribute("beanDisplayEvent");
+            if (bde == null) {
+                bde = new beanDisplayEvent();
+                session.setAttribute("beanDisplayEvent", bde);
+            }
+            request.setAttribute("event", bde.getEvent(Integer.valueOf(request.getParameter("eventId"))));
+            
+            beanEvents be = (beanEvents)session.getAttribute("beanEvents");
+            if (be == null) {
+                be = new beanEvents();
+                session.setAttribute("beanEvents", be);
+            }
+            be.fillEvents(request.getParameter("eventId"));
+            request.setAttribute("catalog", be.getEventBookList());
+        }
         
          
         request.getRequestDispatcher(url).include(request, response);

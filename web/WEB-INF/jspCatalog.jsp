@@ -13,7 +13,7 @@
     <br>
     Prix: ${i.price} euro(s)
     <br>
-    <a href="">Ajouter au panier</a>
+    <a href="controllerML?section=caddy&add=${i.isbn}&src=search">Ajouter au panier</a>
     <hr>
     
 </c:forEach>

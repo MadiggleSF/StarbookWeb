@@ -50,7 +50,8 @@ public class beanDisplayBook implements Serializable{
                 bk.setPrint(rs.getString("book_print"));
                 bk.setWeight(rs.getInt("book_weight"));
             }
-            
+            rs.close();
+            stmt.close();
             
         } catch (SQLException ex) {
             System.err.println("Error: SQLException: "+ex.getMessage());
