@@ -12,31 +12,52 @@
         <h1>Commande</h1>
         
         <h3>Récapitulatif de la commande</h3>
-        <jsp:include page="/controller?section=displayOrder" flush="true"/>
-    <c:forEach var="i" items="${orderLines}">
-        ${i.title} 
-        (ISBN : ${i.isbn}) 
-        Prix unitaire : ${i.bookTaxedPrice} 
-        Quantité : ${i.qty}
-        Prix : ${i.finalLinePrice}
-    </c:forEach> 
+
+        <jsp:include page="/controllerBen?section=displayOrder" flush="true"/>
+     
         
-        
+
         <a href="">Retour à la modification</a>
-        
+
         <h3>Méthode de livraison</h3>
+        
+<<<<<<< HEAD
+        <jsp:include page="/controllerBen?section=shippingType"/>
+        
         <form name="ShippingType" action="controllerBen" method="POST">
             <select name="ShippingTypeList" size="1">
-                <option> ---------- </option>
-                <option>Colissimo</option>
-                <option>Chronopost</option>
+                <option value="noShipping"> ----------- </option>
+                <option value="colissimo">Colissimo</option>
+                <option value="chronopost">Chronopost</option>                
+=======
+        <form name="shippingMethod" action="controllerBen?shippingMethod" method="POST">
+            <select name="shippingMethodList" size="1">
+                <option selected value="noShipping"> ---------- </option>
+                <option value="colissimo">Colissimo</option>
+                <option value="chronopost">Chronopost</option>
+                
+>>>>>>> origin/master
             </select>
+            <p>${shippingmsg}</p>
         </form>
+<<<<<<< HEAD
+        ${msg}
+
+=======
         
+        
+        
+        
+>>>>>>> origin/master
         <h3>Adresse de livraison</h3>
-        
+        <p>
+            
+        </p>    
+
         <h3>Adresse de facturation</h3>
-        
+        <p>            
+        </p>
+
         <a href="">Paiement</a>
     </body>
 </html>

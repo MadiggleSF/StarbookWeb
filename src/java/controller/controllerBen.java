@@ -5,11 +5,11 @@
  */
 package controller;
 
-import beans.*;
+import beans.beanOrder;
 import classes.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class controllerBen extends HttpServlet {
 
     protected Cookie getCookie(Cookie[] cookies, String name) {
-        
+
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals(name)) {
@@ -41,31 +41,54 @@ public class controllerBen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = "/WEB-INF/jspValidateOrder.jsp";
         HttpSession session = request.getSession();
-        
-        
-        
-        HashMap<String, CartLine> map = new HashMap();
-        Tax t1 = new Tax(1, "Basic", 19.5f);
-        Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
-        Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
-        CartLine cl = new CartLine(bk1, 4);
-        CartLine cl2 = new CartLine(bk2, 9);
-        map.put("cl", cl2);
-        map.put("cl2", cl2);
-        session.setAttribute("shoppingCart",map);
-        
-        
-        
+
         if ("displayOrder".equals(request.getParameter("section"))) {
-            url = "/WEB-INF/jspValidateOrder.jsp";
-            HashMap hm = new HashMap();
-            hm = (HashMap) session.getAttribute("shoppingCart");
-            Collection<CartLine> orderLines = hm.values();
+
+            Tax t1 = new Tax(1, "Basic", 19.5f);
+            Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
+            Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
+            CartLine cl = new CartLine(bk1, 4);
+            CartLine cl2 = new CartLine(bk2, 9);
+            Collection<CartLine> co = new ArrayList();
+            co.add(cl);
+            co.add(cl2);
+            request.setAttribute("test", co);
             
+            url = "/WEB-INF/jspDisplayOrder.jsp";
+        }
+        
+<<<<<<< HEAD
+        if ("shippingType".equals(request.getParameter("section"))) {
+            String msg = "";
+            if(request.getParameter("noShipping") != null){
+                
+            }
+            if(request.getParameter("colissimo") != null){
+                msg = "Livraison 48h - Gratuit !";
+            }
+            if(request.getParameter("chronopost") != null){
+                msg = "Livraison 24h - Gratuit !";
+            }
             
+            request.setAttribute("shippingMsg", msg);
+=======
+        if(request.getParameter("shippingMethod") != null) {
+            String msg = "";
+            System.out.println("test");
+            if(request.getParameter("noShipping") != null){
+                msg = "";
+            }
+            if(request.getParameter("chronopost") != null){
+                msg = "Livraison en 24h - Offert !";
+            }
+            if(request.getParameter("colissmo") != null){
+                msg = "Livraison en 48h - Offert !";
+            }
+            request.setAttribute("shippingmsg", msg);
+>>>>>>> origin/master
         }
 
         //section1
