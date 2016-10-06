@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- Tester si le panier est vide ou pas : prendre un IF DE JSTL sur la palette; ça va rajouter le taglib --%>
 
-<c:if test="${panierVide}" var="c">
+<c:if test="${cartEmpty}" var="c">
     Panier vide !
 </c:if>
 
-<c:if test="${!panierVide}" var="c">  
+<c:if test="${!cartEmpty}" var="c">  
     <table>
         <tr>
             <th> Aperçu </th>
@@ -15,7 +15,7 @@
             <th> Sous total </th>
         </tr>
         
-        <c:forEach var="i" items="${liste}">
+        <c:forEach var="i" items="${list}">
         <tr>
             <td><img src="${i.picture}" alt="${i.title}" height="68" width="50"></td>
             <td>${i.title}</td>  

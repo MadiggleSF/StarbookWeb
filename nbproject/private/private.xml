@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspSignUp.jsp</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspLogin.jsp</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Customer.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/controller/controllerGab.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/BeanSignUp.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/BeanLogin.java</file>
+            <file>file:/C:/Users/cdi315/Documents/GitHub/StarbookWeb/src/java/classes/CartLine.java</file>
+            <file>file:/C:/Users/cdi315/Documents/GitHub/StarbookWeb/src/java/beans/BeanCart.java</file>
+            <file>file:/C:/Users/cdi315/Documents/GitHub/StarbookWeb/web/WEB-INF/jspCaddy.jsp</file>
+            <file>file:/C:/Users/cdi315/Documents/GitHub/StarbookWeb/src/java/controller/controllerML.java</file>
         </group>
     </open-files>
 </project-private>

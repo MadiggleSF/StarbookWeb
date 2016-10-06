@@ -43,13 +43,16 @@ public class controllerML extends HttpServlet {
         //section...
         if ("fillCart".equals(request.getParameter("section"))) {
             if (request.getParameter("fillCart") != null) {
-                BeanCart monPanier = (BeanCart) session.getAttribute("panier");
+                BeanCart monPanier = (BeanCart) session.getAttribute("cart");
                 if (monPanier == null) {
                     monPanier = new BeanCart();
-                    session.setAttribute("panier", monPanier);
+                    //session.setAttribute("panier", monPanier);
+                    session.setAttribute("cart", monPanier);
                 }
-                request.setAttribute("panierVide", monPanier.isEmpty());
-                request.setAttribute("liste", monPanier.list());
+                //request.setAttribute("panierVide", monPanier.isEmpty());
+                request.setAttribute("cartEmpty", monPanier.isEmpty());
+//                request.setAttribute("liste", monPanier.list());
+                request.setAttribute("list", monPanier.list());
 
                 url = "/WEB-INF/jspCaddy.jsp";
             }
@@ -57,22 +60,22 @@ public class controllerML extends HttpServlet {
 
         //mécanisme d'affichage du caddy
         if ("DisplayCaddy".equals(request.getParameter("section"))) {          
-            BeanCart monPanier = (BeanCart) session.getAttribute("panier");
+            BeanCart monPanier = (BeanCart) session.getAttribute("cart");
       
             if (monPanier == null) {
                 monPanier = new BeanCart();
-                session.setAttribute("panier", monPanier);
+                session.setAttribute("cart", monPanier);
             }
             url = "/WEB-INF/jspCaddy.jsp";
-            request.setAttribute("panierVide", monPanier.isEmpty());
-            request.setAttribute("liste", monPanier.list());
+            request.setAttribute("cartEmpty", monPanier.isEmpty());
+            request.setAttribute("list", monPanier.list());
         }
 
         if ("caddy".equals(request.getParameter("section"))) {
-            BeanCart monPanier = (BeanCart) session.getAttribute("panier");
+            BeanCart monPanier = (BeanCart) session.getAttribute("cart");
             if (monPanier == null) {
                 monPanier = new BeanCart();
-                session.setAttribute("panier", monPanier);
+                session.setAttribute("cart", monPanier);
             }
 // A partir de la page résultat (miniatures) ou de la page zoom
             if (request.getParameter("add") != null) {
@@ -94,8 +97,8 @@ public class controllerML extends HttpServlet {
             if (request.getParameter("clean") != null) {
                 monPanier.clean();
             }
-            request.setAttribute("panierVide", monPanier.isEmpty());
-            request.setAttribute("liste", monPanier.list());
+            request.setAttribute("cartEmpty", monPanier.isEmpty());
+            request.setAttribute("list", monPanier.list());
             url = "/WEB-INF/jspCaddy.jsp";
         }
 
