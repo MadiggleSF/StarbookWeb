@@ -1,74 +1,47 @@
+
 package beans;
 
 import classes.*;
-import java.beans.*;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class beanOrder implements Serializable {
-
-    private HashMap<String, CartLine> map;
+    
+    Collection<CartLine> col = new ArrayList<>();
     ConnectionPool cp = new ConnectionPool();
-
-    public void add(CartLine c) {
-        if(map.containsKey(c.getIsbn())){
-            c.setQty(c.getQty() + (map.get(c.getIsbn()).getQty()));
-        }
-        map.put(c.getIsbn(), c);
+        
+    public Collection<CartLine> getCol(){
+        return col;
     }
-
-    public float price() {
-        float p = 0f;
-        if (map != null) {
-            for (CartLine c : (Collection<CartLine>) list()) {
-                p += c.getLinePrice();
+    
+    public void setCol(Collection<CartLine> col){
+        this.col = col;
+    }
+    
+    public void add(CartLine c){
+        if(!col.isEmpty()){
+            for(CartLine i : col){
+                if(i.getIsbn().equals(c.getIsbn())){
+                    c.setQty(c.getQty()+i.getQty());
+                    col.remove(i);
+                    break;
+                }                
             }
         }
-        return p;
+        col.add(c);
     }
-
-    public float priceTax() {
+    
+    public float getFinalPrice(){
         float p = 0f;
-        if (map != null) {
-            for (CartLine c : (Collection<CartLine>) list()) {
-                p += c.getLineTaxedPrice();
-            }
+        for(CartLine i : col){
+           p += i.getFinalLinePrice();
         }
         return p;
     }
-
-    public float priceTaxDiscount() {
-        float p = 0f;
-        if (map != null) {
-            for (CartLine c : (Collection<CartLine>) list()) {
-                p += c.getFinalLinePrice();
-            }
-        }
-        return p;
+    
+    public int size(){
+        return col.size();
     }
-
-    public float priceTaxDiscountShipping() {
-        float p = priceTaxDiscount();
-        return p;
-    }
-
-    public Collection list() {
-        return map.values();
-    }
-
-    public void saveOrder() {
-        try (Connection cnn = cp.setConnection();) {
-            String query = "";
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
 }

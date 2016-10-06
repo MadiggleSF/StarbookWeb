@@ -59,6 +59,21 @@ public class controllerBen extends HttpServlet {
             
             url = "/WEB-INF/jspDisplayOrder.jsp";
         }
+        
+        if(request.getParameter("shippingMethod") != null) {
+            String msg = "";
+            System.out.println("test");
+            if(request.getParameter("noShipping") != null){
+                msg = "";
+            }
+            if(request.getParameter("chronopost") != null){
+                msg = "Livraison en 24h - Offert !";
+            }
+            if(request.getParameter("colissmo") != null){
+                msg = "Livraison en 48h - Offert !";
+            }
+            request.setAttribute("shippingmsg", msg);
+        }
 
         //section1
         //section2

@@ -20,22 +20,27 @@
         <a href="">Retour à la modification</a>
 
         <h3>Méthode de livraison</h3>
-        <form name="ShippingType" action="controllerBen" method="POST">
-            <select name="ShippingTypeList" size="1">
-                <option> ---------- </option>
-                <option >Colissimo</option>
-                <option>Chronopost</option>
+        
+        <form name="shippingMethod" action="controllerBen?shippingMethod" method="POST">
+            <select name="shippingMethodList" size="1">
+                <option selected value="noShipping"> ---------- </option>
+                <option value="colissimo">Colissimo</option>
+                <option value="chronopost">Chronopost</option>
+                
             </select>
+            <p>${shippingmsg}</p>
         </form>
-
+        
+        
+        
+        
         <h3>Adresse de livraison</h3>
         <p>
             
         </p>    
 
         <h3>Adresse de facturation</h3>
-        <p>
-            
+        <p>            
         </p>
 
         <a href="">Paiement</a>
