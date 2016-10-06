@@ -66,7 +66,6 @@ public class controllerML extends HttpServlet {
             url = "/WEB-INF/jspCaddy.jsp";
             request.setAttribute("panierVide", monPanier.isEmpty());
             request.setAttribute("liste", monPanier.list());
-
         }
 
         if ("caddy".equals(request.getParameter("section"))) {

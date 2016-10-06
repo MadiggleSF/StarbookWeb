@@ -17,7 +17,7 @@
         
         <c:forEach var="i" items="${liste}">
         <tr>
-            <td><img src="/images/hamlet.jpg" alt="${i.title}"></td>
+            <td><img src="images/hamlet.jpg" alt="${i.title}"></td>
             <td>${i.title}</td>  
             <td>${i.qty}</td> 
             <td>${i.bookTaxedPrice}</td>
