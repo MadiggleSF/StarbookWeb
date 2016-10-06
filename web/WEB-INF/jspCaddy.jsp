@@ -8,6 +8,7 @@
 <c:if test="${!panierVide}" var="c">  
     <table>
         <tr>
+            <th> Aperçu </th>
             <th> Titre </th>
             <th> Quantité </th>
             <th> Prix unitaire </th>
@@ -16,6 +17,7 @@
         
         <c:forEach var="i" items="${liste}">
         <tr>
+            <td><img src="/images/hamlet.jpg" alt="${i.title}"></td>
             <td>${i.title}</td>  
             <td>${i.qty}</td> 
             <td>${i.bookTaxedPrice}</td>
