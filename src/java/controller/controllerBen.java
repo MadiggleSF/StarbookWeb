@@ -60,6 +60,7 @@ public class controllerBen extends HttpServlet {
             url = "/WEB-INF/jspDisplayOrder.jsp";
         }
         
+<<<<<<< HEAD
         if ("shippingType".equals(request.getParameter("section"))) {
             String msg = "";
             if(request.getParameter("noShipping") != null){
@@ -73,6 +74,21 @@ public class controllerBen extends HttpServlet {
             }
             
             request.setAttribute("shippingMsg", msg);
+=======
+        if(request.getParameter("shippingMethod") != null) {
+            String msg = "";
+            System.out.println("test");
+            if(request.getParameter("noShipping") != null){
+                msg = "";
+            }
+            if(request.getParameter("chronopost") != null){
+                msg = "Livraison en 24h - Offert !";
+            }
+            if(request.getParameter("colissmo") != null){
+                msg = "Livraison en 48h - Offert !";
+            }
+            request.setAttribute("shippingmsg", msg);
+>>>>>>> origin/master
         }
 
         //section1
