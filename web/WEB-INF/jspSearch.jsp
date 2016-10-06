@@ -16,7 +16,6 @@
         ISBN:<input type="radio" name="buttonGroup01" value="isbn" />
         
         <input type="submit" name="sendResearch" value="Ok"/>
-        <input type="submit" name="adResearch" value="Ok"/>
         </form>
         <hr>
         <jsp:include page="/WEB-INF/jspCatalog.jsp"/>

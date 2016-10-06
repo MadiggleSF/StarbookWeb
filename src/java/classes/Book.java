@@ -185,20 +185,23 @@ public class Book {
         this.weight = weight;
     }
     
-    public String getAuthor(){
-        String author = "";
+    public Author getAuthor(){
+        Author aut = null;
         ConnectionPool cp = new ConnectionPool();
-        String query = "SELECT * FROM vueWriters WHERE isbn='"+isbn+"'";
+        String query = "SELECT * FROM sb_author,sb_book,sb_writer WHERE sb_book.book_isbn = sb_writer.book_isbn "
+                + "AND sb_writer.author_id = sb_author.author_id "
+                + "AND sb_book.book_isbn = '"+isbn+"'";
         try (Connection co =  cp.setConnection()){
             Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                author = rs.getString("PrénomAuteur")+" "+rs.getString("NomAuteur");
+                aut = new Author(rs.getInt("author_id"), rs.getString("author_surname"),
+                        rs.getString("author_firstname"), rs.getDate("author_dob"), rs.getDate("author_dod"));
             }
         } catch (SQLException ex) {
             System.err.println("Error: SQLException: "+ex.getMessage());
         }
-        return author;
+        return aut;
     }
 
     //m
