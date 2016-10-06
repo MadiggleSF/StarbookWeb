@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -17,34 +18,76 @@ public class beanAddresses implements Serializable {
     ConnectionPool cp = new ConnectionPool();
     HashMap<String, Address> map;
 
-//    public void getCustomerBill(int id) {
-//        try (Connection cnn = cp.setConnection();) {
-//
-//            String query = "";
-//            Statement stmt = cnn.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//
-//            while (rs.next()) {
-//                map.add(new Address(rs.getInt("employee_id"),
-//                        rs.getInt("status_number"),
-//                        rs.getDate("status_date")));
-//            }
-//            rs.close();
-//            stmt.close();
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
+    public beanAddresses() {
+        map = new HashMap<>();
+    }
+    
+     
+    
+    public void getCustomerAddresses(String login) {
+        getCustomerDelivery(login);
+        getCustomerBill(login);
+    }
+    
+    public Collection<Address> list(){
+        return map.values();
+    }
+    
+    public Address getAddress(int id){
+        return map.get(String.valueOf(id));
+    }
+    
+    public void getCustomerBill(String login) {
+        try (Connection cnn = cp.setConnection();) {
 
-    public void getCustomerDelivery(int id) {
+            String query = "SELECT * FROM viewCustomerBills WHERE customer_mail = '"+login+"'";
+            Statement stmt = cnn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                map.put(String.valueOf(rs.getInt("address_id")),
+                        (new Address(rs.getInt("address_id"),
+                        rs.getString("address_street"),
+                        rs.getString("address_other"),
+                        rs.getString("address_zipcode"),
+                        rs.getString("address_city"),
+                        rs.getString("address_country"))));
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    public void getCustomerAddresses() {
+    public void getCustomerDelivery(String login) {
+        
+        try (Connection cnn = cp.setConnection();) {
+
+            String query = "SELECT * FROM viewCustomerDeliveries WHERE customer_mail = '"+login+"'";
+            Statement stmt = cnn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                map.put(String.valueOf(rs.getInt("address_id")),
+                        (new Address(rs.getInt("address_id"),
+                        rs.getString("address_street"),
+                        rs.getString("address_other"),
+                        rs.getString("address_zipcode"),
+                        rs.getString("address_city"),
+                        rs.getString("address_country"))));
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
+  
 
     public void create() {
 

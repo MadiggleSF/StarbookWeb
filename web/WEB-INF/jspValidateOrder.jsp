@@ -21,42 +21,24 @@
 
         <h3>Méthode de livraison</h3>
         
-<<<<<<< HEAD
-        <jsp:include page="/controllerBen?section=shippingType"/>
         
-        <form name="ShippingType" action="controllerBen" method="POST">
+        <form name="ShippingType" action="controllerBen?section=shippingType" method="POST">
             <select name="ShippingTypeList" size="1">
                 <option value="noShipping"> ----------- </option>
                 <option value="colissimo">Colissimo</option>
-                <option value="chronopost">Chronopost</option>                
-=======
-        <form name="shippingMethod" action="controllerBen?shippingMethod" method="POST">
-            <select name="shippingMethodList" size="1">
-                <option selected value="noShipping"> ---------- </option>
-                <option value="colissimo">Colissimo</option>
                 <option value="chronopost">Chronopost</option>
-                
->>>>>>> origin/master
             </select>
-            <p>${shippingmsg}</p>
+      
+            <p>${shippingMsg}</p>
         </form>
-<<<<<<< HEAD
-        ${msg}
 
-=======
-        
-        
-        
-        
->>>>>>> origin/master
-        <h3>Adresse de livraison</h3>
-        <p>
-            
-        </p>    
+      
 
-        <h3>Adresse de facturation</h3>
-        <p>            
-        </p>
+
+        <h3>Adresse</h3>        
+        
+        <jsp:include page="/controllerBen?section=shippingAddresses"/>  
+        
 
         <a href="">Paiement</a>
     </body>

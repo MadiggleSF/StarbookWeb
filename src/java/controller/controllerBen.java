@@ -5,11 +5,12 @@
  */
 package controller;
 
-import beans.beanOrder;
+import beans.*;
 import classes.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -44,9 +45,13 @@ public class controllerBen extends HttpServlet {
 
         String url = "/WEB-INF/jspValidateOrder.jsp";
         HttpSession session = request.getSession();
+        Customer c = new Customer();
+
+        session.setAttribute("LOGIN", "seb@gmail.com");
 
         if ("displayOrder".equals(request.getParameter("section"))) {
 
+            //test
             Tax t1 = new Tax(1, "Basic", 19.5f);
             Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
             Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
@@ -56,39 +61,46 @@ public class controllerBen extends HttpServlet {
             co.add(cl);
             co.add(cl2);
             request.setAttribute("test", co);
-            
+            //////////////////
             url = "/WEB-INF/jspDisplayOrder.jsp";
         }
-        
-<<<<<<< HEAD
+
         if ("shippingType".equals(request.getParameter("section"))) {
             String msg = "";
-            if(request.getParameter("noShipping") != null){
-                
+            if (request.getParameter("noShipping") != null) {
+
             }
-            if(request.getParameter("colissimo") != null){
+            if (request.getParameter("colissimo") != null) {
                 msg = "Livraison 48h - Gratuit !";
             }
-            if(request.getParameter("chronopost") != null){
+            if (request.getParameter("chronopost") != null) {
                 msg = "Livraison 24h - Gratuit !";
             }
-            
+
             request.setAttribute("shippingMsg", msg);
-=======
-        if(request.getParameter("shippingMethod") != null) {
-            String msg = "";
-            System.out.println("test");
-            if(request.getParameter("noShipping") != null){
-                msg = "";
+        }
+
+        if ("shippingAddresses".equals(request.getParameter("section"))) {
+
+            beanAddresses adList = new beanAddresses();
+            if (session.getAttribute("LOGIN") != null) {
+                String login = (String) session.getAttribute("LOGIN");
+                adList.getCustomerAddresses(login);
+                request.setAttribute("adList", adList.list());
+
+                if (request.getParameter("okDelivery") != null) {
+//                    request.setAttribute("sda", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okDelivery"))));
+                    System.out.println((Address) adList.getAddress(Integer.valueOf(request.getParameter("okDelivery"))));
+                
+                }
+                
+                if (request.getParameter("okBilling") != null) {
+//                    request.setAttribute("sba", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));
+                    System.out.println((Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));
+                }
             }
-            if(request.getParameter("chronopost") != null){
-                msg = "Livraison en 24h - Offert !";
-            }
-            if(request.getParameter("colissmo") != null){
-                msg = "Livraison en 48h - Offert !";
-            }
-            request.setAttribute("shippingmsg", msg);
->>>>>>> origin/master
+
+            url = "/WEB-INF/jspShippingAddresses.jsp";
         }
 
         //section1
