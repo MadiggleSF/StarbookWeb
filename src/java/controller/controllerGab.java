@@ -47,7 +47,7 @@ public class controllerGab extends HttpServlet {
                     session.setAttribute("beanLogin", bLogin);
                 }
                 if (bLogin.check(request.getParameter("login"),
-                        request.getParameter("password"))) {
+                        request.getParameter("password")) == 0) {
                     url = "/WEB-INF/jspWelcome.jsp";
                     request.setAttribute("welcome", request.getParameter("login"));
                     Cookie c = new Cookie("LOGIN", request.getParameter("login"));
@@ -55,10 +55,13 @@ public class controllerGab extends HttpServlet {
                     c = new Cookie("try", "");
                     c.setMaxAge(0);
                     response.addCookie(c);
-                } else {
+
+                }
+                if (bLogin.check(request.getParameter("login"),
+                        request.getParameter("password")) == 1) {
                     url = "/WEB-INF/jspLogin.jsp";
                     request.setAttribute("login", request.getParameter("login"));
-                    request.setAttribute("msg", "ERREUR:Login/Mot de passe invalide !!!");
+                    request.setAttribute("msg", "ERREUR:Le login ne doit pas être nul ou vide !!!");
                     Cookie c = getCookie(request.getCookies(), "try");
                     if (c == null) {
                         c = new Cookie("try", "*");
@@ -72,6 +75,64 @@ public class controllerGab extends HttpServlet {
                         request.setAttribute("fatalerror", "Trop de tentatives !!!");
                     }
                 }
+
+                if (bLogin.check(request.getParameter("login"),
+                        request.getParameter("password")) == 2) {
+                    url = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("msg", "ERREUR:Le mot de passe ne doit pas être nul ou vide !!!");
+                    Cookie c = getCookie(request.getCookies(), "try");
+                    if (c == null) {
+                        c = new Cookie("try", "*");
+                    } else {
+                        c.setValue(c.getValue() + "*");
+                    }
+                    c.setMaxAge(45);
+                    response.addCookie(c);
+                    if (c.getValue().length() > 3) {
+                        url = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalerror", "Trop de tentatives !!!");
+                    }
+                }
+
+                if (bLogin.check(request.getParameter("login"),
+                        request.getParameter("password")) == 3) {
+                    url = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("msg", "ERREUR:Login incorrect !!!");
+                    Cookie c = getCookie(request.getCookies(), "try");
+                    if (c == null) {
+                        c = new Cookie("try", "*");
+                    } else {
+                        c.setValue(c.getValue() + "*");
+                    }
+                    c.setMaxAge(45);
+                    response.addCookie(c);
+                    if (c.getValue().length() > 3) {
+                        url = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalerror", "Trop de tentatives !!!");
+                    }
+                }
+
+                if (bLogin.check(request.getParameter("login"),
+                        request.getParameter("password")) == 4) {
+                    url = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("msg", "ERREUR:Mot de passe incorrect !!!");
+                    Cookie c = getCookie(request.getCookies(), "try");
+                    if (c == null) {
+                        c = new Cookie("try", "*");
+                    } else {
+                        c.setValue(c.getValue() + "*");
+                    }
+                    c.setMaxAge(45);
+                    response.addCookie(c);
+                    if (c.getValue().length() > 3) {
+                        url = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalerror", "Trop de tentatives !!!");
+                    }
+                }
+
             }
 
             Cookie cccc = getCookie(request.getCookies(), "login");
@@ -85,8 +146,6 @@ public class controllerGab extends HttpServlet {
                 }
             }
 
-            // si la personne n'est pas dans la base de données, prévoir un message 
-            // " pensez à vous inscrire" + lien "s'inscrire"
         }
 
         // GESTION DU BEAN SIGNUP 
@@ -99,81 +158,64 @@ public class controllerGab extends HttpServlet {
                 session.setAttribute("beanSignUp", bSignUp);
             }
             if (request.getParameter("Validation") != null) {
-                boolean reussi = true;
-                bSignUp.insertSignUp(request.getParameter("surname"),
+
+                if (bSignUp.insertSignUp(request.getParameter("surname"),
                         request.getParameter("firstname"),
                         request.getParameter("password"),
                         request.getParameter("mail"),
                         request.getParameter("cell"),
                         request.getParameter("landline"),
-                        Date.valueOf(request.getParameter("dob")));
+                        Date.valueOf(request.getParameter("dob")))) {
+                    url = "/WEB-INF/jspSignUpValidation.jsp";
 
-            //prévoir si insertion validée -> "inscription validée" et retour
-            //vers la homepage
-            //prévoir si pbs d'insertion, message " Vous n'avez pas rempli correctement les champs"
-//            if (bSignUp.insertSignUp()) == true { 
-//              url = "/WEB-INF/jspSignUpValidation.jsp";  
-//                
-//            }
-//                
-//            if (bSignUp.insertSignUp()) == false {
-//                 
-//                
-//        }
-//        }
-                /*BeanLogin bLogin = (BeanLogin) session.getAttribute("beanLogin");
-                 if (bLogin == null) {
-                 bLogin = new BeanLogin();
-                 session.setAttribute("beanLogin", bLogin);
-                 }
-                 if (bLogin.check(request.getParameter("login"),
-                 request.getParameter("password"))) {*/
-                request.getRequestDispatcher(url).include(request, response);
+                } else {
+                    url = "/WEB-INF/jspSignUp.jsp";
+                    request.setAttribute("msg", "ERREUR:Veuillez saisir correctement les champs d'inscription !!!");
+
+                }
+
             }
-
-            // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-            /**
-             * Handles the HTTP <code>GET</code> method.
-             *
-             * @param request servlet request
-             * @param response servlet response
-             * @throws ServletException if a servlet-specific error occurs
-             * @throws IOException if an I/O error occurs
-             */
-            @Override
-            protected void doGet
-            (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-                processRequest(request, response);
-            }
-
-            /**
-             * Handles the HTTP <code>POST</code> method.
-             *
-             * @param request servlet request
-             * @param response servlet response
-             * @throws ServletException if a servlet-specific error occurs
-             * @throws IOException if an I/O error occurs
-             */
-            @Override
-            protected void doPost
-            (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-                processRequest(request, response);
-            }
-
-            /**
-             * Returns a short description of the servlet.
-             *
-             * @return a String containing servlet description
-             */
-            @Override
-            public String getServletInfo
-            
-                () {
-        return "Short description";
-            }// </editor-fold>
-
         }
+        request.getRequestDispatcher(url).include(request, response);
     }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

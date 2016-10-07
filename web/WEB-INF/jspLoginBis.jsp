@@ -18,7 +18,7 @@ s'est ni encore inscrit ni encore connecté
             Login : <input type="text" name="connection_login_bis" value="${login}" /><br><br>
             Mot de passe : <input type="password" name="connection_password_bis" value="${password}"/><br><br>
             <br><input type="submit" value="Se connecter" name="Connexion_bis" />
-            <br><input type="submit" value="S'inscrire" name="Inscription_bis" />
+            <br><a href="controllerGab?section=signUp">S'inscrire</a>
         </form>
 ${msg}
     </body>
