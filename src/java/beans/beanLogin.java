@@ -15,26 +15,23 @@ import java.util.logging.Logger;
  */
 public class BeanLogin implements Serializable {
 
-    public boolean check(String login, String password) {
+    public int check(String login, String password) {
+        int r = 1;
         if (login == null) {
-            return false;
+            return 1;
         }
         if (password == null) {
-            return false;
+            return 2 ;
         }
         if (login.trim().isEmpty()) {
-            return false;
+            return 1;
         }
         if (password.trim().isEmpty()) {
-            return false;
+            return 2;
         }
 
-//         if (login.equals("admin")) {
-//            if (password.equals("root")) {
-//                return true;
-//            }
-//        }
-//        
+
+       
         // Verification du login et du mot de passe dans la bdd
         ConnectionPool cp = new ConnectionPool();
 
@@ -46,18 +43,26 @@ public class BeanLogin implements Serializable {
 
             while (rs.next()) {
 
-                System.out.println(rs.getString("customer_mail") + " " + rs.getString("customer_pwd"));
-                if (rs.getString("customer_mail").equals(login)) {
-                    if (rs.getString("customer_pwd").equals(password)) {
-                        return true;
-                    }
+               
+                // cas où le mail n'existe pas dans la base de données
+                if (!rs.getString("customer_mail").equals(login)) {
+                    r = 3;
                 }
-                if (rs.getString ("customer_mail")!= (login)){
-                    if (rs.getString("customer_pwd") != (password)){
-                        System.out.println("Pensez à vous inscrire !");
-                        return false;
-                    }
+                
+                // cas où le mail existe mais le mot de passe est incorrect 
+                if (rs.getString("customer_mail").equals(login)
+                        && !rs.getString("customer_pwd").equals(password)){
+                    r = 4;
                 }
+                        
+                
+                // cas où le login et le mot de passe sont corrects
+                if (rs.getString("customer_mail").equals(login) 
+                        && rs.getString("customer_pwd").equals(password)){
+                    
+                        return 0;
+                }
+                
             }
 
             rs.close();
@@ -67,7 +72,7 @@ public class BeanLogin implements Serializable {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return false;
+        return r;
 
     }
 
