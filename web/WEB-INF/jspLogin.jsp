@@ -13,14 +13,14 @@
         <h1>Connexion</h1>
         <form method="POST" action="controllerGab" name ="CONNEXION">
             <input type="hidden" name="section" value="login" />
-            Login : <input type="text" name="login" value="${login}" /><br><br>
+            Email : <input type="text" 
+                           name="login"  value="${login}"  /><br><br>
             Mot de passe : <input type="password" name="password" value="${password}"/><br><br>
             <br><input type="submit" value="Se connecter" name="Connexion" /><br><br>
-            <br><input type="submit" value="S'inscrire" name="Inscription" />
+            <br><a href="controllerGab?section=signUp">S'inscrire</a>
         </form>
     ${msg}
     </body>
 </html>
 
         
-   

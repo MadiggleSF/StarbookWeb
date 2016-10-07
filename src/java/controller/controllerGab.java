@@ -1,9 +1,10 @@
-
 package controller;
 
-import beans.BeanLogin;
+import beans.*;
+import classes.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /*
-Gab
+ Gab
  */
 @WebServlet(name = "controllerGab", urlPatterns = {"/controllerGab"})
 public class controllerGab extends HttpServlet {
 
- 
-     private Cookie getCookie(Cookie[] cookies, String name) {
+    private Cookie getCookie(Cookie[] cookies, String name) {
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals(name)) {
@@ -29,19 +29,16 @@ public class controllerGab extends HttpServlet {
         }
         return null;
     }
-     
-     
-     
-     
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+
         String url = "/WEB-INF/jspLogin.jsp";
         HttpSession session = request.getSession();
-        
-        
-        
+        Customer current = new Customer();
+
+        // GESTION DU BEAN LOGIN 
         if ("login".equals(request.getParameter("section"))) {
             if (request.getParameter("Connexion") != null) {
                 BeanLogin bLogin = (BeanLogin) session.getAttribute("beanLogin");
@@ -87,16 +84,54 @@ public class controllerGab extends HttpServlet {
                     response.addCookie(cccc);
                 }
             }
+            
+            
+            // si la personne n'est pas dans la base de données, prévoir un message 
+            // " pensez à vous inscrire" + lien "s'inscrire"
+            
         }
 
+        // GESTION DU BEAN SIGNUP 
+        if ("signUp".equals(request.getParameter("section"))) {
+
+            url = "/WEB-INF/jspSignUp.jsp";
+            BeanSignUp bSignUp = (BeanSignUp) session.getAttribute("beanSignUp");
+            if (bSignUp == null) {
+                bSignUp = new BeanSignUp();
+                session.setAttribute("beanSignUp",bSignUp);
+            }
+            if (request.getParameter("Validation") != null){
+                boolean reussi= true;
+                bSignUp.insertSignUp(request.getParameter("surname"),
+                                     request.getParameter("firstname"),
+                                     request.getParameter("password"),
+                                     request.getParameter("mail"),
+                                     request.getParameter("cell"),
+                                     request.getParameter("landline"),
+                                     Date.valueOf(request.getParameter("dob")));
+            
+                
+                //prévoir si insertion validée -> "inscription validée" et retour
+                //vers la homepage
+                
+                //prévoir si pbs d'insertion, message " Vous n'avez pas rempli correctement les champs"
+                
+                
+                
+        }
+        }
+               
         
-        
-        
-        
+         /*BeanLogin bLogin = (BeanLogin) session.getAttribute("beanLogin");
+         if (bLogin == null) {
+         bLogin = new BeanLogin();
+         session.setAttribute("beanLogin", bLogin);
+         }
+         if (bLogin.check(request.getParameter("login"),
+         request.getParameter("password"))) {*/
+
         request.getRequestDispatcher(url).include(request, response);
     }
-
-       
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -137,4 +172,6 @@ public class controllerGab extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+
 }
+
