@@ -14,25 +14,23 @@ import java.util.logging.Logger;
 
 public class BeanCart implements Serializable {
 
-    HashMap<String, CartLine> map;
+HashMap<String, CartLine> map;
 //VRAI CONSTRUCTEUR
+public BeanCart() {
+    this.map = new HashMap();
+}
+
+//CONSTRUCTEUR TEST
 //    public BeanCart() {
 //        this.map = new HashMap();
+//        Book bk01 = testReturnBookFromIsbn("978-2070468508");
+//        Book bk02 = testReturnBookFromIsbn("978-2211215350");
+//        Book bk03 = testReturnBookFromIsbn("978-2253067078");
+//        add(bk01, 3);
+//        add(bk02, 1);
+//        add(bk03, 2);
+//        System.out.println( this.size());        
 //    }
-
-    //CONSTRUCTEUR TEST
-    public BeanCart() {
-        this.map = new HashMap();
-        Book bk01 = testReturnBookFromIsbn("978-2070468508");
-        Book bk02 = testReturnBookFromIsbn("978-2211215350");
-        Book bk03 = testReturnBookFromIsbn("978-2253067078");
-        add(bk01, 3);
-        add(bk02, 1);
-        add(bk03, 2);
-        
-        System.out.println( this.size());
-        
-    }
 //    public HashMap<String, Item> tempFillCart() {
 //        HashMap<String, Item> testFillCart = new HashMap(); 
 //        Item it01 = new Item("Harry Potter", 3, 16.99f);
@@ -57,7 +55,6 @@ public class BeanCart implements Serializable {
 //        create(isbn,+1);
 //    }
 //    
-
     public void create(Book bk) {
         create(bk, +1);
     }
@@ -160,7 +157,6 @@ public class BeanCart implements Serializable {
 //        add(bk03, 2);
 //        return testFillCart;
 //    }
-
     public void inc(Book bk) {
         add(bk, +1);
     }
