@@ -16,7 +16,7 @@
         ISBN:<input type="radio" name="buttonGroup01" value="isbn" />
         
         <input type="submit" name="sendResearch" value="Ok"/>
-        <a href="controllerSeb?section=eventDetail&eventId=2">Event</a>
+        <a href="controllerSeb?section=eventDetail&eventId=1">Event</a>
         </form>
         <hr>
         <jsp:include page="/WEB-INF/jspCatalog.jsp"/>

@@ -10,11 +10,7 @@ import beans.beanDisplayAuthor;
 import beans.beanDisplayBook;
 import beans.beanDisplayEvent;
 import beans.beanEvents;
-import classes.Book;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,11 +60,11 @@ public class controllerSeb extends HttpServlet {
                     case "isbn":
                         bc.fillCatalog(request.getParameter("search"), 3);
                         break;
-
                 }
             }
             session.setAttribute("catalog", bc.getCatalogList());
         }
+        
         //section2
         if ("bookDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspBook.jsp";
@@ -77,9 +73,7 @@ public class controllerSeb extends HttpServlet {
                 bdb = new beanDisplayBook();
                 session.setAttribute("beanDisplayBook", bdb);
             }
-           session.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
-           
-           
+           request.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
         }
         
         //section3
@@ -103,13 +97,14 @@ public class controllerSeb extends HttpServlet {
             }
             request.setAttribute("event", bde.getEvent(Integer.valueOf(request.getParameter("eventId"))));
             
-            beanEvents be = (beanEvents)session.getAttribute("beanEvents");
-            if (be == null) {
-                be = new beanEvents();
-                session.setAttribute("beanEvents", be);
+            beanCatalog bc = (beanCatalog)session.getAttribute("beanEvents");
+            if (bc == null) {
+                bc = new beanCatalog();
+                session.setAttribute("beanEvents", bc);
             }
-            be.fillEvents(request.getParameter("eventId"));
-            request.setAttribute("catalog", be.getEventBookList());
+            bc.fillCatalog(request.getParameter("eventId"),4);
+            
+            session.setAttribute("catalog", bc.getCatalogList());
         }
         
          

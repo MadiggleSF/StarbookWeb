@@ -34,7 +34,8 @@
 
 
     <form method="POST" action="controllerML">
-        <input type="hidden" name="section" value="caddy&clean" />
+        <input type="hidden" name="section" value="caddy" />
+        <input type="hidden" name="clean" value="ok" />
         <input type="submit" name="cleanCart" value="Vider le panier" /><br>
     </form>
     
