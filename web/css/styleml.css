@@ -1,0 +1,29 @@
+.miniatureflottante 
+{
+	float: left;
+}
+
+
+.confirmation
+{
+    color: blue;
+}
+
+.img-texte 
+{
+   display: inline-block;
+   padding-top: 20px;
+   vertical-align: central;
+}
+
+.img-texte img {
+    float : left;
+    margin-right : 15px;
+    width : 5%;
+}
+
+.container-img-texte {
+    line-height: 60px; /*fait bouger la ligne*/
+    vertical-align: central;
+    /*height: 150px;*/
+}
