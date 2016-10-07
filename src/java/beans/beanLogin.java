@@ -1,6 +1,5 @@
 package beans;
 
-
 import classes.ConnectionPool;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -39,8 +38,6 @@ public class BeanLogin implements Serializable {
         // Verification du login et du mot de passe dans la bdd
         ConnectionPool cp = new ConnectionPool();
 
-         
-        
         try (Connection cnn = cp.setConnection();) {
             String query = " SELECT customer_pwd, customer_mail FROM [starbook].[dbo].[sb_customer];";
 
@@ -55,20 +52,21 @@ public class BeanLogin implements Serializable {
                         return true;
                     }
                 }
+                if (rs.getString ("customer_mail")!= (login)){
+                    if (rs.getString("customer_pwd") != (password)){
+                        System.out.println("Pensez à vous inscrire !");
+                        return false;
+                    }
+                }
             }
 
             rs.close();
             stmt.close();
-           
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-      
-        
+
         return false;
 
     }
