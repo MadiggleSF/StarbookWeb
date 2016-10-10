@@ -1,6 +1,32 @@
+@font-face { 
+    font-family: 'LearningCurveProRegular';
+    src: url('LearningCurve_OT-webfont.eot');
+    src: url('LearningCurve_OT-webfont.eot?#iefix')
+        format('embedded-opentype'),
+        url('LearningCurve_OT-webfont.woff') format('woff'),
+        url('LearningCurve_OT-webfont.ttf') format('truetype'),
+        url('LearningCurve_OT-webfont.svg#LearningCurveProRegular')
+        format('svg');
+}
+
+@font-face {
+font-family: 'PlayfairDisplay-Regular';
+src: url('PlayfairDisplay-Regular.otf');
+}
+
+h3 {
+    font-family: 'PlayfairDisplay-Regular', Arial;
+}
+
+p {
+    font-family: 'LearningCurveProRegular', Arial;
+}
+
+
+
 .miniatureflottante 
 {
-	float: left;
+    float: left;
 }
 
 
@@ -11,9 +37,9 @@
 
 .img-texte 
 {
-   display: inline-block;
-   padding-top: 20px;
-   vertical-align: central;
+    display: inline-block;
+    padding-top: 20px;
+    vertical-align: central;
 }
 
 .img-texte img {
@@ -27,3 +53,52 @@
     vertical-align: central;
     /*height: 150px;*/
 }
+
+input[type=submit] {
+    background-color: #009999;
+    color: white;
+    padding-top:5px; 
+    padding-right:10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size:13px;
+    border-radius: 8px;
+
+    /*    width:200px;
+    padding:20px;
+    margin:5px;*/
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+input[type=submit] span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+input[type=submit]:after {
+    content: '»';
+    position: absolute;
+    opacity:0;
+    top:0;
+    right : -20px;
+    transition: 0.5s;
+}
+
+input[type=submit]:hover span {
+    padding-right: 25px;
+}
+input[type=submit]:hover span:after {
+    opacity: 1;
+    right:0;
+}
+
+
+/*input[type=submit]:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}*/
