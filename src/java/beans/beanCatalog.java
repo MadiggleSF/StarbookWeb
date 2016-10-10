@@ -44,7 +44,8 @@ public class beanCatalog implements Serializable {
     public void fillCatalog(String input, int typeSearch) {
         ConnectionPool cp = new ConnectionPool();
         String query = "SELECT sb_book.*,sb_publisher.*,sb_tax.* "
-                + "FROM sb_book, sb_writer, sb_author, sb_publisher, sb_tax, sb_bookEvent, sb_event "
+                + "FROM sb_book, sb_writer, sb_author, sb_publisher, sb_tax, "
+                + "sb_bookEvent, sb_event, sb_genre, sb_category "
                 + "WHERE sb_author.author_id = sb_writer.author_id "
                 + "AND sb_book.book_isbn = sb_writer.book_isbn "
                 + "AND sb_book.publisher_isbn = sb_publisher.publisher_isbn ";
@@ -66,9 +67,14 @@ public class beanCatalog implements Serializable {
                 break;
             case 5:
                 query+="AND sb_author.author_id = "+input;
+                break;
+            case 6:
+                query+="AND sb_book.book_isbn = sb_category.book_isbn "
+                        + "AND sb_category.genre_name = sb_genre.genre_name "
+                        + "AND sb_genre.genre_name = '"+input+"'";
                 
         }
-        //query +=  "COLLATE SQL_Latin1_General_Cp437_CI_AI";
+        query +=  " COLLATE SQL_Latin1_General_Cp437_CI_AI";
         
         try (Connection co = cp.setConnection(); Statement stmt = co.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);

@@ -44,4 +44,8 @@ public class beanEvents implements Serializable{
             System.err.println("Error: SQLException: "+ex.getMessage());
         }
     }
+    
+    public Event getEvent(String id){
+        return events.get(id);
+    }
 }
