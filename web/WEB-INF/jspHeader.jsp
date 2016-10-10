@@ -1,4 +1,4 @@
-<img src="images/starbook_logo.jpg" alt="superlogo"/>
+<img class="logo" src="images/starbook_logo.jpg" alt="superlogo"/>
 <h1 class="starbook">Starbook</h1>
 <jsp:include page="jspLogin.jsp" flush="true"/>
 <a href="/WEB-INF/jspHeader.jsp">Accueil</a>

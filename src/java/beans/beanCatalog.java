@@ -63,6 +63,9 @@ public class beanCatalog implements Serializable {
                 query+="AND sb_bookEvent.book_isbn = sb_book.book_isbn "
                         + "AND sb_event.event_id = sb_bookEvent.event_id "
                         + "AND sb_event.event_id = "+input;
+                break;
+            case 5:
+                query+="AND sb_author.author_id = "+input;
                 
         }
         //query +=  "COLLATE SQL_Latin1_General_Cp437_CI_AI";
@@ -99,4 +102,11 @@ public class beanCatalog implements Serializable {
     public Book getBook(String isbn){
         return catalog.get(isbn);
     }
+    
+    public void removeAll(){
+        for (Book bk : catalog.values()) {
+            catalog.remove(bk.getIsbn());
+        }
+    }
+    
 }
