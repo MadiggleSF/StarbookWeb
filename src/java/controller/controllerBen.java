@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "controllerBen", urlPatterns = {"/controllerBen"})
 public class controllerBen extends HttpServlet {
 
+    
     protected Cookie getCookie(Cookie[] cookies, String name) {
 
         if (cookies != null) {
