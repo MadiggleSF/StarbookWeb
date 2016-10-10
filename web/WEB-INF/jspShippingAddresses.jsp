@@ -96,7 +96,10 @@
                     </tr>
                 </tbody>
             </table>
-        </form> 
+        </form>
+
+        <p><font color="red">${oMsgs}</font></p>            
+
 
         <a href="controllerBen?section=payment">Suivant</a>
 

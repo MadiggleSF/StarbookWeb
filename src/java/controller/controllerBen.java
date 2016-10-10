@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "controllerBen", urlPatterns = {"/controllerBen"})
 public class controllerBen extends HttpServlet {
 
-    
     protected Cookie getCookie(Cookie[] cookies, String name) {
 
         if (cookies != null) {
@@ -58,6 +57,7 @@ public class controllerBen extends HttpServlet {
         session.setAttribute("cart", panierTest);
         // ***************************************
 
+        String oMsgs = "";
         if ("displayOrder".equals(request.getParameter("section"))) {
 
             BeanCart cart = (BeanCart) session.getAttribute("cart");
@@ -90,7 +90,7 @@ public class controllerBen extends HttpServlet {
         }
 
         if ("shippingAddresses".equals(request.getParameter("section"))) {
-            
+
             beanAddresses adList = new beanAddresses();
             if (session.getAttribute("LOGIN") != null) {
                 String login = (String) session.getAttribute("LOGIN");
@@ -111,17 +111,25 @@ public class controllerBen extends HttpServlet {
                 }
             }
             url = "/WEB-INF/jspShippingAddresses.jsp";
-            
+
         }
-        
-        if("payment".equals(request.getParameter("section"))){
+
+        if ("payment".equals(request.getParameter("section"))) {
             Address sda = (Address) session.getAttribute("sda");
             Address sba = (Address) session.getAttribute("sba");
-            request.setAttribute("sda", sda);
-            request.setAttribute("sba", sba);            
-            
-            
-            url ="/WEB-INF/jspPayment.jsp";
+            if (sda == null || sba == null) {
+                oMsgs = "Adresses non valides";
+                url = "controllerBen?section=shippingAddresses";
+                request.setAttribute("oMsgs", oMsgs);
+
+            }
+            if (sda != null && sba != null) {
+                request.setAttribute("sda", sda);
+                request.setAttribute("sba", sba);
+
+                url = "/WEB-INF/jspPayment.jsp";
+            }
+
         }
 
         //section1

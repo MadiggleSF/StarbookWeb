@@ -26,6 +26,7 @@
         <form name="ShippingType" action="controllerBen?section=shippingType" method="POST">
             <select name="ShippingTypeList" size="1">
                 <option value="colissimo">Colissimo (+0.00 €)</option>
+                <option value="bird">Pigeon voyageur (+0.00 €)</option>
             </select>
       
             <p>${shippingMsg}</p>

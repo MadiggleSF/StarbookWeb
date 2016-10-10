@@ -18,7 +18,7 @@
 
         <h3>Récapitulatif</h3>
         <jsp:include page="/controllerBen?section=displayOrder" flush="true"/>
-
+        <hr>
         <h3>Adresses</h3>
 
         <h4>Livraison</h4>
@@ -33,7 +33,7 @@
             ${sba.zipcode} ${sba.city} <br>
             ${sba.country}
         </p>
-
+        <hr>
         <h3>Méthode de paiement</h3>
 
 
@@ -57,11 +57,11 @@
 
                 <tr>
                     <td>Numéro de carte</td>
-                    <td><input type="text" name="cardNumber" value="" size="35"/></td>
+                    <td><input type="text" name="cardNumber" value="" size="35" /></td>
                 </tr>
                 <tr>
                     <td>Expiration</td>
-                    <td><input type="text" name="cardMonth" value="MM" size="2" maxlength="2"/> / <input type="text" name="cardYear" value="AAAA" size="4" maxlength="4"/></td>
+                    <td><input type="text" name="cardMonth" value="MM" maxlength="2"/> / <input type="text" name="cardYear" value="AAAA" size="4" maxlength="4"/></td>
                 </tr>
                 <tr>
                     <td>Cryptogramme</td>
