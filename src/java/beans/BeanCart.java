@@ -195,9 +195,26 @@ public BeanCart() {
     public Collection<CartLine> list() {
         return map.values();
     }
+    
+    public float calculateTotalPrice(){
+       float total = 0f; 
+       for(CartLine cl : list()){
+           total += cl.getFinalLinePrice();
+       }
+       
+       return total;
+    }
 
     public int size() {
         return map.size();
+    }
+    
+    public int quantify(){
+        int i = 0;
+        for(CartLine cl : list()){
+            i += cl.getQty();
+        }
+        return i;
     }
 
     public void clean() {

@@ -89,7 +89,11 @@ public class beanAddresses implements Serializable {
     }
   
 
-    public void create() {
+    public void createDelivery() {
+
+    }
+    
+    public void createBilling() {
 
     }
 

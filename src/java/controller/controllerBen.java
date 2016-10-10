@@ -45,24 +45,33 @@ public class controllerBen extends HttpServlet {
 
         String url = "/WEB-INF/jspValidateOrder.jsp";
         HttpSession session = request.getSession();
-        Customer c = new Customer();
 
+        
+        // *************** TEST ******************
         session.setAttribute("LOGIN", "seb@gmail.com");
+        Tax t1 = new Tax(1, "Basic", 19.5f);
+        Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
+        Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
+        BeanCart panierTest = new BeanCart();
+        panierTest.add(bk1, 4);
+        panierTest.add(bk2, 9);
+        session.setAttribute("cart", panierTest);
+        // ***************************************
 
         if ("displayOrder".equals(request.getParameter("section"))) {
 
-            //test
-            Tax t1 = new Tax(1, "Basic", 19.5f);
-            Book bk1 = new Book("012546-31AA", null, "Coincoin", "", null, "ecece", "summary", "Fr", 30.5f, t1, 999, "128", "Relié", 154);
-            Book bk2 = new Book("561698-FF8", null, "Le ciment de la joie", "", null, "zece", "summary", "Fr", 12.0f, t1, 999, "152", "Relié", 110);
-            CartLine cl = new CartLine(bk1, 4);
-            CartLine cl2 = new CartLine(bk2, 9);
-            Collection<CartLine> co = new ArrayList();
-            co.add(cl);
-            co.add(cl2);
-            request.setAttribute("test", co);
-            //////////////////
+            BeanCart cart = (BeanCart) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new BeanCart();
+                session.setAttribute("cart", cart);
+            }
+            request.setAttribute("emptyOrder", cart.isEmpty());
+            request.setAttribute("order", cart.list());
+            request.setAttribute("orderQty", cart.quantify());
+            request.setAttribute("orderPrice", cart.calculateTotalPrice());
+
             url = "/WEB-INF/jspDisplayOrder.jsp";
+
         }
 
         if ("shippingType".equals(request.getParameter("section"))) {
@@ -90,10 +99,10 @@ public class controllerBen extends HttpServlet {
 
                 if (request.getParameter("okDelivery") != null) {
 //                    request.setAttribute("sda", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okDelivery"))));
-                    System.out.println((Address) adList.getAddress(Integer.valueOf(request.getParameter("okDelivery"))));
-                
+                    System.out.println(request.getParameter("okDelivery"));
+                    
                 }
-                
+
                 if (request.getParameter("okBilling") != null) {
 //                    request.setAttribute("sba", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));
                     System.out.println((Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));

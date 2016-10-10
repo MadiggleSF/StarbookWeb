@@ -14,9 +14,9 @@
             <select name="deliveryList" form="select.value">
                 <option> ------------ </option>     
                 <c:forEach var="d" items="${adList}">
-                    <option>${d.city}</option>
+                    <option>${d.id}. ${d.city}</option>
                 </c:forEach>
-            </select> 
+            </select>             
             <input type="submit" value="OK" name="okDelivery" />
             <p>
                 <br>Rue : ${sda.street}
@@ -32,7 +32,7 @@
             <select name="billingList">
                 <option> ------------ </option>     
                 <c:forEach var="b" items="${adList}">
-                    <option>${b.city}</option>                    
+                    <option>${b.id}. ${b.city}</option>                    
                 </c:forEach>               
             </select>        
             <input type="submit" value="OK" name="okBilling" />

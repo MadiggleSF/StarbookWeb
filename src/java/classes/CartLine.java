@@ -20,27 +20,7 @@ public class CartLine {
         this.discountRate = 0f;
     }
 
-//    public DisplayableItem displayItem(String isbn, String title, String picture, int qty, float unitPrice) {
-//        this.isbn = isbn;
-//        this.title = title;
-//        this.picture = picture;
-//        this.qty = qty;
-//        this.unitPrice = unitPrice;
-//        this.totalPrice = unitPrice * qty;
-//    }
-//    public CartLine getItem() {
-//        ConnectionPool cp = new ConnectionPool();
-//            
-//    try (Connection cnn = cp.setConnection();) {
-//    String query = "";
-//
-//    /////////////////
-//
-//    } catch (SQLException ex) {
-//        Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-//    return 
-//            }
+
     public void change(int qty) {
         this.qty += qty;
     }

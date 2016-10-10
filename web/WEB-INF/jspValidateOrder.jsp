@@ -17,7 +17,7 @@
      
         
 
-        <a href="">Retour à la modification</a>
+        <a href="">Retour au panier</a>
 
         <h3>Méthode de livraison</h3>
         

@@ -9,41 +9,63 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
-        
-        <table border="0" cellspacing="10">
-            <thead>
-                <tr>
-            
-                    <th><strong>Article</strong></th>
-                    <th><strong>ISBN</strong></th>
-                    <th><strong>Prix unitaire</strong></th>
-                    <th><strong>Dont taxe</strong></th>
-                    <th><strong>Quantité</strong></th>
-                    <th><strong>Réduction</strong></th>                    
-                    <th><strong>Prix</strong></th>
-                </tr>
-            </thead>
 
+        <c:if test="${emptyOrder}">
+            <p>Le panier est vide !</p>
+        </c:if>
 
+        <c:if test="${!emptyOrder}">
 
-            <c:forEach var="cl" items="${test}">
-                <tbody>
+            <table border="0" cellspacing="10">
+                <thead>
                     <tr>
-                        <td>${cl.title}</td>
-                        <td>${cl.isbn}</td>
-                        <td>${cl.bookTaxedPrice} €</td>
+                        <th><strong>Article</strong></th>
+                        <th><strong>ISBN</strong></th>
+                        <th><strong>Prix unitaire</strong></th>
+                        <th><strong>Dont taxe</strong></th>
+                        <th><strong>Quantité</strong></th>
+                        <th><strong>Réduction</strong></th>                    
+                        <th><strong>Prix</strong></th>
+                    </tr>
+                </thead>
+
+
+                <c:forEach var="cl" items="${order}">
+                    <tbody>
+                        <tr>
+                            <td>${cl.title}</td>
+                            <td>${cl.isbn}</td>
+                            <td>${cl.bookTaxedPrice} €</td>
+                            <td></td>
+                            <td>${cl.qty}</td>
+                            <td>- ${cl.discountRate} €</td>
+                            <td>${cl.finalLinePrice} €</td>                       
+                        </tr>
+
+                    </c:forEach>  
+                    <tr>
                         <td></td>
-                        <td>${cl.qty}</td>
-                        <td>- ${cl.discountRate} €</td>
-                        <td>${cl.finalLinePrice} €</td>                       
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Total :</strong></td>
+                        <td></td>
+                        <td>${orderQty}</td>
+                        <td></td>
+                        <td>${orderPrice} €</td>
                     </tr>
                 </tbody>
-            </c:forEach>
-                
-                <p><strong>Prix total TTC : </strong> €</p>
-        </table>
-    
-        
+            </table>
 
-   
+        </c:if>
+
+
+
+
