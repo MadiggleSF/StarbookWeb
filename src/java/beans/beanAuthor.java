@@ -9,11 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class beanDisplayAuthor implements Serializable{
+public class beanAuthor implements Serializable{
     
     private Author aut;
 
-    public beanDisplayAuthor() {
+    public beanAuthor() {
         this.aut = new Author();
     }
     

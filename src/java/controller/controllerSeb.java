@@ -6,8 +6,7 @@
 package controller;
 
 import beans.beanCatalog;
-import beans.beanDisplayAuthor;
-import beans.beanDisplayEvent;
+import beans.beanAuthor;
 import beans.beanEvents;
 import beans.beanGenre;
 import java.io.IOException;
@@ -84,9 +83,9 @@ public class controllerSeb extends HttpServlet {
         //section3
         if ("authorDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspAuthor.jsp";
-            beanDisplayAuthor bda = (beanDisplayAuthor) session.getAttribute("beanDisplayAuthor");
+            beanAuthor bda = (beanAuthor) session.getAttribute("beanDisplayAuthor");
             if (bda == null) {
-                bda = new beanDisplayAuthor();
+                bda = new beanAuthor();
                 session.setAttribute("beanDisplayAuthor", bda);
             }
             request.setAttribute("author", bda.getAuthor(Integer.valueOf(request.getParameter("authorId"))));
@@ -108,14 +107,14 @@ public class controllerSeb extends HttpServlet {
             beanEvents be = (beanEvents) session.getAttribute("beanEvents");
             if (be == null) {
                 be = new beanEvents();
-                session.setAttribute("beanDisplayEvent", be);
+                session.setAttribute("beanEvents", be);
             }
             request.setAttribute("event", be.getEvent(request.getParameter("eventId")));
 
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
             if (bc == null) {
                 bc = new beanCatalog();
-                session.setAttribute("beanEvents", bc);
+                session.setAttribute("beanCatalog", bc);
             }
             bc.getCatalog().clear();
             bc.fillCatalog(request.getParameter("eventId"), 4);
