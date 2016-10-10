@@ -9,6 +9,7 @@ import beans.beanCatalog;
 import beans.beanDisplayAuthor;
 import beans.beanDisplayEvent;
 import beans.beanEvents;
+import beans.beanGenre;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -104,12 +105,12 @@ public class controllerSeb extends HttpServlet {
         //section4
         if ("eventDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspEvent.jsp";
-            beanDisplayEvent bde = (beanDisplayEvent) session.getAttribute("beanDisplayEvent");
-            if (bde == null) {
-                bde = new beanDisplayEvent();
-                session.setAttribute("beanDisplayEvent", bde);
+            beanEvents be = (beanEvents) session.getAttribute("beanEvents");
+            if (be == null) {
+                be = new beanEvents();
+                session.setAttribute("beanDisplayEvent", be);
             }
-            request.setAttribute("event", bde.getEvent(Integer.valueOf(request.getParameter("eventId"))));
+            request.setAttribute("event", be.getEvent(request.getParameter("eventId")));
 
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
             if (bc == null) {
@@ -133,6 +134,45 @@ public class controllerSeb extends HttpServlet {
             be.fillEvents();
             session.setAttribute("events", be.getEventBookList());
         }
+        
+        //section6
+        if ("rayons".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspSectionRayons.jsp";
+            beanGenre bg = (beanGenre)session.getAttribute("beanGenre");
+            if (bg == null) {
+                bg = new beanGenre();
+                session.setAttribute("beanGenre", bg);
+            }
+            bg.fillGenre();
+            session.setAttribute("genres", bg.getGenresList());
+            
+        }
+        
+        //section7
+        if ("genreDetail".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspGenre.jsp";
+            beanGenre bg = (beanGenre)session.getAttribute("beanGenre");
+            if (bg == null) {
+                bg = new beanGenre();
+                session.setAttribute("beanGenre", bg);
+            }
+            request.setAttribute("genre", bg.getGenre(request.getParameter("genreName")));
+            
+            beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
+            if (bc == null) {
+                bc = new beanCatalog();
+                session.setAttribute("beanCatalog", bc);
+            }
+            bc.getCatalog().clear();
+            bc.fillCatalog(request.getParameter("genreName"), 6);
+
+            session.setAttribute("catalog", bc.getCatalogList());
+        }
+        
+        
+        
+        
+        
 
         request.getRequestDispatcher(url).include(request, response);
     }
