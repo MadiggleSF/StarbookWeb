@@ -13,16 +13,19 @@
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
             <input type="hidden" name="section" value="signUp" /> 
-            Nom:<input type="text" name="surname" value="${surname}" /><br><br>
-            Prénom:<input type="text" name="firstname" value="${firstname}" /><br><br>
-            Mot de Passe:<input type="password" name="pwd" value="${pwd}" /><br><br>
-            Email: <input type="text" name="mail" value="${mail}" /><br><br>
-            Tel portable: <input type="text" name="cell" value="${cell}" /><br><br>
-            Tel fixe: <input type="text" name="landline" value="${landline}" /><br><br>
-            Date de Naissance (AAAA-MM-JJ):
-            <input type="text" name="dob_year" value="${dob_year}" size="2"/>-<input
-            type ="text" name="dob_month" value="${dob_month}" size="2"/>-<input type =" text"
-            name ="dob_day" value="${dob_day}" size="2"><br><br>                             
+            Nom:<input type="text" name="surname" value="" /><br><br>
+            Prénom:<input type="text" name="firstname" value="" /><br><br>
+            Mot de Passe:<input type="password" name="pwd" value="" /><br><br>
+            Email: <input type="text" name="mail" value="" /><br><br>
+            Tel portable: <input type="text" name="cell" value="" /><br><br>
+            Tel fixe: <input type="text" name="landline" value="" /><br><br>
+            Date de Naissance :
+            <input type="text" name="dob_day" value="JJ" size="2"/>/<input
+            type ="text" name="dob_month" value="MM" size="2"/>/<input type =" text"
+            name ="dob_year" value="AAAA
+            
+            
+            " size="2"><br><br>                             
             <br><input type="submit" value="Valider" name="Validation" />
             
             

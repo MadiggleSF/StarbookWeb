@@ -25,55 +25,53 @@ import java.util.logging.Logger;
 public class BeanSignUp implements Serializable {
     
    
-    public boolean check(String surname, String firstname, String pwd,
-            String mail, String cell, Date dob) {
-
-        if (surname == null) {
-            return false;
+    public int check(String surname, String firstname, String pwd,
+            String mail, String cell,String landline, Date dob) {
+        
+        int r = 1;
+        
+        //contraintes de saisie du nom de famille (ni null, ni vide,regex)
+        if (surname == null || surname.trim().isEmpty() 
+                            || (!InputCheck.checkAlphaChar(surname))){
+            return 1;
         }
 
-        if (surname.trim().isEmpty()) {
-            return false;
+        //contraintes de saisie du prénom
+        if (firstname == null || firstname.trim().isEmpty()
+                              || (!InputCheck.checkAlphaChar(firstname))) {
+            return 2;
         }
 
-        if (firstname == null) {
-            return false;
+        //contraintes de saisie du pwd
+        if (pwd == null || pwd.trim().isEmpty()) {
+            return 3;
         }
 
-        if (firstname.trim().isEmpty()) {
-            return false;
+        //contraintes de saisie du mail
+        if (mail == null || mail.trim().isEmpty()
+                         || (!InputCheck.checkMail(mail))){                     
+            return 4;
         }
 
-        if (pwd == null) {
-            return false;
+        //contraintes de saisie du cell 
+        if (cell == null || cell.trim().isEmpty()
+                         || (! InputCheck.checkPhone(cell))) {
+            return 5;
         }
 
-        if (pwd.trim().isEmpty()) {
-            return false;
+        //contraintes de saisie du landline(champ non obligatoire, format regex)
+        
+        if (!InputCheck.checkNumbers_NotMandatory(landline)){
+            return 6;
         }
 
-        if (mail == null) {                     //REGEX A INCLURE
-            return false;
-        }
-
-        if (mail.trim().isEmpty()) {
-            return false;
-        }
-
-        if (cell == null) {
-            return false;
-        }
-
-        if (cell.trim().isEmpty()) {
-            return false;
-        }
-
+        //contraintes de saisie du dob
         if (dob == null) {
-            return false;
+            return 7;
         }
-        //pas de trim sur la date, regex à inclure pour le format de date
+        
     
-        return false; 
+        return r; 
     
     }
         ///////////////////////////////////////////////////////////////////////
