@@ -1,6 +1,7 @@
 package beans;
 
 import classes.ConnectionPool;
+import classes.InputCheck;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,23 +15,24 @@ import java.util.logging.Logger;
  * Gab
  */
 public class BeanLogin implements Serializable {
-
+    
+    
+    
     public int check(String login, String password) {
         int r = 1;
-        if (login == null) {
+        
+        //contraintes de saisie du login (ni null, ni vide, regex)
+        if (login == null ||(!InputCheck.checkMail(login))
+                          ||(login.trim().isEmpty())) {
             return 1;
         }
-        if (password == null) {
+        
+        //contraintes de saisie du pwd (ni null, ni vide)
+        if (password == null||(password.trim().isEmpty())) {
             return 2 ;
         }
-        if (login.trim().isEmpty()) {
-            return 1;
-        }
-        if (password.trim().isEmpty()) {
-            return 2;
-        }
-
-
+       
+       
        
         // Verification du login et du mot de passe dans la bdd
         ConnectionPool cp = new ConnectionPool();

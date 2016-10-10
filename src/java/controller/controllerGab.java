@@ -57,12 +57,12 @@ public class controllerGab extends HttpServlet {
                     response.addCookie(c);
 
                 }
-                
+
                 if (bLogin.check(request.getParameter("login"),
                         request.getParameter("password")) == 1) {
                     url = "/WEB-INF/jspLogin.jsp";
-                    request.setAttribute("login", request.getParameter("login"));
-                    request.setAttribute("msg", "ERREUR:Le login ne doit être ni nul  ni vide et contenir un @ !!!");
+                    request.setAttribute("login", request.getParameter("login"));//conserve l'affichage du login
+                    request.setAttribute("msg", "ERREUR:Le login ne doit être ni nul ni vide et contenir un @ !!!");
                     Cookie c = getCookie(request.getCookies(), "try");
                     if (c == null) {
                         c = new Cookie("try", "*");
@@ -80,7 +80,7 @@ public class controllerGab extends HttpServlet {
                 if (bLogin.check(request.getParameter("login"),
                         request.getParameter("password")) == 2) {
                     url = "/WEB-INF/jspLogin.jsp";
-                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("login", request.getParameter("login"));//conserve l'affichage du login
                     request.setAttribute("msg", "ERREUR:Le mot de passe ne doit pas être nul ou vide !!!");
                     Cookie c = getCookie(request.getCookies(), "try");
                     if (c == null) {
@@ -159,24 +159,55 @@ public class controllerGab extends HttpServlet {
                 session.setAttribute("beanSignUp", bSignUp);
             }
             if (request.getParameter("Validation") != null) {
-
-                if (bSignUp.insertSignUp(request.getParameter("surname"),
+                
+                switch (bSignUp.check(request.getParameter("surname"),
                         request.getParameter("firstname"),
                         request.getParameter("pwd"),
                         request.getParameter("mail"),
                         request.getParameter("cell"),
                         request.getParameter("landline"),
-                        Date.valueOf(request.getParameter("dob_year")+"-"+
-                                     request.getParameter("dob_month")+"-"+
-                                     request.getParameter("dob_day")))) {
-                    url = "/WEB-INF/jspSignUpValidation.jsp";
-
-                } else {
-                    url = "/WEB-INF/jspSignUp.jsp";
-                    request.setAttribute("msg", "ERREUR:Veuillez saisir correctement les champs d'inscription !!!");
+                       Date.valueOf(request.getParameter("dob_year") + "-"
+                            + request.getParameter("dob_month") + "-"
+                            + request.getParameter("dob_day")))) {
+                    case 1:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le nom de famille !!!");
+                        break;
+                    case 2:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le prénom !!!");
+                        break;
+                    case 3:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le pwd !!!");
+                        break;
+                    case 4:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le mail !!!");
+                        break;
+                    case 5:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le téléphone portable !!!");
+                        break;
+                    case 6:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le téléphone fixe !!!");
+                        break;
+                    case 7:
+                        request.setAttribute("msg", "ERREUR:Veuillez saisir correctement la date de naissance !!!");
+                        break;
 
                 }
-
+                url = "/WEB-INF/jspSignUp.jsp";
+                
+                 if(bSignUp.insertSignUp(request.getParameter("surname"),
+                    request.getParameter("firstname"),
+                    request.getParameter("pwd"),
+                    request.getParameter("mail"),
+                    request.getParameter("cell"),
+                    request.getParameter("landline"),
+                    Date.valueOf(request.getParameter("dob_year") + "-"
+                            + request.getParameter("dob_month") + "-"
+                            + request.getParameter("dob_day")))) {
+                url = "/WEB-INF/jspSignUpValidation.jsp";
+                 }
+                
+           
+                   
             }
         }
         request.getRequestDispatcher(url).include(request, response);
@@ -220,5 +251,5 @@ public class controllerGab extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

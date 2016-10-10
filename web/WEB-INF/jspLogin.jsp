@@ -15,7 +15,7 @@
             <input type="hidden" name="section" value="login" />
             Email : <input type="text" 
                            name="login"  value="${login}"  /><br><br>
-            Mot de passe : <input type="password" name="password" value="${password}"/><br><br>
+            Mot de passe : <input type="password" name="password" value=""/><br><br>
             <br><input type="submit" value="Se connecter" name="Connexion" /><br><br>
             <br><a href="controllerGab?section=signUp">S'inscrire</a>
         </form>
