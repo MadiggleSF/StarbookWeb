@@ -14,12 +14,19 @@ font-family: 'PlayfairDisplay-Regular';
 src: url('PlayfairDisplay-Regular.otf');
 }
 
-h3 {
+@font-face {
+font-family: 'FiraSans-Regular';
+src: url('FiraSans-Regular.otf');
+}
+
+h3, h5 {
     font-family: 'PlayfairDisplay-Regular', Arial;
+    line-height: 25%;
 }
 
 p {
-    font-family: 'LearningCurveProRegular', Arial;
+    font-family: 'PlayfairDisplay-Regular';
+    font-size: 0.8em;
 }
 
 
@@ -29,12 +36,6 @@ p {
     float: left;
 }
 
-
-.confirmation
-{
-    color: blue;
-}
-
 .img-texte 
 {
     display: inline-block;
@@ -42,19 +43,35 @@ p {
     vertical-align: central;
 }
 
+
 .img-texte img {
     float : left;
     margin-right : 15px;
     width : 5%;
+    
 }
 
+
 .container-img-texte {
+    margin-top : 30px;
     line-height: 60px; /*fait bouger la ligne*/
     vertical-align: central;
+    margin-left: 50px;
+    martin-bottom: 30px;
     /*height: 150px;*/
 }
 
+.boite {
+    width: auto;
+    height: 130px;
+    border: 3px solid #009999;
+    box-sizing: border-box;
+    border-radius: 15px 50px;
+    
+}
+
 input[type=submit] {
+    font-family: 'PlayfairDisplay-Regular', Arial;
     background-color: #009999;
     color: white;
     padding-top:5px; 
@@ -98,7 +115,59 @@ input[type=submit]:hover span:after {
     right:0;
 }
 
+.hop {
+    font-family:'LearningCurveProRegular', Arial;
+    font-size: 2em;
+    font-weight: bold;
+}
 
-/*input[type=submit]:hover {
-box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+table {
+    width : 100%;
+    font-family: 'PlayfairDisplay-Regular', Arial;
+}
+
+th {
+    text-align : left;
+    font-family: 'PlayfairDisplay-Regular', Arial;
+}
+
+
+
+td {
+    height: 80px;
+    vertical-align: central;
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: 0.85em;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+}
+
+
+.insideTable:hover {
+    background-color: #f5f5f5;
+}
+
+#outer
+{
+    width:100px;
+    text-align:center;
+}
+
+/*.cmd {
+    display: inline-block;
+}
+
+.achat {
+    display: inline-block;
 }*/
+
+.inner {
+    display: inline-block;
+}
+
+.floatbutton {
+    display: inline-block;
+}

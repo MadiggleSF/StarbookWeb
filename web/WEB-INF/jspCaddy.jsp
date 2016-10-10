@@ -2,7 +2,14 @@
 <%-- Tester si le panier est vide ou pas : prendre un IF DE JSTL sur la palette; ça va rajouter le taglib --%>
 
 <c:if test="${cartEmpty}" var="c">
+    <img src="images/empty_cart.png" alt="Panier vide !">
+    <br>
     Panier vide !
+    <br>
+    <form method="POST" action="controllerSeb">
+        <input type="hidden" name="section" value="" />
+        <input type="submit" name="" value="Poursuivre vos achats" /><br>
+    </form>
 </c:if>
 
 <c:if test="${!cartEmpty}" var="c">  
@@ -22,9 +29,9 @@
                 <td>${i.qty}</td> 
                 <td>${i.bookTaxedPrice}</td>
                 <td>${i.lineTaxedPrice}</td>
-                <td><a href="controllerML?section=caddy&inc=${i.isbn}">+</a>
-                    <a href="controllerML?section=caddy&dec=${i.isbn}">-</a>
-                    <a href="controllerML?section=caddy&del=${i.isbn}">X</a>
+                <td><a href="controllerML?section=caddy&inc=${i.isbn}"><img alt="+" src="images/Add.png"></a>
+                    <a href="controllerML?section=caddy&dec=${i.isbn}"><img alt="-" src="images/button-decrease.png"></a>
+                    <a href="controllerML?section=caddy&del=${i.isbn}"><img alt="X" src="images/button-remove.png"></a>
                 </td>
             </tr>        
         </c:forEach> 
