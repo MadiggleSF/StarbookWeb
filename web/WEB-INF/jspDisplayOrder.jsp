@@ -55,11 +55,11 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td><strong>Total :</strong></td>
+                        <td><strong>TOTAL :</strong></td>
                         <td></td>
-                        <td>${orderQty}</td>
+                        <td><strong>${orderQty}</strong></td>
                         <td></td>
-                        <td>${orderPrice} €</td>
+                        <td><strong>${orderPrice} €</strong></td>
                     </tr>
                 </tbody>
             </table>

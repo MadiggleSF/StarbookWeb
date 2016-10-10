@@ -5,46 +5,100 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Starbook</title>
     </head>
     <body>
+        <h1>Commande</h1>
+
+        <p align="center">Validation du panier > <strong>Choix de l'adresse</strong> > Paiement > C'est parti !</p>
+
+        <h3>Choix de l'adresse</h3>
 
         <h4>Livraison</h4>
-        <form name="deliveryForm" action="controllerBen?section=shippingAddresses&selectDelivery=select.value" method="POST">        
-            <select name="deliveryList" form="select.value">
+        <form name="deliveryForm" action="controllerBen?section=shippingAddresses" method="POST">        
+            <select name="deliveryList">
                 <option> ------------ </option>     
                 <c:forEach var="d" items="${adList}">
-                    <option>${d.id}. ${d.city}</option>
+                    <option value="${d.id}">${d.id}. ${d.city}</option>
                 </c:forEach>
             </select>             
             <input type="submit" value="OK" name="okDelivery" />
-            <p>
-                <br>Rue : ${sda.street}
-                <br>Code Postal : ${sda.zipcode}
-                <br>Ville : ${sda.city}
-                <br>Pays : ${sda.country}
-                <br>Complément : ${sda.other}
-            </p>
+            <table border="0" cellspacing="10">               
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>${sda.id}. ${sda.city}</td>
+                    </tr>
+                    <tr>                        
+                        <td>Rue</td>
+                        <td><input type="text" name="sdaStreet" value="${sda.street}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Ville</td>
+                        <td><input type="text" name="sdaCity" value="${sda.city}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Code postal</td>
+                        <td><input type="text" name="sdaZipcode" value="${sda.zipcode}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Pays</td>
+                        <td><input type="text" name="sdaCountry" value="${sda.country}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Complément</td>
+                        <td><textarea name="sdaOther" rows="4" cols="20">
+                            </textarea></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
         </form>
 
+
         <h4>Facturation</h4>
-        <form name="billingForm" action="controllerBen?section=shippingAddresses&selectBilling=${b.id}" method="POST">        
+        <form name="billingForm" action="controllerBen?section=shippingAddresses" method="POST">        
             <select name="billingList">
                 <option> ------------ </option>     
                 <c:forEach var="b" items="${adList}">
-                    <option>${b.id}. ${b.city}</option>                    
+                    <option value="${b.id}">${b.id}. ${b.city}</option>                    
                 </c:forEach>               
             </select>        
             <input type="submit" value="OK" name="okBilling" />
-            <p>
-                <br>Rue : ${sba.street}
-                <br>Code Postal : ${sba.zipcode}
-                <br>Ville : ${sba.city}
-                <br>Pays : ${sba.country}
-                <br>Complément : ${sba.other}
-            </p>
-        </form>  
-            
+            <table border="0" cellspacing="10">               
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>${sba.id}. ${sba.city}</td>
+                    </tr>
+                    <tr>
+                        <td>Rue</td>
+                        <td><input type="text" name="sbaStreet" value="${sba.street}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Ville</td>
+                        <td><input type="text" name="sbaCity" value="${sba.city}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Code postal</td>
+                        <td><input type="text" name="sbaZipcode" value="${sba.zipcode}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Pays</td>
+                        <td><input type="text" name="sbaCountry" value="${sba.country}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Complément</td>
+                        <td><textarea name="sbaOther" rows="4" cols="20">
+                            </textarea></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </form> 
+
+        <a href="controllerBen?section=payment">Suivant</a>
 
 
     </body>

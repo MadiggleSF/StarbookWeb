@@ -11,10 +11,11 @@
     <body>
         <h1>Commande</h1>
         
-        <h3>Récapitulatif de la commande</h3>
+        <p align="center"><strong>Validation du panier</strong> > Choix de l'adresse > Paiement > C'est parti !</p>
+        
+        <h3>Validation du panier</h3>
 
         <jsp:include page="/controllerBen?section=displayOrder" flush="true"/>
-     
         
 
         <a href="">Retour au panier</a>
@@ -24,22 +25,14 @@
         
         <form name="ShippingType" action="controllerBen?section=shippingType" method="POST">
             <select name="ShippingTypeList" size="1">
-                <option value="noShipping"> ----------- </option>
-                <option value="colissimo">Colissimo</option>
-                <option value="chronopost">Chronopost</option>
+                <option value="colissimo">Colissimo (+0.00 €)</option>
             </select>
       
             <p>${shippingMsg}</p>
         </form>
-
-      
-
-
-        <h3>Adresse</h3>        
         
-        <jsp:include page="/controllerBen?section=shippingAddresses"/>  
+        <a href="controllerBen?section=shippingAddresses">Suivant</a>
         
-
-        <a href="">Paiement</a>
+        
     </body>
 </html>

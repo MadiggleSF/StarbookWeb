@@ -46,7 +46,6 @@ public class controllerBen extends HttpServlet {
         String url = "/WEB-INF/jspValidateOrder.jsp";
         HttpSession session = request.getSession();
 
-        
         // *************** TEST ******************
         session.setAttribute("LOGIN", "seb@gmail.com");
         Tax t1 = new Tax(1, "Basic", 19.5f);
@@ -90,26 +89,38 @@ public class controllerBen extends HttpServlet {
         }
 
         if ("shippingAddresses".equals(request.getParameter("section"))) {
-
+            
             beanAddresses adList = new beanAddresses();
             if (session.getAttribute("LOGIN") != null) {
                 String login = (String) session.getAttribute("LOGIN");
                 adList.getCustomerAddresses(login);
                 request.setAttribute("adList", adList.list());
 
-                if (request.getParameter("okDelivery") != null) {
-//                    request.setAttribute("sda", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okDelivery"))));
-                    System.out.println(request.getParameter("okDelivery"));
-                    
-                }
-
-                if (request.getParameter("okBilling") != null) {
-//                    request.setAttribute("sba", (Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));
-                    System.out.println((Address) adList.getAddress(Integer.valueOf(request.getParameter("okBilling"))));
+                if (request.getParameter("okDelivery") != null || request.getParameter("okBilling") != null) {
+                    if (request.getParameter("deliveryList") != null) {
+                        Address sda = adList.getAddress(Integer.valueOf(request.getParameter("deliveryList")));
+                        session.setAttribute("sda", sda);
+                    }
+                    if (request.getParameter("billingList") != null) {
+                        Address sba = adList.getAddress(Integer.valueOf(request.getParameter("billingList")));
+                        session.setAttribute("sba", sba);
+                    }
+                    request.setAttribute("sda", session.getAttribute("sda"));
+                    request.setAttribute("sba", session.getAttribute("sba"));
                 }
             }
-
             url = "/WEB-INF/jspShippingAddresses.jsp";
+            
+        }
+        
+        if("payment".equals(request.getParameter("section"))){
+            Address sda = (Address) session.getAttribute("sda");
+            Address sba = (Address) session.getAttribute("sba");
+            request.setAttribute("sda", sda);
+            request.setAttribute("sba", sba);            
+            
+            
+            url ="/WEB-INF/jspPayment.jsp";
         }
 
         //section1
