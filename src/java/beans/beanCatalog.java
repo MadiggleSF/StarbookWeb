@@ -95,5 +95,8 @@ public class beanCatalog implements Serializable {
             System.err.println("Error: SQLException: " + ex.getMessage());
         }
     }
-
+    
+    public Book getBook(String isbn){
+        return catalog.get(isbn);
+    }
 }

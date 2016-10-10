@@ -15,7 +15,7 @@
             <input type="hidden" name="section" value="signUp" /> 
             Nom:<input type="text" name="surname" value="${surname}" /><br><br>
             Prénom:<input type="text" name="firstname" value="${firstname}" /><br><br>
-            Mot de Passe:<input type="pwd" name="password" value="${pwd}" /><br><br>
+            Mot de Passe:<input type="password" name="pwd" value="${pwd}" /><br><br>
             Email: <input type="text" name="mail" value="${mail}" /><br><br>
             Tel portable: <input type="text" name="cell" value="${cell}" /><br><br>
             Tel fixe: <input type="text" name="landline" value="${landline}" /><br><br>
