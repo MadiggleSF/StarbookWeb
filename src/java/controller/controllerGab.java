@@ -161,7 +161,7 @@ public class controllerGab extends HttpServlet {
 
                 if (bSignUp.insertSignUp(request.getParameter("surname"),
                         request.getParameter("firstname"),
-                        request.getParameter("password"),
+                        request.getParameter("pwd"),
                         request.getParameter("mail"),
                         request.getParameter("cell"),
                         request.getParameter("landline"),
