@@ -43,14 +43,14 @@ public class controllerSeb extends HttpServlet {
         
         //section1
         if ("search".equals(request.getParameter("section"))) {
-            url = "/WEB-INF/jspSearch.jsp";
-            beanCatalog bc = (beanCatalog) request.getAttribute("beanCatalog");
+            url = "/WEB-INF/jspSearchResult.jsp";
+            beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
             if (request.getParameter("sendResearch") != null) { 
                 if (bc == null) {
                     bc = new beanCatalog();
                     session.setAttribute("beanCatalog", bc);
                 }
-                switch (request.getParameter("buttonGroup01")) {
+                switch (request.getParameter("searchCategory")) {
                     case "title":
                         bc.fillCatalog(request.getParameter("search"), 1);
                         break;
@@ -68,12 +68,14 @@ public class controllerSeb extends HttpServlet {
         //section2
         if ("bookDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspBook.jsp";
-            beanDisplayBook bdb = (beanDisplayBook)session.getAttribute("beanDisplayBook");
-            if (bdb == null) {
-                bdb = new beanDisplayBook();
-                session.setAttribute("beanDisplayBook", bdb);
+            beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
+            if (request.getParameter("sendResearch") != null) { 
+                if (bc == null) {
+                    bc = new beanCatalog();
+                    session.setAttribute("beanCatalog", bc);
+                }
             }
-           request.setAttribute("book", bdb.getBook(request.getParameter("bookIsbn")));
+           request.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
         }
         
         //section3
@@ -85,6 +87,15 @@ public class controllerSeb extends HttpServlet {
                 session.setAttribute("beanDisplayAuthor", bda);
             }
             request.setAttribute("author", bda.getAuthor(Integer.valueOf(request.getParameter("authorId"))));
+            beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
+            if (request.getParameter("sendResearch") != null) { 
+                if (bc == null) {
+                    bc = new beanCatalog();
+                    session.setAttribute("beanCatalog", bc);
+                }
+            }
+            bc.fillCatalog(request.getParameter("authorId"),5 );
+            session.setAttribute("catalog", bc);
         }
         
         //section4
