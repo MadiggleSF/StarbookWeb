@@ -19,7 +19,10 @@
             Email: <input type="text" name="mail" value="${mail}" /><br><br>
             Tel portable: <input type="text" name="cell" value="${cell}" /><br><br>
             Tel fixe: <input type="text" name="landline" value="${landline}" /><br><br>
-            Date de Naissance: <input type="text" name="dob" value="${dob}"/><br><br>
+            Date de Naissance (AAAA-MM-JJ):
+            <input type="text" name="dob_year" value="${dob_year}" size="2"/>-<input
+            type ="text" name="dob_month" value="${dob_month}" size="2"/>-<input type =" text"
+            name ="dob_day" value="${dob_day}" size="2"><br><br>                             
             <br><input type="submit" value="Valider" name="Validation" />
             
             

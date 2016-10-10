@@ -57,11 +57,12 @@ public class controllerGab extends HttpServlet {
                     response.addCookie(c);
 
                 }
+                
                 if (bLogin.check(request.getParameter("login"),
                         request.getParameter("password")) == 1) {
                     url = "/WEB-INF/jspLogin.jsp";
                     request.setAttribute("login", request.getParameter("login"));
-                    request.setAttribute("msg", "ERREUR:Le login ne doit pas être nul ou vide !!!");
+                    request.setAttribute("msg", "ERREUR:Le login ne doit être ni nul  ni vide et contenir un @ !!!");
                     Cookie c = getCookie(request.getCookies(), "try");
                     if (c == null) {
                         c = new Cookie("try", "*");
@@ -165,7 +166,9 @@ public class controllerGab extends HttpServlet {
                         request.getParameter("mail"),
                         request.getParameter("cell"),
                         request.getParameter("landline"),
-                        Date.valueOf(request.getParameter("dob")))) {
+                        Date.valueOf(request.getParameter("dob_year")+"-"+
+                                     request.getParameter("dob_month")+"-"+
+                                     request.getParameter("dob_day")))) {
                     url = "/WEB-INF/jspSignUpValidation.jsp";
 
                 } else {
