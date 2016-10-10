@@ -103,10 +103,4 @@ public class beanCatalog implements Serializable {
         return catalog.get(isbn);
     }
     
-    public void removeAll(){
-        for (Book bk : catalog.values()) {
-            catalog.remove(bk.getIsbn());
-        }
-    }
-    
 }

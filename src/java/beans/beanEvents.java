@@ -3,6 +3,7 @@ package beans;
 
 import classes.Book;
 import classes.ConnectionPool;
+import classes.Event;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,27 +15,28 @@ import java.util.HashMap;
 
 public class beanEvents implements Serializable{
     
-    private HashMap<String,Book> eventBookList;
+    private HashMap<String,Event> events;
 
     public beanEvents() {
-        this.eventBookList = new HashMap<>();
+        this.events = new HashMap<>();
     }
     
-    public Collection<Book> getEventBookList() {
-        return eventBookList.values();
+    public Collection<Event> getEventBookList() {
+        return events.values();
     }
     
-    public void fillEvents(String ref){
-        String query = "SELECT * FROM sb_bookEvent WHERE event_id ="+ref;
+    public void fillEvents(){
+        String query = "SELECT * FROM sb_event";
         ConnectionPool cp = new ConnectionPool();
         
         try (Connection co = cp.setConnection()){
             Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            beanDisplayBook bdb = new beanDisplayBook();
             
             while(rs.next()){
-                eventBookList.put(rs.getString("book_isbn"), bdb.getBook(rs.getString("book_isbn")));
+                events.put(String.valueOf(rs.getInt("event_id")), new Event(rs.getInt("event_id"), 
+                        rs.getString("event_name"), rs.getString("event_start"),
+                        rs.getString("event_end"),rs.getFloat("event_discountRate"), rs.getString("event_picture")));
             }
             rs.close();
             stmt.close();

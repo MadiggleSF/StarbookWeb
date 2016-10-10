@@ -7,7 +7,6 @@ package controller;
 
 import beans.beanCatalog;
 import beans.beanDisplayAuthor;
-import beans.beanDisplayBook;
 import beans.beanDisplayEvent;
 import beans.beanEvents;
 import java.io.IOException;
@@ -37,19 +36,21 @@ public class controllerSeb extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = "/WEB-INF/jspHeader.jsp";
         HttpSession session = request.getSession();
-        
+
         //section1
         if ("search".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspSearchResult.jsp";
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
-            if (request.getParameter("sendResearch") != null) { 
+            if (request.getParameter("sendResearch") != null) {
                 if (bc == null) {
                     bc = new beanCatalog();
                     session.setAttribute("beanCatalog", bc);
+
                 }
+                bc.getCatalog().clear();
                 switch (request.getParameter("searchCategory")) {
                     case "title":
                         bc.fillCatalog(request.getParameter("search"), 1);
@@ -64,61 +65,75 @@ public class controllerSeb extends HttpServlet {
             }
             session.setAttribute("catalog", bc.getCatalogList());
         }
-        
+
         //section2
         if ("bookDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspBook.jsp";
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
-            if (request.getParameter("sendResearch") != null) { 
+            if (request.getParameter("sendResearch") != null) {
                 if (bc == null) {
                     bc = new beanCatalog();
                     session.setAttribute("beanCatalog", bc);
                 }
+                bc.getCatalog().clear();
             }
-           request.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
+            request.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
         }
-        
+
         //section3
         if ("authorDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspAuthor.jsp";
-            beanDisplayAuthor bda = (beanDisplayAuthor)session.getAttribute("beanDisplayAuthor");
+            beanDisplayAuthor bda = (beanDisplayAuthor) session.getAttribute("beanDisplayAuthor");
             if (bda == null) {
                 bda = new beanDisplayAuthor();
                 session.setAttribute("beanDisplayAuthor", bda);
             }
             request.setAttribute("author", bda.getAuthor(Integer.valueOf(request.getParameter("authorId"))));
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
-            if (request.getParameter("sendResearch") != null) { 
-                if (bc == null) {
-                    bc = new beanCatalog();
-                    session.setAttribute("beanCatalog", bc);
-                }
+
+            if (bc == null) {
+                bc = new beanCatalog();
+                session.setAttribute("beanCatalog", bc);
             }
-            bc.fillCatalog(request.getParameter("authorId"),5 );
-            session.setAttribute("catalog", bc);
+
+            bc.getCatalog().clear();
+            bc.fillCatalog(request.getParameter("authorId"), 5);
+            session.setAttribute("catalog", bc.getCatalogList());
         }
-        
+
         //section4
         if ("eventDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspEvent.jsp";
-            beanDisplayEvent bde = (beanDisplayEvent)session.getAttribute("beanDisplayEvent");
+            beanDisplayEvent bde = (beanDisplayEvent) session.getAttribute("beanDisplayEvent");
             if (bde == null) {
                 bde = new beanDisplayEvent();
                 session.setAttribute("beanDisplayEvent", bde);
             }
             request.setAttribute("event", bde.getEvent(Integer.valueOf(request.getParameter("eventId"))));
-            
-            beanCatalog bc = (beanCatalog)session.getAttribute("beanEvents");
+
+            beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
             if (bc == null) {
                 bc = new beanCatalog();
                 session.setAttribute("beanEvents", bc);
             }
-            bc.fillCatalog(request.getParameter("eventId"),4);
-            
+            bc.getCatalog().clear();
+            bc.fillCatalog(request.getParameter("eventId"), 4);
+
             session.setAttribute("catalog", bc.getCatalogList());
         }
-        
-         
+
+        //section5
+        if ("events".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspSectionEvents.jsp";
+            beanEvents be = (beanEvents) session.getAttribute("beanEvents");
+            if (be == null) {
+                be = new beanEvents();
+                session.setAttribute("beanEvents", be);
+            }
+            be.fillEvents();
+            session.setAttribute("events", be.getEventBookList());
+        }
+
         request.getRequestDispatcher(url).include(request, response);
     }
 

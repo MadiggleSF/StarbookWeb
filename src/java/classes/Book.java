@@ -185,8 +185,8 @@ public class Book {
         this.weight = weight;
     }
     
-    public Author getAuthor(){
-        Author aut = null;
+    public ArrayList<Author> getAuthor(){
+        ArrayList<Author> aut = new ArrayList<>();
         ConnectionPool cp = new ConnectionPool();
         String query = "SELECT * FROM sb_author,sb_book,sb_writer WHERE sb_book.book_isbn = sb_writer.book_isbn "
                 + "AND sb_writer.author_id = sb_author.author_id "
@@ -195,9 +195,11 @@ public class Book {
             Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                aut = new Author(rs.getInt("author_id"), rs.getString("author_surname"),
-                        rs.getString("author_firstname"), rs.getDate("author_dob"), rs.getDate("author_dod"));
+                aut.add(new Author(rs.getInt("author_id"), rs.getString("author_surname"),
+                        rs.getString("author_firstname"), rs.getDate("author_dob"), rs.getDate("author_dod")));
             }
+            rs.close();
+            stmt.close();
         } catch (SQLException ex) {
             System.err.println("Error: SQLException: "+ex.getMessage());
         }
