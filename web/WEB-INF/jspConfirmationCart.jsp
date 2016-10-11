@@ -8,39 +8,10 @@
     </head>
     <body>
 
-        <div class="confirmation"><h5><span class="hop">Et hop !</span> C'est dans votre panier.</h5></div>
 
-        <div class="boite">
-            <!--<p>
-                <img src="${i.picture}" class="miniatureflottante" alt="${i.title}" height="68" width="50">
-            ${i.title}</p>-->
 
-            <div class="container-img-texte">
-                <!--<p class="img-texte">-->
-                    <img src="images/hamlet.jpg" class="miniatureflottante" alt="Hamlet" height="68" width="50">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hamlet
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
-                    <form class="floatbutton" action="controllerML">
-                    <input type="submit" value="Voir mon panier" />
-                </form>  
-                <!--</p>-->
 
-                
-            </div> 
-        </div>
-        <hr>
+
         <!-- test 
         <h3>Test bouton</h3>
         <form class="inner" method="POST" action="controllerML">
@@ -120,5 +91,11 @@
             <input type="hidden" name="clean" value="ok" />
             <input type="submit" name="cleanCart" value="Passer votre commande" />
         </form>   -->   
+        <div class="confirmation"><h5><span class="hop">Et hop !</span> C'est dans votre panier.</h5></div>
+        <div id="containerConfirmation">
+            <img class="mini" src="images/hamlet.jpg" alt="Hamlet" height="68" width="50"/>
+            <span class="titleConfirmation"> Hamlet </span>
+            <a href="controllerML"><img class="boutonPanier" src="images/panier.jpg" title="Voir le panier" alt="Voir le panier" height="24" width="24"/></a>
+        </div>
     </body>
 </html>

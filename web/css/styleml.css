@@ -10,13 +10,13 @@
 }
 
 @font-face {
-font-family: 'PlayfairDisplay-Regular';
-src: url('PlayfairDisplay-Regular.otf');
+    font-family: 'PlayfairDisplay-Regular';
+    src: url('PlayfairDisplay-Regular.otf');
 }
 
 @font-face {
-font-family: 'FiraSans-Regular';
-src: url('FiraSans-Regular.otf');
+    font-family: 'FiraSans-Regular';
+    src: url('FiraSans-Regular.otf');
 }
 
 h3, h5 {
@@ -30,58 +30,19 @@ p {
 }
 
 
-
-.miniatureflottante 
-{
-    float: left;
-}
-
-.img-texte 
-{
-    display: inline-block;
-    padding-top: 20px;
-    vertical-align: central;
-}
-
-
-.img-texte img {
-    float : left;
-    margin-right : 15px;
-    width : 5%;
-    
-}
-
-
-.container-img-texte {
-    margin-top : 30px;
-    line-height: 60px; /*fait bouger la ligne*/
-    vertical-align: central;
-    margin-left: 50px;
-    martin-bottom: 30px;
-    /*height: 150px;*/
-}
-
-.boite {
-    width: auto;
-    height: 130px;
-    border: 3px solid #009999;
-    box-sizing: border-box;
-    border-radius: 15px 50px;
-    
-}
-
+/*Boutons*/
 input[type=submit] {
     font-family: 'PlayfairDisplay-Regular', Arial;
     background-color: #009999;
     color: white;
-    padding-top:5px; 
-    padding-right:10px;
+    padding-top: 5px; 
+    padding-right: 10px;
     padding-bottom: 5px;
     padding-left: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size:13px;
+    font-size: 13px;
     border-radius: 8px;
 
     /*    width:200px;
@@ -102,8 +63,8 @@ input[type=submit]:after {
     content: '»';
     position: absolute;
     opacity:0;
-    top:0;
-    right : -20px;
+    top: 0;
+    right: -20px;
     transition: 0.5s;
 }
 
@@ -112,23 +73,19 @@ input[type=submit]:hover span {
 }
 input[type=submit]:hover span:after {
     opacity: 1;
-    right:0;
+    right: 0;
 }
 
-.hop {
-    font-family:'LearningCurveProRegular', Arial;
-    font-size: 2em;
-    font-weight: bold;
-}
 
+/*Tableau*/
 
 table {
-    width : 100%;
+    width: 100%;
     font-family: 'PlayfairDisplay-Regular', Arial;
 }
 
 th {
-    text-align : left;
+    text-align: left;
     font-family: 'PlayfairDisplay-Regular', Arial;
 }
 
@@ -150,24 +107,63 @@ td {
     background-color: #f5f5f5;
 }
 
-#outer
-{
-    width:100px;
-    text-align:center;
+/*Confirmation Ajout Caddy*/
+
+.hop {
+    font-family:'LearningCurveProRegular', Arial;
+    font-size: 2em;
+    font-weight: bold;
 }
 
-/*.cmd {
+#containerConfirmation{
+    width: 50%;
+    height: 108px;
+    position: relative;
+    border: 3px solid #009999;
+    border-radius: 15px 50px;
+    margin: auto;
+}
+.mini {
     display: inline-block;
+    height: 68px;
+    width:50px;
+    padding: 20px;
+    vertical-align: middle;
 }
 
-.achat {
+.titleConfirmation {
     display: inline-block;
-}*/
-
-.inner {
-    display: inline-block;
+    vertical-align: middle;
+    font-family: 'LearningCurveProRegular';
+    font-size: 3em;
 }
 
-.floatbutton {
+.boutonPanier {
+    position: absolute;
+    right: 35px;
+    top: 40px;
     display: inline-block;
+    vertical-align: middle;
+}
+
+.confirmation {
+    text-align: center;
+}
+
+/*Boutons Panier*/
+#containerButtons{
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin: auto;
+}
+
+#btn_left {
+    position: absolute;
+    left: 30px;
+}
+
+#btn_right {
+    position: absolute;
+    right: 30px;
 }
