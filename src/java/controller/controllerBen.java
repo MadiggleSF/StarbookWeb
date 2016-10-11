@@ -123,10 +123,28 @@ public class controllerBen extends HttpServlet {
 
         }
 
+        if ("newAddress".equals(request.getParameter("section"))) {
+            beanAddresses ba = new beanAddresses();
+            if (request.getParameter("okNew") != null) {
+                Address na = new Address(1, request.getParameter("naStreet"),
+                        request.getParameter("naOther"),
+                        request.getParameter("naZipcode"),
+                        request.getParameter("naCity"),
+                        request.getParameter("naCountry"));
+                ba.insertAddress(na);
+                if (request.getParameter("daNew") != null) {
+                    ba.setBilling((String) session.getAttribute("LOGIN"), na);
+                }
+                if (request.getParameter("baNew") != null) {
+                    ba.setDelivery((String) session.getAttribute("LOGIN"), na);
+                }
+            }
+        }
+
         if ("paymentCheck".equals(request.getParameter("section"))) {
             String pMsg = "";
             if (request.getParameter("okPayment") != null) {
-                
+
 //            beanPayment payment = new beanPayment(
 //                    request.getParameter("ccOwner"),
 //                    request.getParameter("ccNumber"),

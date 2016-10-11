@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Complément</td>
-                        <td><textarea name="sdaOther" rows="4" cols="20">
+                        <td><textarea name="sdaOther" rows="4" cols="23" readonly="readonly">
                             </textarea></td>
 
                     </tr>
@@ -84,13 +84,18 @@
                     </tr>
                     <tr>
                         <td>Complément</td>
-                        <td><textarea name="sbaOther" rows="4" cols="20">
+                        <td><textarea name="sbaOther" rows="4" cols="23" readonly="readonly">
                             </textarea></td>
 
                     </tr>
                 </tbody>
             </table>
         </form>
+                    
+        <h4>Ajouter/modifier une adresse</h4>
+        
+        <jsp:include page="/controllerBen?section=newAddress" flush="true"/>
+        
 
         <p><font color="red">${oMsgs}</font></p>            
 
