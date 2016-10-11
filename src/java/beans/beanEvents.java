@@ -1,7 +1,6 @@
 
 package beans;
 
-import classes.Book;
 import classes.ConnectionPool;
 import classes.Event;
 import java.io.Serializable;
