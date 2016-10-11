@@ -13,25 +13,21 @@ import java.util.Date;
  */
 public class testBen {
     
-    public static boolean checkCCDate(String expM, String expY){
-        
-        int m = Integer.valueOf(expM);
-        int y = Integer.valueOf(expY);
-        
-        
-        if((m > 0 && m <= 12) && (y >= 2016 && y <= 2025)){
+    
+    public static boolean checkCCNumber(String ccNumber) {
+        ccNumber = ccNumber.replaceAll(" ", "");
+        ccNumber = ccNumber.replaceAll("-","");
+        if(ccNumber.matches("[0-9]{16}")){
             return true;
         }
         return false;
     }
     
     public static void main(String[] args) {
-        String m = "-1";
-        String y = "2018";
-        boolean test = checkCCDate(m, y);
-        System.out.println(test);
-        
-        System.out.println(Integer.valueOf("mm"));
+        String t = "06878721   76719    757";
+        System.out.println(t.length());
+        System.out.println(t);
+        System.out.println(checkCCNumber(t));
         
     }
     

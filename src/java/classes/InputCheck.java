@@ -42,9 +42,10 @@ public class InputCheck {
     }
     
 
-    public static Boolean checkNumbers(String inputtxt) {
+    public static Boolean checkNumbers(String inputtxt) {        
         return inputtxt.matches("^[0-9]{3}|([0-9]*\\.[0-9]+|[0-9]+)$")
                 && checkStringIsNotBlank(inputtxt);
+        
     }
     
     public static Boolean checkNumbers_NotMandatory(String inputtxt) {

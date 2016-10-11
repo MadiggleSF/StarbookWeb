@@ -60,7 +60,7 @@ public class controllerBen extends HttpServlet {
         String oMsgs = "";
         if ("displayOrder".equals(request.getParameter("section"))) {
             oMsgs = "";
-            request.setAttribute("oMsgs",oMsgs);
+            request.setAttribute("oMsgs", oMsgs);
             BeanCart cart = (BeanCart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new BeanCart();
@@ -75,14 +75,11 @@ public class controllerBen extends HttpServlet {
 
         }
 
-        
-
         if ("shippingAddresses".equals(request.getParameter("section"))) {
-            
+
             beanAddresses adList = new beanAddresses();
-            session.setAttribute("shippingType", request.getParameter("shippingTypeList"));                
-            
-            
+            session.setAttribute("shippingType", request.getParameter("shippingTypeList"));
+
             if (session.getAttribute("LOGIN") != null) {
                 String login = (String) session.getAttribute("LOGIN");
                 adList.getCustomerAddresses(login);
@@ -107,7 +104,7 @@ public class controllerBen extends HttpServlet {
 
         if ("payment".equals(request.getParameter("section"))) {
             oMsgs = "";
-            request.setAttribute("oMsgs",oMsgs);
+            request.setAttribute("oMsgs", oMsgs);
             request.setAttribute("shippingType", session.getAttribute("shippingType"));
             Address sda = (Address) session.getAttribute("sda");
             Address sba = (Address) session.getAttribute("sba");
@@ -125,10 +122,36 @@ public class controllerBen extends HttpServlet {
             }
 
         }
-        
-        if("paymentCheck".equals(request.getParameter("section"))){
-            beanPayment checkCC = new beanPayment();
-            
+
+        if ("paymentCheck".equals(request.getParameter("section"))) {
+            String pMsg = "";
+            if (request.getParameter("okPayment") != null) {
+                
+//            beanPayment payment = new beanPayment(
+//                    request.getParameter("ccOwner"),
+//                    request.getParameter("ccNumber"),
+//                    request.getParameter("ccExpM"),
+//                    request.getParameter("ccExpY"),
+//                    request.getParameter("ccCrypto"));
+                System.out.println(request.getParameter("ccOwner"));
+                System.out.println(request.getParameter("ccNumber"));
+                System.out.println(request.getParameter("ccExpM"));
+                System.out.println(request.getParameter("ccExpY"));
+                System.out.println(request.getParameter("ccCrypto"));
+
+//            if(!payment.checkCC()){
+//                pMsg = "Carte invalide";
+//                url = "/WEB-INF/jspPayment.jsp";
+//            }
+//            
+//            if(payment.checkCC()){
+//                pMsg = "Ok !";
+//                url = "/WEB-INF/jspPayment.jsp";
+//            }
+            }
+            url = "/WEB-INF/jspPayment.jsp";
+            request.setAttribute("pMsg", pMsg);
+
         }
 
         //section1
