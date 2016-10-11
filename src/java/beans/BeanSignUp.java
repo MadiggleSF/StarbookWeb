@@ -26,9 +26,9 @@ public class BeanSignUp implements Serializable {
     
    
     public int check(String surname, String firstname, String pwd,
-            String mail, String cell,String landline, Date dob) {
+            String mail, String cell,String landline, String  dob) {
         
-        int r = 1;
+        int r = 0;
         
         //contraintes de saisie du nom de famille (ni null, ni vide,regex)
         if (surname == null || surname.trim().isEmpty() 
@@ -55,18 +55,18 @@ public class BeanSignUp implements Serializable {
 
         //contraintes de saisie du cell 
         if (cell == null || cell.trim().isEmpty()
-                         || (! InputCheck.checkPhone(cell))) {
+                         || (!InputCheck.checkPhone(cell))) {
             return 5;
         }
 
         //contraintes de saisie du landline(champ non obligatoire, format regex)
         
-        if (!InputCheck.checkNumbers_NotMandatory(landline)){
+        if (!InputCheck.checkPhone_NotMandatory(landline)){
             return 6;
         }
 
         //contraintes de saisie du dob
-        if (dob == null) {
+        if ((dob == null)|| (!InputCheck.checkDateSQL(dob))) {
             return 7;
         }
         

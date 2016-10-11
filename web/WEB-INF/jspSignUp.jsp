@@ -47,22 +47,20 @@
                     </tr>
                 
                     <tr>
-                        
-                        
+                        <td>Date de Naissance</td>
+                        <td><input type="text" name="dob_day" value="" size="2" maxlength="2"/>/<input
+                    type ="text" name="dob_month" value="" size="2" maxlength="2"/>/<input type =" text"
+                    name ="dob_year" value="" size="2" maxlength="4"/></td>
                     </tr>
-                Date de Naissance :
-                <input type="text" name="dob_day" value="JJ" size="2" maxlength="2"/>/<input
-                    type ="text" name="dob_month" value="MM" size="2" maxlength="2"/>/<input type =" text"
-                    name ="dob_year" value="AAAA" size="2" maxlength="4"/><br><br> 
-
-
+                 
+                
                 </tbody>
             </table>
-        </form>
+        
         ${msg} 
-
-        <br><input type = "submit" value="Ajouter adresse" name="Ajout adresse"/><br><br>
-        <br><input type="submit" value="Valider" name="Validation" />
-
+        <br><br><input type="submit" value="Etape suivante >>" name="Etape suivante" />
+       
+        
+        </form>
     </body>
 </html>
