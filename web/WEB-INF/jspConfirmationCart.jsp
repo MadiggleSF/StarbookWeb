@@ -41,7 +41,7 @@
             </div> 
         </div>
         <hr>
-        <!-- test -->
+        <!-- test 
         <h3>Test bouton</h3>
         <form class="inner" method="POST" action="controllerML">
             <input type="hidden" name="section" value="caddy" />
@@ -97,7 +97,7 @@
             </tr>
 
         </table>
-        <!-- A rediriger vers la bonne section -->
+  
         <form class="inner" method="POST" action="controllerSeb">
             <input type="hidden" name="section" value="" />
             <input type="submit" name="" value="< Poursuivre vos achats" /><br>
@@ -119,6 +119,6 @@
             <input type="hidden" name="section" value="caddy" />
             <input type="hidden" name="clean" value="ok" />
             <input type="submit" name="cleanCart" value="Passer votre commande" />
-        </form>      
+        </form>   -->   
     </body>
 </html>
