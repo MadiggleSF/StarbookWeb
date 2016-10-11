@@ -36,7 +36,6 @@ public class controllerGab extends HttpServlet {
 
         String url = "/WEB-INF/jspLogin.jsp";
         HttpSession session = request.getSession();
-        Customer current = new Customer();
 
         // GESTION DU BEAN LOGIN 
         if ("login".equals(request.getParameter("section"))) {
@@ -158,59 +157,93 @@ public class controllerGab extends HttpServlet {
                 bSignUp = new BeanSignUp();
                 session.setAttribute("beanSignUp", bSignUp);
             }
-            if (request.getParameter("Validation") != null) {
-                
+
+            if (request.getParameter("Etape suivante") != null) {
+
                 switch (bSignUp.check(request.getParameter("surname"),
                         request.getParameter("firstname"),
                         request.getParameter("pwd"),
                         request.getParameter("mail"),
                         request.getParameter("cell"),
                         request.getParameter("landline"),
-                       Date.valueOf(request.getParameter("dob_year") + "-"
-                            + request.getParameter("dob_month") + "-"
-                            + request.getParameter("dob_day")))) {
+                        request.getParameter("dob_year") + "-"
+                        + request.getParameter("dob_month") + "-"
+                        + request.getParameter("dob_day"))) {
                     case 1:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le nom de famille !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 2:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le prénom !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 3:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le pwd !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 4:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le mail !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 5:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le téléphone portable !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 6:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement le téléphone fixe !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
                     case 7:
                         request.setAttribute("msg", "ERREUR:Veuillez saisir correctement la date de naissance !!!");
+                        url = "/WEB-INF/jspSignUp.jsp";
                         break;
 
+                    default:
+                        Customer current = new Customer(1, request.getParameter("surname"),
+                                request.getParameter("firstname"),
+                                request.getParameter("pwd"),
+                                request.getParameter("mail"),
+                                request.getParameter("cell"),
+                                request.getParameter("landline"),
+                                Date.valueOf(request.getParameter("dob_year") + "-"
+                                        + request.getParameter("dob_month") + "-"
+                                        + request.getParameter("dob_day")));
+                        request.setAttribute("customerSignUp", current);
+
+                        url = "/WEB-INF/jspAddAddress.jsp";
                 }
-                url = "/WEB-INF/jspSignUp.jsp";
-                
-                 if(bSignUp.insertSignUp(request.getParameter("surname"),
-                    request.getParameter("firstname"),
-                    request.getParameter("pwd"),
-                    request.getParameter("mail"),
-                    request.getParameter("cell"),
-                    request.getParameter("landline"),
-                    Date.valueOf(request.getParameter("dob_year") + "-"
-                            + request.getParameter("dob_month") + "-"
-                            + request.getParameter("dob_day")))) {
-                url = "/WEB-INF/jspSignUpValidation.jsp";
-                 }
-                
-           
-                   
             }
+
         }
-        request.getRequestDispatcher(url).include(request, response);
+
+       
+         if (request.getParameter("Validation") != null) {
+                
+               
+        //insertion des infos du customer
+      
+         if(bSignUp.insertSignUp(request.getParameter("surname"),
+         request.getParameter("firstname"),
+         request.getParameter("pwd"),
+         request.getParameter("mail"),
+         request.getParameter("cell"),
+         request.getParameter("landline"),
+         Date.valueOf(request.getParameter("dob_year") + "-"
+         + request.getParameter("dob_month") + "-"
+         + request.getParameter("dob_day"))))
+             
+        //insertion des adresses     
+             
+             
+         url = "/WEB-INF/jspSignUpValidation.jsp";
+                        
+         }
+        
+    
+
+    request.getRequestDispatcher (url).include(request, response);
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -223,7 +256,7 @@ public class controllerGab extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -237,7 +270,7 @@ public class controllerGab extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -248,8 +281,9 @@ public class controllerGab extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 }
+
 

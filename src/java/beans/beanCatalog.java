@@ -74,7 +74,7 @@ public class beanCatalog implements Serializable {
                         + "AND sb_genre.genre_name = '"+input+"'";
                 break;
         }
-        query +=  " COLLATE SQL_Latin1_General_Cp437_CI_AI";
+        //query +=  " COLLATE SQL_Latin1_General_Cp437_CI_AI";
         
         try (Connection co = cp.setConnection(); Statement stmt = co.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);

@@ -9,7 +9,11 @@ import beans.beanCatalog;
 import beans.beanAuthor;
 import beans.beanEvents;
 import beans.beanGenre;
+import beans.beanReview;
+import classes.Book;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,6 +68,21 @@ public class controllerSeb extends HttpServlet {
                 }
             }
             session.setAttribute("catalog", bc.getCatalogList());
+            
+            beanReview br = (beanReview)session.getAttribute("beanReview");
+            if (br == null) {
+                br = new beanReview();
+                session.setAttribute("beanReview", br);
+            }
+            for (Book bk : bc.getCatalogList()) {
+                bc.getCatalog().get(bk.getIsbn());
+                br.getReviews().clear();
+                br.setReviewsFromDB(bk.getIsbn(), 1);
+                br.setBookRating(bk.getIsbn(), br.getBookRating());
+            }
+            request.setAttribute("ratingList", br.getRatingList());
+            
+            
         }
 
         //section2
@@ -78,6 +97,14 @@ public class controllerSeb extends HttpServlet {
                 bc.getCatalog().clear();
             }
             request.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
+            beanReview br = (beanReview)session.getAttribute("beanReview");
+            if (br == null) {
+                br = new beanReview();
+                session.setAttribute("beanReview", br);
+            }
+            br.getReviews().clear();
+            br.setReviewsFromDB(request.getParameter("bookIsbn"), 1);
+            request.setAttribute("reviews", br.getReviewsList());
         }
 
         //section3
@@ -166,6 +193,17 @@ public class controllerSeb extends HttpServlet {
             bc.fillCatalog(request.getParameter("genreName"), 6);
 
             session.setAttribute("catalog", bc.getCatalogList());
+        }
+        
+        //section8
+        if ("reviews".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspReview.jsp";
+            beanReview br = (beanReview)session.getAttribute("beanReview");
+            if (br == null) {
+                br = new beanReview();
+                session.setAttribute("beanReview", br);
+            }
+            
         }
         
         

@@ -147,16 +147,6 @@ public BeanCart() {
         return bk;
     }
 
-//    public HashMap<String, CartLine> testCart() {
-//        HashMap<String, CartLine> testFillCart = new HashMap();
-//        Book bk01 = testReturnBookFromIsbn("978-2070468508");
-//        Book bk02 = testReturnBookFromIsbn("978-2211215350");
-//        Book bk03 = testReturnBookFromIsbn("978-2253067078");
-//        add(bk01, 3);
-//        add(bk02, 1);
-//        add(bk03, 2);
-//        return testFillCart;
-//    }
     public void inc(Book bk) {
         add(bk, +1);
     }

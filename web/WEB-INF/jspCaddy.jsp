@@ -2,13 +2,11 @@
 <%-- Tester si le panier est vide ou pas : prendre un IF DE JSTL sur la palette; ça va rajouter le taglib --%>
 
 <c:if test="${cartEmpty}" var="c">
-    <img src="images/empty_cart.png" alt="Panier vide !">
+    <img id="panierVide" src="images/vide.jpg" alt="Panier vide !">
     <br>
-    Panier vide !
-    <br>
-    <form method="POST" action="controllerSeb">
+    <form class="inner" method="POST" action="controllerSeb">
         <input type="hidden" name="section" value="" />
-        <input type="submit" name="" value="Poursuivre vos achats" /><br>
+        <input type="submit" name="" value="< Poursuivre vos achats" /><br>
     </form>
 </c:if>
 
@@ -23,7 +21,7 @@
         </tr>
 
         <c:forEach var="i" items="${list}">
-            <tr>
+            <tr class="insideTable">
                 <td><img src="images/${i.picture}" alt="${i.title}" height="68" width="50"></td>
                 <td>${i.title}</td>  
                 <td>${i.qty}</td> 
@@ -36,19 +34,18 @@
             </tr>        
         </c:forEach> 
     </table>
-   <!-- <a href="controllerML?section=caddy&clean">Vider le panier !</a>-->
 
-    <form method="POST" action="controllerML">
-        <input type="hidden" name="section" value="caddy" />
-        <input type="hidden" name="clean" value="ok" />
-        <input type="submit" name="cleanCart" value="Vider le panier" /><br>
-    </form>
-    
-    <!-- A rediriger vers la bonne section -->
-    <form method="POST" action="controllerSeb">
-        <input type="hidden" name="section" value="" />
-        <input type="submit" name="" value="Poursuivre vos achats" /><br>
-    </form>
+    <div id="containerButtons">
+        <form id="btn_left" class="inner" method="POST" action="controllerSeb">
+            <input type="hidden" name="section" value="" />
+            <input type="submit" name="" value="< Poursuivre vos achats" /><br>
+        </form>
+        <form id="btn_right" class="inner" method="POST" action="controllerML">
+            <input type="hidden" name="section" value="caddy" />
+            <input type="hidden" name="clean" value="ok" />
+            <input type="submit" name="cleanCart" value="Passer votre commande" />
+        </form>     
+    </div>
 </c:if>
 
 
