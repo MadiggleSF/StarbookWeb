@@ -12,6 +12,8 @@
 
         <p align="center">Validation du panier > <strong>Choix de l'adresse</strong> > Paiement > C'est parti !</p>
 
+        <p><font color="red">${oMsgs}</font></p>
+        
         <h3>Choix de l'adresse</h3>
 
         <h4>Livraison</h4>
@@ -27,7 +29,7 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td>${sda.id}. ${sda.city}</td>
+                        <td>Adresse #${sda.id}</td>
                     </tr>
                     <tr>                        
                         <td>Rue</td>
@@ -70,7 +72,7 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td>${sba.id}. ${sba.city}</td>
+                        <td>Adresse #${sba.id}</td>
                     </tr>
                     <tr>
                         <td>Rue</td>
@@ -100,8 +102,7 @@
 
         <p><font color="red">${oMsgs}</font></p>            
 
-
-        <a href="controllerBen?section=payment">Suivant</a>
+        <p align="center"><a href="controllerBen?section=payment">Suivant</a></p>
 
 
     </body>

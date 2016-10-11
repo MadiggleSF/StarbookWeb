@@ -42,7 +42,18 @@
                             <td>${cl.finalLinePrice} €</td>                       
                         </tr>
 
-                    </c:forEach>  
+                    </c:forEach>
+                    <c:if test="${shippingType!=null}">
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Livraison :</td>
+                        <td></td>
+                        <td>${shippingType}</td>
+                        <td></td>
+                        <td>0.00 €</td>
+                    </tr>
+                    </c:if>
                     <tr>
                         <td></td>
                         <td></td>

@@ -59,7 +59,8 @@ public class controllerBen extends HttpServlet {
 
         String oMsgs = "";
         if ("displayOrder".equals(request.getParameter("section"))) {
-
+            oMsgs = "";
+            request.setAttribute("oMsgs",oMsgs);
             BeanCart cart = (BeanCart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new BeanCart();
@@ -74,24 +75,14 @@ public class controllerBen extends HttpServlet {
 
         }
 
-        if ("shippingType".equals(request.getParameter("section"))) {
-            String msg = "";
-            if (request.getParameter("noShipping") != null) {
-
-            }
-            if (request.getParameter("colissimo") != null) {
-                msg = "Livraison 48h - Gratuit !";
-            }
-            if (request.getParameter("chronopost") != null) {
-                msg = "Livraison 24h - Gratuit !";
-            }
-
-            request.setAttribute("shippingMsg", msg);
-        }
+        
 
         if ("shippingAddresses".equals(request.getParameter("section"))) {
-
+            
             beanAddresses adList = new beanAddresses();
+            session.setAttribute("shippingType", request.getParameter("shippingTypeList"));                
+            
+            
             if (session.getAttribute("LOGIN") != null) {
                 String login = (String) session.getAttribute("LOGIN");
                 adList.getCustomerAddresses(login);
@@ -115,6 +106,9 @@ public class controllerBen extends HttpServlet {
         }
 
         if ("payment".equals(request.getParameter("section"))) {
+            oMsgs = "";
+            request.setAttribute("oMsgs",oMsgs);
+            request.setAttribute("shippingType", session.getAttribute("shippingType"));
             Address sda = (Address) session.getAttribute("sda");
             Address sba = (Address) session.getAttribute("sba");
             if (sda == null || sba == null) {
@@ -130,6 +124,11 @@ public class controllerBen extends HttpServlet {
                 url = "/WEB-INF/jspPayment.jsp";
             }
 
+        }
+        
+        if("paymentCheck".equals(request.getParameter("section"))){
+            beanPayment checkCC = new beanPayment();
+            
         }
 
         //section1

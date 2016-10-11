@@ -16,6 +16,8 @@
 
         <p align="center">Validation du panier > Choix de l'adresse > <strong>Paiement</strong> > C'est parti !</p>
 
+        <p><font color="red">${oMsgs}</font></p>
+        
         <h3>Récapitulatif</h3>
         <jsp:include page="/controllerBen?section=displayOrder" flush="true"/>
         <hr>
@@ -61,7 +63,7 @@
                 </tr>
                 <tr>
                     <td>Expiration</td>
-                    <td><input type="text" name="cardMonth" value="MM" maxlength="2"/> / <input type="text" name="cardYear" value="AAAA" size="4" maxlength="4"/></td>
+                    <td><input type="text" name="cardMonth" value="MM" size="2" maxlength="2"/> / <input type="text" name="cardYear" value="AAAA" size="4" maxlength="4"/></td>
                 </tr>
                 <tr>
                     <td>Cryptogramme</td>
@@ -69,8 +71,9 @@
                 </tr>
             </tbody>
         </table>
+        
+        <p><font color="red">${oMsgs}</font></p>
 
-
-        <a href="">Validation</a>
+        <p align="center"><a href="">Validation</a></p>
     </body>
 </html>
