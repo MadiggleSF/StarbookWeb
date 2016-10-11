@@ -2,7 +2,7 @@
 <%-- Tester si le panier est vide ou pas : prendre un IF DE JSTL sur la palette; ça va rajouter le taglib --%>
 
 <c:if test="${cartEmpty}" var="c">
-    <img src="images/vide.jpg" alt="Panier vide !">
+    <img id="panierVide" src="images/vide.jpg" alt="Panier vide !">
     <br>
     <form class="inner" method="POST" action="controllerSeb">
         <input type="hidden" name="section" value="" />
