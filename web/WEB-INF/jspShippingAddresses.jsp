@@ -12,6 +12,8 @@
 
         <p align="center">Validation du panier > <strong>Choix de l'adresse</strong> > Paiement > C'est parti !</p>
 
+        <p><font color="red">${oMsgs}</font></p>
+        
         <h3>Choix de l'adresse</h3>
 
         <h4>Livraison</h4>
@@ -19,31 +21,27 @@
             <select name="deliveryList">
                 <option> ------------ </option>     
                 <c:forEach var="d" items="${adList}">
-                    <option value="${d.id}">${d.id}. ${d.city}</option>
+                    <option value="${d.id}">${d.street} (${d.city})</option>
                 </c:forEach>
             </select>             
             <input type="submit" value="OK" name="okDelivery" />
             <table border="0" cellspacing="10">               
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td>${sda.id}. ${sda.city}</td>
-                    </tr>
                     <tr>                        
                         <td>Rue</td>
-                        <td><input type="text" name="sdaStreet" value="${sda.street}" /></td>
+                        <td><input type="text" name="sdaStreet" value="${sda.street}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Ville</td>
-                        <td><input type="text" name="sdaCity" value="${sda.city}" /></td>
+                        <td><input type="text" name="sdaCity" value="${sda.city}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Code postal</td>
-                        <td><input type="text" name="sdaZipcode" value="${sda.zipcode}" /></td>
+                        <td><input type="text" name="sdaZipcode" value="${sda.zipcode}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Pays</td>
-                        <td><input type="text" name="sdaCountry" value="${sda.country}" /></td>
+                        <td><input type="text" name="sdaCountry" value="${sda.country}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Complément</td>
@@ -62,31 +60,27 @@
             <select name="billingList">
                 <option> ------------ </option>     
                 <c:forEach var="b" items="${adList}">
-                    <option value="${b.id}">${b.id}. ${b.city}</option>                    
+                    <option value="${b.id}">${b.street} (${b.city})</option>                    
                 </c:forEach>               
             </select>        
             <input type="submit" value="OK" name="okBilling" />
             <table border="0" cellspacing="10">               
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td>${sba.id}. ${sba.city}</td>
-                    </tr>
+                <tbody>         
                     <tr>
                         <td>Rue</td>
-                        <td><input type="text" name="sbaStreet" value="${sba.street}" /></td>
+                        <td><input type="text" name="sbaStreet" value="${sba.street}" readonly="readonly" /></td>
                     </tr>
                     <tr>
                         <td>Ville</td>
-                        <td><input type="text" name="sbaCity" value="${sba.city}" /></td>
+                        <td><input type="text" name="sbaCity" value="${sba.city}" readonly="readonly" /></td>
                     </tr>
                     <tr>
                         <td>Code postal</td>
-                        <td><input type="text" name="sbaZipcode" value="${sba.zipcode}" /></td>
+                        <td><input type="text" name="sbaZipcode" value="${sba.zipcode}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Pays</td>
-                        <td><input type="text" name="sbaCountry" value="${sba.country}" /></td>
+                        <td><input type="text" name="sbaCountry" value="${sba.country}" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>Complément</td>
@@ -100,8 +94,7 @@
 
         <p><font color="red">${oMsgs}</font></p>            
 
-
-        <a href="controllerBen?section=payment">Suivant</a>
+        <p align="center"><a href="controllerBen?section=payment">Suivant</a></p>
 
 
     </body>
