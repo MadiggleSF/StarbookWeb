@@ -135,9 +135,9 @@ public class beanAddresses implements Serializable {
         return id;
     }
 
-    public void setDelivery(String login, int addressID) {
+    public void setDelivery(String login, Address a) {
         int customerID = getCustomerID(login);
-        
+        int addressID = getAddressID(a);
         try (Connection cnn = cp.setConnection();) {
             String query = "insert into sb_customerDelivery values (?, ?, GETDATE())";
             
@@ -153,8 +153,9 @@ public class beanAddresses implements Serializable {
         }
     }
 
-    public void setBilling(String login, int addressID) {
+    public void setBilling(String login, Address a) {
          int customerID = getCustomerID(login);
+         int addressID = getAddressID(a);
         
         try (Connection cnn = cp.setConnection();) {
             String query = "insert into sb_customerBill values (?, ?, GETDATE())";
