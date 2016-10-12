@@ -1,9 +1,18 @@
-<img class="logo" src="images/starbook_logo.jpg" alt="superlogo"/>
-<h1 class="starbook">Starbook</h1>
-<jsp:include page="jspLogin.jsp" flush="true"/>
-<a href="controllerSeb">Accueil</a>
-<jsp:include page="jspSearch.jsp" flush="true"/>
-<a href="controllerSeb?section=rayons">Rayons</a><br>
-<a href="controllerSeb?section=events">Event</a><br>
-<a href="controllerML?section=DisplayCaddy">Panier</a>
-<hr>
+<header>
+    <div id="titrePrincipal">
+        <h1>Starbook</h1>
+        <img id="logo" src="images/starbook_logo.jpg" alt="superlogo"/>
+    </div>
+
+    <jsp:include page="jspLogin.jsp" flush="true"/>
+    <jsp:include page="jspSearch.jsp" flush="true"/>
+
+    <nav>
+        <ul>
+            <li><a href="controllerSeb">Accueil</a></li>
+            <li><a href="controllerSeb?section=rayons">Rayons</a><br></li>
+            <li><a href="controllerSeb?section=events">Event</a><br></li>
+            <li><a href="controllerML?section=DisplayCaddy">Panier</a></li>
+        </ul>
+    </nav>
+</header>
