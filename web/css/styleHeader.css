@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+#titrePrincipal {
+    display: flex;
+}
+
+
+/*Navigation*/
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav li {
+    margin-right: 15px;
+}
+
+nav a {
+    font-size: 1.3em;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
