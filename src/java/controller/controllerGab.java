@@ -50,6 +50,7 @@ public class controllerGab extends HttpServlet {
                     url = "/WEB-INF/jspWelcome.jsp";
                     request.setAttribute("welcome", request.getParameter("login"));
                     Cookie c = new Cookie("LOGIN", request.getParameter("login"));
+                    session.setAttribute("LOGIN", request.getParameter("login"));
                     response.addCookie(c);
                     c = new Cookie("try", "");
                     c.setMaxAge(0);
@@ -158,7 +159,7 @@ public class controllerGab extends HttpServlet {
                 session.setAttribute("beanSignUp", bSignUp);
             }
 
-            if (request.getParameter("Etape suivante") != null) {
+            if (request.getParameter("Validation") != null) {
 
                 switch (bSignUp.check(request.getParameter("surname"),
                         request.getParameter("firstname"),
@@ -199,7 +200,7 @@ public class controllerGab extends HttpServlet {
                         break;
 
                     default:
-                        Customer current = new Customer(1, request.getParameter("surname"),
+                        if (bSignUp.insertSignUp(request.getParameter("surname"),
                                 request.getParameter("firstname"),
                                 request.getParameter("pwd"),
                                 request.getParameter("mail"),
@@ -207,42 +208,14 @@ public class controllerGab extends HttpServlet {
                                 request.getParameter("landline"),
                                 Date.valueOf(request.getParameter("dob_year") + "-"
                                         + request.getParameter("dob_month") + "-"
-                                        + request.getParameter("dob_day")));
-                        request.setAttribute("customerSignUp", current);
-
-                        url = "/WEB-INF/jspAddAddress.jsp";
+                                        + request.getParameter("dob_day")))) {
+                            url = "/WEB-INF/jspSignUpValidation.jsp";
+                        }
                 }
             }
-
         }
 
-       
-         if (request.getParameter("Validation") != null) {
-                
-               
-        //insertion des infos du customer
-      
-         if(bSignUp.insertSignUp(request.getParameter("surname"),
-         request.getParameter("firstname"),
-         request.getParameter("pwd"),
-         request.getParameter("mail"),
-         request.getParameter("cell"),
-         request.getParameter("landline"),
-         Date.valueOf(request.getParameter("dob_year") + "-"
-         + request.getParameter("dob_month") + "-"
-         + request.getParameter("dob_day"))))
-             
-        //insertion des adresses     
-             
-             
-         url = "/WEB-INF/jspSignUpValidation.jsp";
-                        
-         }
-        
-    
-
-    request.getRequestDispatcher (url).include(request, response);
-
+        request.getRequestDispatcher(url).include(request, response);
 
     }
 
@@ -256,7 +229,7 @@ public class controllerGab extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -270,7 +243,7 @@ public class controllerGab extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -281,9 +254,7 @@ public class controllerGab extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 }
-
-
