@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1>Welcome ${welcome}!</h1>
-        <a href="controller?section=login&deconnect">Deconnexion</a>
+        <a href="controllerGab?section=monProfil">Mon Profil</a><br><br>
+        <br><a href="controller?section=login&deconnect">Deconnexion</a>
     </body>
 </html>

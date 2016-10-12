@@ -149,6 +149,22 @@ public class controllerGab extends HttpServlet {
 
         }
 
+        
+        // GESTION DU PROFIL 
+        
+        if ("monProfil".equals(request.getParameter("section"))){
+           beanProfile bp = new beanProfile();
+           beanAddresses ba = new beanAddresses();
+           beanOrder bo = new beanOrder();
+           Customer c = bp.fillCustomer((String)session.getAttribute("LOGIN"));
+           request.setAttribute("c", c);
+           
+           
+           url = "/WEB-INF/jspProfile.jsp";
+        }
+        
+        
+        
         // GESTION DU BEAN SIGNUP 
         if ("signUp".equals(request.getParameter("section"))) {
 
