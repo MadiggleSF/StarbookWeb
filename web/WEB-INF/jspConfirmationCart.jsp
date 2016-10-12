@@ -13,5 +13,67 @@
             <span class="titleConfirmation"> Hamlet </span>
             <a href="controllerML"><img class="boutonPanier" src="images/panier.jpg" title="Voir le panier" alt="Voir le panier" height="24" width="24"/></a>
         </div>
+        
+        <hr>
+        <h3>Test tableau</h3>
+        <table>
+            <tr>
+                <th> Aperçu </th>
+                <th> Titre </th>
+                <th> Quantité </th>
+                <th> Prix unitaire </th>
+                <th> Sous total </th>
+            </tr>
+
+
+            <tr class="insideTable">
+                <td><img src="images/miserables.jpg" alt="Misérables" height="68" width="50"></td>
+                <td>Les Misérables</td>  
+                <td>2</td> 
+                <td>2.50</td>
+                <td>5</td>
+                <td><a href="controllerML?section=caddy&inc=${i.isbn}"><img alt="+" src="images/Add.png"></a>
+                    <a href="controllerML?section=caddy&dec=${i.isbn}"><img alt="-" src="images/button-decrease.png"></a>
+                    <a href="controllerML?section=caddy&del=${i.isbn}"><img alt="X" src="images/button-remove.png"></a>
+                </td>
+            </tr>  
+            <tr class="insideTable">
+                <td><img src="images/hamlet.jpg" alt=Hamlet height="68" width="50"></td>
+                <td>Hamlet</td>  
+                <td>1</td> 
+                <td>6.99</td>
+                <td>6.99</td>
+                <td><a href="controllerML?section=caddy&inc=${i.isbn}"><img alt="+" src="images/Add.png"></a>
+                    <a href="controllerML?section=caddy&dec=${i.isbn}"><img alt="-" src="images/button-decrease.png"></a>
+                    <a href="controllerML?section=caddy&del=${i.isbn}"><img alt="X" src="images/button-remove.png"></a>
+                </td>
+            </tr>
+            <tr class="insideTable">
+                <td><img src="images/zola_thereseraquin.jpg" alt="TR" height="68" width="50"></td>
+                <td>Thérèse Raquin</td>  
+                <td>1</td> 
+                <td>2.99</td>
+                <td>2.99</td>
+                <td><a href="controllerML?section=caddy&inc=${i.isbn}"><img alt="+" src="images/Add.png"></a>
+                    <a href="controllerML?section=caddy&dec=${i.isbn}"><img alt="-" src="images/button-decrease.png"></a>
+                    <a href="controllerML?section=caddy&del=${i.isbn}"><img alt="X" src="images/button-remove.png"></a>
+                </td>
+            </tr>
+
+        </table>
+        <div id="containerButtons">
+        <form id="btn_left" class="inner" method="POST" action="controllerSeb">
+            <input type="hidden" name="section" value="" />
+            <input type="submit" name="" value="< Poursuivre vos achats" /><br>
+        </form>
+        <form id="btn_right" class="inner" method="POST" action="controllerML">
+            <input type="hidden" name="section" value="caddy" />
+            <input type="hidden" name="clean" value="ok" />
+            <input type="submit" name="cleanCart" value="Passer votre commande" />
+        </form>     
+    </div>
+        
+        
+        
     </body>
 </html>
