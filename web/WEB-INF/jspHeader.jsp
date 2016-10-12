@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <header>
     <div id="titrePrincipal">
         <h1>Starbook</h1>
