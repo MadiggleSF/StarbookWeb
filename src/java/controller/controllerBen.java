@@ -84,7 +84,7 @@ public class controllerBen extends HttpServlet {
                 String login = (String) session.getAttribute("LOGIN");
                 adList.getCustomerAddresses(login);
                 request.setAttribute("adList", adList.list());
-
+                //Select address
                 if (request.getParameter("okDelivery") != null || request.getParameter("okBilling") != null) {
                     if (request.getParameter("deliveryList") != null) {
                         Address sda = adList.getAddress(Integer.valueOf(request.getParameter("deliveryList")));
@@ -97,6 +97,34 @@ public class controllerBen extends HttpServlet {
                     request.setAttribute("sda", session.getAttribute("sda"));
                     request.setAttribute("sba", session.getAttribute("sba"));
                 }
+                
+                if(request.getParameter("modDelivery") != null){
+                    Address sda = (Address) session.getAttribute("sda");
+                    System.out.println(sda);
+                }
+                
+                if(request.getParameter("modBilling") != null){
+                    Address sba = (Address) session.getAttribute("sba");
+                    
+                }
+
+                if (request.getParameter("delDelivery") != null) {
+                    Address sda = (Address) session.getAttribute("sda");
+                    if (sda != null) {
+                        adList.remove(sda.getId());
+                        session.setAttribute("sda", null);
+                    }
+                }
+                
+                if (request.getParameter("delBilling") != null) {
+                    Address sba = (Address) session.getAttribute("sba");
+                    if (sba != null) {
+                        adList.remove(sba.getId());
+                        session.setAttribute("sb"
+                                + "a", null);
+                    }
+                }
+
             }
             url = "/WEB-INF/jspShippingAddresses.jsp";
 
@@ -131,13 +159,16 @@ public class controllerBen extends HttpServlet {
                         request.getParameter("naZipcode"),
                         request.getParameter("naCity"),
                         request.getParameter("naCountry"));
-                ba.insertAddress(na);
-                if (request.getParameter("daNew") != null) {
-                    ba.setBilling((String) session.getAttribute("LOGIN"), na);
+                if ((na.getCity() != null) && (na.getZipcode() != null) && (na.getCountry() != null)) {
+                    ba.insertAddress(na);
+                    if (request.getParameter("daNew") != null) {
+                        ba.setBilling((String) session.getAttribute("LOGIN"), na);
+                    }
+                    if (request.getParameter("baNew") != null) {
+                        ba.setDelivery((String) session.getAttribute("LOGIN"), na);
+                    }
                 }
-                if (request.getParameter("baNew") != null) {
-                    ba.setDelivery((String) session.getAttribute("LOGIN"), na);
-                }
+
             }
         }
 

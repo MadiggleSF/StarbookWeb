@@ -140,7 +140,7 @@ public class beanAddresses implements Serializable {
         int addressID = getAddressID(a);
         try (Connection cnn = cp.setConnection();) {
             String query = "insert into sb_customerDelivery values (?, ?, GETDATE())";
-            
+
             PreparedStatement pstmt = cnn.prepareStatement(query);
             pstmt.setInt(1, customerID);
             pstmt.setInt(2, addressID);
@@ -154,12 +154,12 @@ public class beanAddresses implements Serializable {
     }
 
     public void setBilling(String login, Address a) {
-         int customerID = getCustomerID(login);
-         int addressID = getAddressID(a);
-        
+        int customerID = getCustomerID(login);
+        int addressID = getAddressID(a);
+
         try (Connection cnn = cp.setConnection();) {
             String query = "insert into sb_customerBill values (?, ?, GETDATE())";
-            
+
             PreparedStatement pstmt = cnn.prepareStatement(query);
             pstmt.setInt(1, customerID);
             pstmt.setInt(2, addressID);
@@ -177,7 +177,42 @@ public class beanAddresses implements Serializable {
 
     }
 
-    public void remove() {
+    public void remove(int id) {
+        removeD(id);
+        removeB(id);
+    }
+
+    public void removeD(int id) {
+
+        try (Connection cnn = cp.setConnection();) {
+            String query = "DELETE FROM sb_customerDelivery WHERE address_id = ?";
+
+            PreparedStatement pstmt = cnn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            pstmt.execute();
+            pstmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void removeB(int id) {
+
+        try (Connection cnn = cp.setConnection();) {
+            String query = "DELETE FROM sb_customerBill WHERE address_id = ?";
+
+            PreparedStatement pstmt = cnn.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            pstmt.execute();
+            pstmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
