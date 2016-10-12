@@ -22,6 +22,7 @@
 
         <c:forEach var="i" items="${list}">
             <tr class="insideTable">
+                <td><a href="controllerSeb?section=bookDetail&bookIsbn=${i.isbn}"><img src="images/${i.picture}" alt="${i.title}" height="68" width="50"></a></td>
                 <td>${i.title}</td>  
                 <td>${i.qty}</td> 
                 <td>${i.bookTaxedPrice}</td>
