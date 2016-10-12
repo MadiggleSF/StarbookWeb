@@ -22,7 +22,6 @@
 
         <c:forEach var="i" items="${list}">
             <tr class="insideTable">
-                <td><img src="images/${i.picture}" alt="${i.title}" height="68" width="50"></td>
                 <td>${i.title}</td>  
                 <td>${i.qty}</td> 
                 <td>${i.bookTaxedPrice}</td>
