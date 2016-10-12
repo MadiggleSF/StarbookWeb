@@ -5,17 +5,20 @@
  */
 package controller;
 
+import beans.beanAddresses;
 import beans.beanCatalog;
 import beans.beanAuthor;
 import beans.beanEvents;
 import beans.beanGenre;
 import beans.beanReview;
 import classes.Book;
+import classes.Review;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +30,17 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "controllerSeb", urlPatterns = {"/controllerSeb"})
 public class controllerSeb extends HttpServlet {
+    
+    private Cookie getCookie(Cookie[] cookies, String name) {
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,13 +88,8 @@ public class controllerSeb extends HttpServlet {
                 br = new beanReview();
                 session.setAttribute("beanReview", br);
             }
-            for (Book bk : bc.getCatalogList()) {
-                bc.getCatalog().get(bk.getIsbn());
-                br.getReviews().clear();
-                br.setReviewsFromDB(bk.getIsbn(), 1);
-                br.setBookRating(bk.getIsbn(), br.getBookRating());
-            }
-            request.setAttribute("ratingList", br.getRatingList());
+            request.setAttribute("reviewsSize", br.getReviews().size());
+            
             
             
         }
@@ -96,7 +105,7 @@ public class controllerSeb extends HttpServlet {
                 }
                 bc.getCatalog().clear();
             }
-            request.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
+            session.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
             beanReview br = (beanReview)session.getAttribute("beanReview");
             if (br == null) {
                 br = new beanReview();
@@ -105,6 +114,7 @@ public class controllerSeb extends HttpServlet {
             br.getReviews().clear();
             br.setReviewsFromDB(request.getParameter("bookIsbn"), 1);
             request.setAttribute("reviews", br.getReviewsList());
+            request.setAttribute("login", getCookie(request.getCookies(), "LOGIN"));
         }
 
         //section3
@@ -196,15 +206,31 @@ public class controllerSeb extends HttpServlet {
         }
         
         //section8
-        if ("reviews".equals(request.getParameter("section"))) {
-            url = "/WEB-INF/jspReview.jsp";
+        if ("comment".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspBook.jsp";
             beanReview br = (beanReview)session.getAttribute("beanReview");
             if (br == null) {
                 br = new beanReview();
                 session.setAttribute("beanReview", br);
             }
             
+            beanAddresses ba = (beanAddresses)session.getAttribute("beanAddresses");
+            if (ba == null) {
+                ba = new beanAddresses();
+                session.setAttribute("beanAddresses", ba);
+            }
+            if (br.checkHasOrdered(getCookie(request.getCookies(), "LOGIN").getValue(),
+                    request.getParameter("book"))) {
+                
+                br.insertReview(request.getParameter("book"),
+                        ba.getCustomerID(getCookie(request.getCookies(), "LOGIN").getValue()),
+                        br.getOrderLineId(getCookie(request.getCookies(), "LOGIN").getValue(), request.getParameter("book")),
+                        request.getParameter("comment"),Integer.valueOf(request.getParameter("commentRate")));
+            }
+            
         }
+        
+        //section9
         
         
         

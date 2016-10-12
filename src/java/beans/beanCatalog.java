@@ -71,7 +71,7 @@ public class beanCatalog implements Serializable {
             case 6:
                 query+="AND sb_book.book_isbn = sb_category.book_isbn "
                         + "AND sb_category.genre_name = sb_genre.genre_name "
-                        + "AND sb_genre.genre_name = '"+input+"'";
+                        + "AND sb_genre.genre_id = '"+input+"'";
                 break;
         }
         //query +=  " COLLATE SQL_Latin1_General_Cp437_CI_AI";

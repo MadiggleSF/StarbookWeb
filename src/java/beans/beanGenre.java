@@ -32,7 +32,7 @@ public class beanGenre implements Serializable{
             Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                genres.put(rs.getString("genre_name"), new Genre(rs.getString("genre_name")));
+                genres.put(String.valueOf(rs.getInt("genre_id")), new Genre(rs.getInt("genre_id"),rs.getString("genre_name")));
             }
         } catch (SQLException ex) {
             System.err.println("Error: SQLException: "+ex.getMessage());
