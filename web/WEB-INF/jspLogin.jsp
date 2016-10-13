@@ -7,14 +7,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--Provisoire : essai CSS
-        <link rel="stylesheet" href="css/styleml.css"/>-->
+        
+        <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
        
     </head>
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
-        <h5>Connexion</h5>
+        <h1>Connexion</h1>
         <form method="POST" action="controllerGab" name ="CONNEXION">
             <input type="hidden" name="section" value="login" />
 

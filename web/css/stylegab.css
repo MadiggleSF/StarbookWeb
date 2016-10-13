@@ -1,0 +1,36 @@
+@font-face { 
+    font-family: 'LearningCurveProRegular';
+    src: url('LearningCurve_OT-webfont.eot');
+    src: url('LearningCurve_OT-webfont.eot?#iefix')
+        format('embedded-opentype'),
+        url('LearningCurve_OT-webfont.woff') format('woff'),
+        url('LearningCurve_OT-webfont.ttf') format('truetype'),
+        url('LearningCurve_OT-webfont.svg#LearningCurveProRegular')
+        format('svg');
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-Regular';
+    src: url('PlayfairDisplay-Regular.otf');
+}
+
+@font-face {
+    font-family: 'FiraSans-Regular';
+    src: url('FiraSans-Regular.otf');
+}
+
+
+h1 {
+    
+    font-family: 'LearningCurveProRegular';
+    color: #00cc99;
+}
+
+
+
+
+h2, h4 {
+    
+    font-family: 'PlayfairDisplay-Regular';
+    
+}
