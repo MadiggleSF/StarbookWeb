@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : jspProfile
     Created on : 12 oct. 2016, 11:13:50
@@ -49,9 +50,9 @@
                 
                     <tr>
                         <td>Date de Naissance</td>
-                        <td><input type="text" name="dob_day" value="" size="2" maxlength="2"/>/<input
-                    type ="text" name="dob_month" value="" size="2" maxlength="2"/>/<input type =" text"
-                    name ="dob_year" value="" size="2" maxlength="4"/></td>
+                        <td><input type="text" name="dob_day" value="${c.day}" size="2" maxlength="2"/>/<input
+                    type ="text" name="dob_month" value="${c.month}" size="2" maxlength="2"/>/<input type =" text"
+                    name ="dob_year" value="${c.year}" size="2" maxlength="4"/></td>
                     </tr>
                  
                 
@@ -59,8 +60,9 @@
             </table>
           </form>
         
-        <br><br>
+                    <br><hr><br>
         
+    
         <h2>Adresses</h2>
         <h4>Livraison</h4>
         <form name="deliveryForm" action="controllerBen?section=shippingAddresses" method="POST">        
@@ -96,7 +98,7 @@
 
                     </tr>
                     
-                <input type="submit" value="Modifier" name="Modifier Livraison" />
+                <input type="submit" value="OK" name="OK Livraison" />
                 </tbody>
             </table>
 
@@ -138,12 +140,12 @@
                     </tr>
                     
                     
-                <input type="submit" value="Modifier" name="Modifier Facturation" />    
+                <input type="submit" value="OK" name="OK Facturation" />    
                 </tbody>
             </table>
         </form>
         
-        <br><br>
+                    <br><hr><br>
         
         
         <h2>Historique des commandes</h2>
@@ -164,19 +166,22 @@
                 </thead>
 
 
-                <c:forEach var="cl" items="${order}">
+                <c:forEach var="order" items="${orderlist}">
+                    Commande:${order.id}
+                    <c:forEach var="orderLine" items="${order.orderLines}">
+                   
                     <tbody>
                         <tr>
-                            <td>${cl.title}</td>
-                            <td>${cl.isbn}</td>
-                            <td>${cl.bookTaxedPrice} €</td>
-                            <td></td>
-                            <td>${cl.qty}</td>
-                            <td>- ${cl.discountRate} €</td>
-                            <td>${cl.finalLinePrice} €</td>                       
+                            <td>${orderLine.bookName}</td>
+                            <td>${orderLine.isbnBook}</td>
+                            <td>${orderLine.taxUnitPrice} €</td>
+                            <td>${orderLine.taxRate}</td>
+                            <td>${orderLine.itemQty}</td>
+                            <td>- ${orderLine.discountRate} €</td>
+                            <td>${orderLine.finalLinePrice} €</td>                       
                         </tr>
-
                     </c:forEach>
+                    
                     <c:if test="${shippingType!=null}">
                         <tr>
                         <td></td>
@@ -202,20 +207,21 @@
                         <td></td>
                         <td><strong>TOTAL :</strong></td>
                         <td></td>
-                        <td><strong>${orderQty}</strong></td>
+                        <td><strong>${order.globalQty}</strong></td>
                         <td></td>
-                        <td><strong>${orderPrice} €</strong></td>
+                        <td><strong>${order.globalPrice} €</strong></td>
                     </tr>
+                    </c:forEach>
                 </tbody>
             </table>
 
-        </c:if>
+    
 
-        <br><br>
+        <br><hr><br>
         
         <h2>Commentaires</h2>
         
-        <%--jsp include review--%>
+        <jsp:include page="/WEB-INF/jspReview.jsp" flush="true"/>
         
         
         

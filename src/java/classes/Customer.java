@@ -114,6 +114,29 @@ public class Customer {
         this.dob = dob;
     }
     
+    
+    public String getDay(){
+       String s = dob.toString();
+       String []stab = s.split("-");
+       
+       return stab[2]; 
+    }
+            
+    public String getMonth (){
+       String s = dob.toString();
+       String []stab = s.split("-");
+       
+       return stab[1]; 
+        
+    }
+            
+    public String getYear (){
+       String s = dob.toString();
+       String []stab = s.split("-");
+       
+       return stab[0]; 
+    }
+    
     //m
     @Override
     public String toString() {

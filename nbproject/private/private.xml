@@ -3,17 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspSignUp.jsp</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/beanProfile.java</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Address.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/beanAddresses.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Order.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/OrderLine.java</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspLogin.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspProfile.jsp</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Customer.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspSignUpValidation.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Book.java</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/controller/controllerGab.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/InputCheck.java</file>
-            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/BeanSignUp.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspReview.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspReviews.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/CartLine.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/controller/controllerBen.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/BeanCart.java</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/BeanLogin.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspSignUp.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/beanAddresses.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspSignUpValidation.jsp</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/beanReview.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/beans/beanOrder.java</file>
+            <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/src/java/classes/Helpers.java</file>
             <file>file:/C:/Users/cdi307/Documents/GitHub/StarbookWeb/web/WEB-INF/jspWelcome.jsp</file>
         </group>
     </open-files>

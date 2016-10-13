@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class BeanCart implements Serializable {
 
-HashMap<String, CartLine> map;
+private HashMap<String, CartLine> map;
 //VRAI CONSTRUCTEUR
 public BeanCart() {
     this.map = new HashMap();

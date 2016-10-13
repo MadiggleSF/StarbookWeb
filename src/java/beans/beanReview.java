@@ -118,12 +118,16 @@ public class beanReview implements Serializable{
                                         rs.getString("customer_mail"),
                                         rs.getString("customer_cell"),
                                         rs.getString("customer_landline"),
-                                        rs.getDate("customer_dob")), new OrderLine(rs.getInt("orderLine_id"),
+                                        rs.getDate("customer_dob")), 
+                                new OrderLine(rs.getInt("orderLine_id"),
                                         rs.getString("book_isbn"),
                                         rs.getInt("order_itemQty"),
                                         rs.getFloat("order_unitPrice"),
                                         rs.getFloat("order_taxRate"),
-                                        rs.getFloat("order_discountRate")), rs.getString("review_comment"), rs.getInt("review_rating"), rs.getDate("review_date")));
+                                        rs.getFloat("order_discountRate")), 
+                                rs.getString("review_comment"), 
+                                rs.getInt("review_rating"), 
+                                rs.getDate("review_date")));
             }
             rs.close();
             stmt.close();

@@ -1,6 +1,7 @@
 
 package classes;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,7 +84,7 @@ public class OrderLine {
     
     //m
     
-    public float taxUnitPrice(){
+    public float getTaxUnitPrice(){
         float uPrice;
         uPrice = unitPrice+((unitPrice*taxRate)/100);
         //troncate to xx,xx
@@ -107,7 +108,7 @@ public class OrderLine {
         return lPrice;
     }
     
-    public float calculateLinePrice(){
+    public float getFinalLinePrice(){
         float lPrice;
         lPrice = calculateInclTax() + (calculateInclTax() * discountRate);
         //troncate to xx,xx
@@ -146,11 +147,12 @@ public class OrderLine {
     
     public String getBookName(){
         String info = "";
-        ConnectSQLS co = new ConnectSQLS();
-        co.connectDatabase();
+        ConnectionPool cp = new ConnectionPool();
+        
+        
         String query = "SELECT * FROM sb_book WHERE book_isbn LIKE '" + isbnBook + "'";
-        try {
-            Statement stmt = co.getConnexion().createStatement();
+        try (Connection co = cp.setConnection()) {
+            Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
@@ -163,7 +165,7 @@ public class OrderLine {
             return info;
         }
 
-        co.closeConnectionDatabase();
+       
         return info;
     }
 

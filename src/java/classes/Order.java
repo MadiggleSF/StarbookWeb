@@ -3,11 +3,14 @@ package classes;
 /*
  Gab 
  */
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;  // ATTENTION A GERER LA DATE ET AJUSTER LE TYPE DATE 
+import java.util.HashMap;
 import java.util.Vector;
 // OU DATETIME
 
@@ -115,45 +118,91 @@ public class Order {
         co.closeConnectionDatabase();
         return statusList;
     }
+//  NE PAS EFFACER UTILISER POUR LE BACK END *STARBOOK*  
+//   public Vector getOrderLines(){
+//        //génère un Vector<OrderLines> regroupant toutes les order lines de la commande
+//        Vector lines = new Vector();
+//        ConnectSQLS co = new ConnectSQLS();
+//        co.connectDatabase();
+//        String query = "SELECT * FROM sb_orderLine WHERE order_id LIKE '" + id + "'";
+//        try {
+//            Statement stmt = co.getConnexion().createStatement();
+//            ResultSet rs = stmt.executeQuery(query);
+//            while (rs.next()) {
+//                lines.add(new OrderLine(rs.getInt("orderLine_id"),
+//                        rs.getString("book_isbn"),
+//                        rs.getInt("order_itemQty"),
+//                        rs.getFloat("order_unitPrice"),
+//                        rs.getFloat("order_taxRate"),
+//                        rs.getFloat("order_discountRate")));
+//            }
+//            rs.close();
+//            stmt.close();
+//        } catch (SQLException ex) {
+//            System.err.println("Oops:SQL:" + ex.getErrorCode() + ":" + ex.getMessage());
+//            return lines;
+//        }
+//
+//        co.closeConnectionDatabase();
+//        return lines;
+//    }
     
-    public Vector getOrderLines(){
-        //génère un Vector<OrderLines> regroupant toutes les order lines de la commande
-        Vector lines = new Vector();
-        ConnectSQLS co = new ConnectSQLS();
-        co.connectDatabase();
+    
+    public Collection <OrderLine> getOrderLines(){
+        
+       HashMap<String, OrderLine> orderLines= new HashMap();
+ 
+       ConnectionPool cp = new ConnectionPool();
+       
+       
         String query = "SELECT * FROM sb_orderLine WHERE order_id LIKE '" + id + "'";
-        try {
-            Statement stmt = co.getConnexion().createStatement();
+        try (Connection co = cp.setConnection()) {
+            Statement stmt = co.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                lines.add(new OrderLine(rs.getInt("orderLine_id"),
+                orderLines.put(String.valueOf(rs.getInt("orderLine_id")),new OrderLine(rs.getInt("orderLine_id"),
                         rs.getString("book_isbn"),
                         rs.getInt("order_itemQty"),
                         rs.getFloat("order_unitPrice"),
                         rs.getFloat("order_taxRate"),
                         rs.getFloat("order_discountRate")));
             }
+            
             rs.close();
             stmt.close();
         } catch (SQLException ex) {
             System.err.println("Oops:SQL:" + ex.getErrorCode() + ":" + ex.getMessage());
-            return lines;
+            
         }
 
-        co.closeConnectionDatabase();
-        return lines;
+        
+        return orderLines.values();
     }
     
-    public float calculatePrice(){
+    
+    
+    
+    public float getGlobalPrice(){
         //calcule le prix global TTC de la commande
-        Vector<OrderLine> lines = getOrderLines();
+        
         float globalPrice = 0f;
-        for (OrderLine line : lines) {
-            globalPrice += line.calculateLinePrice();
+        for (OrderLine line : getOrderLines()) {
+            globalPrice += line.getFinalLinePrice();
         }
         globalPrice = ((float) ((int) (globalPrice * 100))) / 100;
         return globalPrice;                
     }
+    
+    public int getGlobalQty(){
+        //calcule le prix global TTC de la commande
+        
+        int globalQty = 0;
+        for (OrderLine line : getOrderLines()) {
+            globalQty += line.getItemQty();
+        }
+        return globalQty;                
+    }
+    
     
     public Address getAddresses(boolean type) {
         //type true -> billing address
