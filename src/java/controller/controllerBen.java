@@ -203,6 +203,9 @@ public class controllerBen extends HttpServlet {
 
         if ("paymentCheck".equals(request.getParameter("section"))) {
             String pMsgs = "";
+            String login = (String) session.getAttribute("LOGIN");
+            Address sda = (Address) session.getAttribute("sda");
+            Address sba = (Address) session.getAttribute("sba");
             if (request.getParameter("okPayment") != null) {
 
                 beanPayment payment = new beanPayment(
@@ -219,6 +222,10 @@ public class controllerBen extends HttpServlet {
                 if (check) {
                     pMsgs = "";
                     request.setAttribute("cMail", session.getAttribute("LOGIN"));
+                    beanOrder bo = new beanOrder();
+                    BeanCart cart = (BeanCart) session.getAttribute("cart");
+                    bo.fill(cart.list());
+                    bo.makeOrder(login, sda.getId(), sba.getId());
                     url = "/WEB-INF/jspMoneyMoneyMoney.jsp";
                 }
             }

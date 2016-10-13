@@ -221,4 +221,8 @@ public BeanCart() {
     public boolean isEmpty() {
         return map.isEmpty();
     }
+    
+    public void turnToOrder(){
+        
+    }
 }
