@@ -6,15 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Starbook Inc.</title>
-        <%--<script>
-            function pop() {
-                window.opener('controllerBen?section=shippingAddresses', 'height=100,width=100,top=z,left=t,resizable=no');
-            }
-        </script>--%>
-        <script language="javascript">
-            window.opener.refresh();
-            window.close();
-        </script>
+        
         
     </head>
     <body>
@@ -22,7 +14,8 @@
         <h3>Ajouter une adresse</h3>
 
         <form name="newForm" action="controllerBen?section=newAddress" method="POST" >        
-            <table border="0" cellspacing="10">                
+        
+            <table border="0" cellspacing="10">               
                 <tbody>
                     <tr>
                         <td>Livraison</td>
@@ -32,16 +25,6 @@
                         <td>Facturation</td>
                         <td><input type="checkbox" name="baNew" value="ON" checked="checked" /></td>
                     </tr>
-                </tbody>
-            </table>
-
-
-
-
-
-
-            <table border="0" cellspacing="10">               
-                <tbody>
                     <tr>                        
                         <td>Rue</td>
                         <td><input type="text" name="naStreet" value=""/></td>
@@ -72,11 +55,7 @@
 
         </form>
         
-        <a href="javascript:window.opener.refresh(); document.close();">test</a>
-        <a href="" onclick="function() {
-                    parent.reload();
-                    window.close();
-                }">Fermer</a> 
+        
 
     </body>
 </html>
