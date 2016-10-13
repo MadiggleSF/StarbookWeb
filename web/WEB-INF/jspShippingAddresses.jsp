@@ -16,8 +16,6 @@
 
         <h3>Choix de l'adresse</h3>
 
-
-
         <h4>Livraison</h4>
         <form name="deliveryForm" action="controllerBen?section=shippingAddresses" method="POST">        
             <select name="deliveryList" >
@@ -69,7 +67,7 @@
         <form name="billingForm" action="controllerBen?section=shippingAddresses" method="POST">        
             <select name="billingList">
                 <c:if test="${sba!=null}">   
-                    <option value="${sba.id}" selected>-> ${sba.street} (${sba.city}</option>
+                    <option value="${sba.id}" selected>-> ${sba.street} (${sba.city})</option>
                 </c:if>
                 <c:forEach var="b" items="${adList}">                    
                     <option value="${b.id}">${b.street} (${b.city})</option>                    
@@ -107,8 +105,8 @@
             <input type="submit" value="Enregistrer modifications" name ="modBilling" />
             <input type="submit" value="Supprimer" name ="delBilling" />
         </form>
-                    <br>
-                    <br>
+        <br>
+        <br>
         <form name="newFormAppears" action="controllerBen?section=shippingAddresses" method="POST">
             <input type="submit" value="Nouvelle adresse ?" name="okNewFormAppears" />
         </form>            
@@ -118,7 +116,7 @@
         </c:if>   
 
         <form name="newForm" action="controllerBen?section=shippingAddresses" method="POST" >   
-            
+
             <c:if test="${showNewForm}" scope="request" var="showNewForm">
                 <table border="0" cellspacing="10">               
                     <tbody>

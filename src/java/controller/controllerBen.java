@@ -70,6 +70,9 @@ public class controllerBen extends HttpServlet {
             request.setAttribute("order", cart.list());
             request.setAttribute("orderQty", cart.quantify());
             request.setAttribute("orderPrice", cart.calculateTotalPrice());
+            if(session.getAttribute("shippingType") != null){
+                request.setAttribute("shippingType", (String) session.getAttribute("shippingType"));
+            }
 
             url = "/WEB-INF/jspDisplayOrder.jsp";
 
