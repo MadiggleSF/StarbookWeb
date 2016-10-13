@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Starbook</title>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
     
     <body>
@@ -21,7 +22,7 @@
         <jsp:include page="/controllerBen?section=displayOrder" flush="true"/>
         
 
-        <a href="">Retour au panier</a>
+        <a href="controllerML?section=DisplayCaddy">Retour au panier</a>
 
         <h3>Méthode de livraison</h3>
         
@@ -40,7 +41,7 @@
         
             <p align="center"><a href="controllerBen?section=shippingAddresses">Suivant</a></p>
         
-        
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
     
 </html>

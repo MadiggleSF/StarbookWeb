@@ -1,8 +1,4 @@
-<%-- 
-    Document   : jspPayment
-    Created on : 10 oct. 2016, 14:52:52
-    Author     : cdi313
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Starbook</title>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
     <body>
         <h1>Paiement</h1>
@@ -64,7 +61,30 @@
                     </tr>
                     <tr>
                         <td>Expiration</td>
-                        <td><input type="text" name="ccExpM" value="MM" size="2" maxlength="2"/> / <input type="text" name="ccExpY" value="AAAA" size="4" maxlength="4"/></td>
+                        <td><select name="monthList">
+                                <option name="1">Janv</option>
+                                <option name="2">Fev</option>
+                                <option name="3">Mars</option>
+                                <option name="4">Avr</option>
+                                <option name="5">Mai</option>
+                                <option name="6">Juin</option>
+                                <option name="7">Juil</option>
+                                <option name="8">Aout</option>
+                                <option name="9">Sept</option>
+                                <option name="10">Oct</option>
+                                <option name="11">Nov</option>
+                                <option name="12">Dec</option>
+                            </select>
+                            / 
+                            <select name="yearList">
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Cryptogramme</td>
@@ -72,12 +92,12 @@
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="okPayment" />
+            <br>
+            <input type="submit" name="okPayment" value="Validation" />
         </form>
 
         <p><font color="red">${pMsgs}</font></p>
-
-        <p align="center"><a href="controllerBen?section=paymentCheck">Validation</a></p>
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
 
 </html>

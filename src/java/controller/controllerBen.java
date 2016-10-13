@@ -57,9 +57,9 @@ public class controllerBen extends HttpServlet {
         session.setAttribute("cart", panierTest);
         // ***************************************
 
-        String oMsgs = "";
+        
         if ("displayOrder".equals(request.getParameter("section"))) {
-            oMsgs = "";
+            String oMsgs = "";
             request.setAttribute("oMsgs", oMsgs);
             BeanCart cart = (BeanCart) session.getAttribute("cart");
             if (cart == null) {
@@ -70,6 +70,9 @@ public class controllerBen extends HttpServlet {
             request.setAttribute("order", cart.list());
             request.setAttribute("orderQty", cart.quantify());
             request.setAttribute("orderPrice", cart.calculateTotalPrice());
+            if(session.getAttribute("shippingType") != null){
+                request.setAttribute("shippingType", (String) session.getAttribute("shippingType"));
+            }
 
             url = "/WEB-INF/jspDisplayOrder.jsp";
 
@@ -84,7 +87,8 @@ public class controllerBen extends HttpServlet {
                 String login = (String) session.getAttribute("LOGIN");
                 adList.getCustomerAddresses(login);
                 request.setAttribute("adList", adList.list());
-
+                request.setAttribute("showNewForm", false);
+                //Select address
                 if (request.getParameter("okDelivery") != null || request.getParameter("okBilling") != null) {
                     if (request.getParameter("deliveryList") != null) {
                         Address sda = adList.getAddress(Integer.valueOf(request.getParameter("deliveryList")));
@@ -97,13 +101,86 @@ public class controllerBen extends HttpServlet {
                     request.setAttribute("sda", session.getAttribute("sda"));
                     request.setAttribute("sba", session.getAttribute("sba"));
                 }
+
+                if (request.getParameter("modDelivery") != null) {
+                    Address sda = (Address) session.getAttribute("sda");
+                    if (sda != null) {
+                        adList.update(sda.getId(),
+                                request.getParameter("sdaStreet"),
+                                request.getParameter("sdaZipcode"),
+                                request.getParameter("sdaCity"),
+                                request.getParameter("sdaCountry"),
+                                request.getParameter("sdaCountry"));
+                    }
+                }
+
+                if (request.getParameter("modBilling") != null) {
+                    Address sba = (Address) session.getAttribute("sba");
+                    if (sba != null) {
+                        adList.update(sba.getId(),
+                                request.getParameter("sbaStreet"),
+                                request.getParameter("sbaZipcode"),
+                                request.getParameter("sbaCity"),
+                                request.getParameter("sbaCountry"),
+                                request.getParameter("sbaCountry"));
+                    }
+
+                }
+
+                if (request.getParameter("delDelivery") != null) {
+                    Address sda = (Address) session.getAttribute("sda");
+                    if (sda != null) {
+                        adList.remove(sda.getId());
+                        session.setAttribute("sda", null);
+                    }
+                }
+
+                if (request.getParameter("delBilling") != null) {
+                    Address sba = (Address) session.getAttribute("sba");
+                    if (sba != null) {
+                        adList.remove(sba.getId());
+                        session.setAttribute("sba", null);
+                    }
+                }
+                
+                if(request.getParameter("okNewFormAppears") != null){
+                    request.setAttribute("showNewForm", true);
+                }
+
+                if (request.getParameter("okNew") != null) {
+                    if (request.getParameter("naZipcode") != null
+                            && request.getParameter("naCity") != null
+                            && request.getParameter("naCountry") != null) {
+                        Address na = new Address(0, 
+                                request.getParameter("naStreet"), 
+                                request.getParameter("naOther"), 
+                                request.getParameter("naZipcode"), 
+                                request.getParameter("naCity"), 
+                                request.getParameter("naCountry"));
+                        adList.insertAddress(na);
+                        if(request.getParameter("daNew") != null){
+                            adList.setDelivery(login, na);
+                            request.setAttribute("showNewForm", false);
+                        }
+                        if(request.getParameter("baNew") != null){
+                            adList.setBilling(login, na);
+                            request.setAttribute("showNewForm", false);
+                        }
+                        if(request.getParameter("daNew") == null && request.getParameter("baNew") == null){
+                            String oMsgs = "Nouvelle adresse : facturation et/ou livraison ?";
+                            request.setAttribute("oMsgs", oMsgs);
+                        }
+                    }
+                    
+                }
+
             }
             url = "/WEB-INF/jspShippingAddresses.jsp";
 
         }
 
         if ("payment".equals(request.getParameter("section"))) {
-            oMsgs = "";
+            String oMsgs = "";
             request.setAttribute("oMsgs", oMsgs);
             request.setAttribute("shippingType", session.getAttribute("shippingType"));
             Address sda = (Address) session.getAttribute("sda");
@@ -123,53 +200,35 @@ public class controllerBen extends HttpServlet {
 
         }
 
-        if ("newAddress".equals(request.getParameter("section"))) {
-            beanAddresses ba = new beanAddresses();
-            if (request.getParameter("okNew") != null) {
-                Address na = new Address(1, request.getParameter("naStreet"),
-                        request.getParameter("naOther"),
-                        request.getParameter("naZipcode"),
-                        request.getParameter("naCity"),
-                        request.getParameter("naCountry"));
-                ba.insertAddress(na);
-                if (request.getParameter("daNew") != null) {
-                    ba.setBilling((String) session.getAttribute("LOGIN"), na);
-                }
-                if (request.getParameter("baNew") != null) {
-                    ba.setDelivery((String) session.getAttribute("LOGIN"), na);
-                }
-            }
-        }
 
         if ("paymentCheck".equals(request.getParameter("section"))) {
-            String pMsg = "";
+            String pMsgs = "";
+            String login = (String) session.getAttribute("LOGIN");
+            Address sda = (Address) session.getAttribute("sda");
+            Address sba = (Address) session.getAttribute("sba");
             if (request.getParameter("okPayment") != null) {
 
-//            beanPayment payment = new beanPayment(
-//                    request.getParameter("ccOwner"),
-//                    request.getParameter("ccNumber"),
-//                    request.getParameter("ccExpM"),
-//                    request.getParameter("ccExpY"),
-//                    request.getParameter("ccCrypto"));
-                System.out.println(request.getParameter("ccOwner"));
-                System.out.println(request.getParameter("ccNumber"));
-                System.out.println(request.getParameter("ccExpM"));
-                System.out.println(request.getParameter("ccExpY"));
-                System.out.println(request.getParameter("ccCrypto"));
+                beanPayment payment = new beanPayment(
+                        request.getParameter("ccOwner"),
+                        request.getParameter("ccNumber"),
+                        request.getParameter("ccCrypto"));
+                boolean check = payment.checkCC();
+                if (!check) {
+                    pMsgs = "Carte invalide";
+                    url = "/WEB-INF/jspPayment.jsp";
+                    request.setAttribute("pMsgs", pMsgs);
+                }
 
-//            if(!payment.checkCC()){
-//                pMsg = "Carte invalide";
-//                url = "/WEB-INF/jspPayment.jsp";
-//            }
-//            
-//            if(payment.checkCC()){
-//                pMsg = "Ok !";
-//                url = "/WEB-INF/jspPayment.jsp";
-//            }
+                if (check) {
+                    pMsgs = "";
+                    request.setAttribute("cMail", session.getAttribute("LOGIN"));
+                    beanOrder bo = new beanOrder();
+                    BeanCart cart = (BeanCart) session.getAttribute("cart");
+                    bo.fill(cart.list());
+                    bo.makeOrder(login, sda.getId(), sba.getId());
+                    url = "/WEB-INF/jspMoneyMoneyMoney.jsp";
+                }
             }
-            url = "/WEB-INF/jspPayment.jsp";
-            request.setAttribute("pMsg", pMsg);
-
         }
 
         //section1
