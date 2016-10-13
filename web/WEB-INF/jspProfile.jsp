@@ -65,9 +65,9 @@
     
         <h2>Adresses</h2>
         <h4>Livraison</h4>
-        <form name="deliveryForm" action="controllerBen?section=shippingAddresses" method="POST">        
-            <select name="deliveryList">  
-                <c:forEach var="d" items="${adList}">
+        <form name="cdForm" action="controllerGab?section=monProfil" method="POST">        
+            <select name="cdList">  
+                <c:forEach var="d" items="${ba}">
                     <option value="${d.id}">${d.street} (${d.city})</option>
                 </c:forEach>
                 
@@ -98,7 +98,7 @@
 
                     </tr>
                     
-                <input type="submit" value="OK" name="OK Livraison" />
+                <input type="submit" value="OK" name="cdOK" />
                 </tbody>
             </table>
 
@@ -106,10 +106,10 @@
 
 
         <h4>Facturation</h4>
-        <form name="billingForm" action="controllerBen?section=shippingAddresses" method="POST">        
-            <select name="billingList">
+        <form name="cbForm" action="controllerGab?section=monProfil" method="POST">        
+            <select name="cbList">
                    
-                <c:forEach var="b" items="${adList}">
+                <c:forEach var="b" items="${ba}">
                     <option value="${b.id}">${b.street} (${b.city})</option>                    
                 </c:forEach>               
             </select>        
@@ -140,7 +140,7 @@
                     </tr>
                     
                     
-                <input type="submit" value="OK" name="OK Facturation" />    
+                <input type="submit" value="OK" name="cbOK" />    
                 </tbody>
             </table>
         </form>

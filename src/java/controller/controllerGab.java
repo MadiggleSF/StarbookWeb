@@ -149,42 +149,53 @@ public class controllerGab extends HttpServlet {
 
         }
 
-        
         // GESTION DU PROFIL 
-           
-        if ("monProfil".equals(request.getParameter("section"))){
-          
-           beanProfile bp = (beanProfile)session.getAttribute("beanProfile");
+        if ("monProfil".equals(request.getParameter("section"))) {
+            beanAddresses ba = new beanAddresses();
+            String login = (String) session.getAttribute("LOGIN");
+            ba.getCustomerAddresses(login);
+            request.setAttribute("ba", ba.list());
+            beanProfile bp = (beanProfile) session.getAttribute("beanProfile");
             if (bp == null) {
                 bp = new beanProfile();
                 session.setAttribute("beanProfile", bp);
             }
-            beanReview br = (beanReview)session.getAttribute("beanReview");
-           if (br == null){
-               br = new beanReview();
-               session.setAttribute("beanReview", br);
-           }
-           //Customer
-           Customer c = bp.fillCustomer((String)session.getAttribute("LOGIN"));
-           request.setAttribute("c", c);
-           
-           //Adresses
-           
-           //Commandes
-          request.setAttribute("orderlist",bp.getOrders());
-          
-          //Commentaires
-          br.getReviews().clear();
-          br.setReviewsFromDB(String.valueOf(c.getId()), 2);
-          request.setAttribute("reviews", br.getReviewsList());
-          
-          
-           
-           url = "/WEB-INF/jspProfile.jsp";
+            beanReview br = (beanReview) session.getAttribute("beanReview");
+            if (br == null) {
+                br = new beanReview();
+                session.setAttribute("beanReview", br);
+            }
+            //Customer
+            Customer c = bp.fillCustomer((String) session.getAttribute("LOGIN"));
+            request.setAttribute("c", c);
+
+            //Adresses
+            if (request.getParameter("cdOK") != null || request.getParameter("cbOK") != null) {
+
+                Address sda = new Address();
+                Address sba = new Address();
+                if (request.getParameter("cdList") != null) {
+                    sda = ba.getAddress(Integer.valueOf(request.getParameter("cdList")));
+                }
+                if (request.getParameter("cbList") != null) {
+                    sba = ba.getAddress(Integer.valueOf(request.getParameter("cbList")));
+                }
+
+                request.setAttribute("sda", sda);
+                request.setAttribute("sba", sba);
+            }
+
+            //Commandes
+            request.setAttribute("orderlist", bp.getOrders());
+
+            //Commentaires
+            br.getReviews().clear();
+            br.setReviewsFromDB(String.valueOf(c.getId()), 2);
+            request.setAttribute("reviews", br.getReviewsList());
+
+            url = "/WEB-INF/jspProfile.jsp";
         }
-        
-        
-        
+
         // GESTION DU BEAN SIGNUP 
         if ("signUp".equals(request.getParameter("section"))) {
 
