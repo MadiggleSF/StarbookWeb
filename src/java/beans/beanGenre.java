@@ -35,7 +35,7 @@ public class beanGenre implements Serializable{
                 genres.put(String.valueOf(rs.getInt("genre_id")), new Genre(rs.getInt("genre_id"),rs.getString("genre_name")));
             }
         } catch (SQLException ex) {
-            System.err.println("Error: SQLException: "+ex.getMessage());
+            System.err.println("Error: SQLException: method fillGenre: "+ex.getMessage());
         }
     }
     

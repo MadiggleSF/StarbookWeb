@@ -103,7 +103,7 @@ public class controllerML extends HttpServlet {
                 url = "/WEB-INF/jspBook.jsp";
             }
             if ("search".equals(request.getParameter("src"))) {
-                url = "/WEB-INF/jspSearch.jsp";
+                url = "/WEB-INF/jspSearchResult.jsp";
             }
             
         }

@@ -70,8 +70,8 @@ public class beanCatalog implements Serializable {
                 break;
             case 6:
                 query+="AND sb_book.book_isbn = sb_category.book_isbn "
-                        + "AND sb_category.genre_name = sb_genre.genre_name "
-                        + "AND sb_genre.genre_id = '"+input+"'";
+                        + "AND sb_category.genre_id = sb_genre.genre_id "
+                        + "AND sb_genre.genre_id = "+input;
                 break;
         }
         //query +=  " COLLATE SQL_Latin1_General_Cp437_CI_AI";
