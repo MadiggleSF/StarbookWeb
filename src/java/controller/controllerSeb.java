@@ -11,11 +11,7 @@ import beans.beanAuthor;
 import beans.beanEvents;
 import beans.beanGenre;
 import beans.beanReview;
-import classes.Book;
-import classes.Review;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -30,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "controllerSeb", urlPatterns = {"/controllerSeb"})
 public class controllerSeb extends HttpServlet {
-    
+
     private Cookie getCookie(Cookie[] cookies, String name) {
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -82,16 +78,14 @@ public class controllerSeb extends HttpServlet {
                 }
             }
             session.setAttribute("catalog", bc.getCatalogList());
-            
-            beanReview br = (beanReview)session.getAttribute("beanReview");
+
+            beanReview br = (beanReview) session.getAttribute("beanReview");
             if (br == null) {
                 br = new beanReview();
                 session.setAttribute("beanReview", br);
             }
             request.setAttribute("reviewsSize", br.getReviews().size());
-            
-            
-            
+
         }
 
         //section2
@@ -106,7 +100,7 @@ public class controllerSeb extends HttpServlet {
                 bc.getCatalog().clear();
             }
             session.setAttribute("book", bc.getBook(request.getParameter("bookIsbn")));
-            beanReview br = (beanReview)session.getAttribute("beanReview");
+            beanReview br = (beanReview) session.getAttribute("beanReview");
             if (br == null) {
                 br = new beanReview();
                 session.setAttribute("beanReview", br);
@@ -114,7 +108,10 @@ public class controllerSeb extends HttpServlet {
             br.getReviews().clear();
             br.setReviewsFromDB(request.getParameter("bookIsbn"), 1);
             request.setAttribute("reviews", br.getReviewsList());
-            request.setAttribute("login", getCookie(request.getCookies(), "LOGIN"));
+            if (getCookie(request.getCookies(), "LOGIN") != null) {
+                request.setAttribute("login", getCookie(request.getCookies(), "LOGIN").getValue());
+            }
+
         }
 
         //section3
@@ -170,30 +167,30 @@ public class controllerSeb extends HttpServlet {
             be.fillEvents();
             session.setAttribute("events", be.getEventBookList());
         }
-        
+
         //section6
         if ("rayons".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspSectionRayons.jsp";
-            beanGenre bg = (beanGenre)session.getAttribute("beanGenre");
+            beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
             if (bg == null) {
                 bg = new beanGenre();
                 session.setAttribute("beanGenre", bg);
             }
             bg.fillGenre();
             session.setAttribute("genres", bg.getGenresList());
-            
+
         }
-        
+
         //section7
         if ("genreDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspGenre.jsp";
-            beanGenre bg = (beanGenre)session.getAttribute("beanGenre");
+            beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
             if (bg == null) {
                 bg = new beanGenre();
                 session.setAttribute("beanGenre", bg);
             }
             request.setAttribute("genre", bg.getGenre(request.getParameter("genreName")));
-            
+
             beanCatalog bc = (beanCatalog) session.getAttribute("beanCatalog");
             if (bc == null) {
                 bc = new beanCatalog();
@@ -204,39 +201,41 @@ public class controllerSeb extends HttpServlet {
 
             session.setAttribute("catalog", bc.getCatalogList());
         }
-        
+
         //section8
         if ("comment".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspBook.jsp";
-            beanReview br = (beanReview)session.getAttribute("beanReview");
+            beanReview br = (beanReview) session.getAttribute("beanReview");
             if (br == null) {
                 br = new beanReview();
                 session.setAttribute("beanReview", br);
             }
-            
-            beanAddresses ba = (beanAddresses)session.getAttribute("beanAddresses");
+
+            beanAddresses ba = (beanAddresses) session.getAttribute("beanAddresses");
             if (ba == null) {
                 ba = new beanAddresses();
                 session.setAttribute("beanAddresses", ba);
             }
-            if (br.checkHasOrdered(getCookie(request.getCookies(), "LOGIN").getValue(),
-                    request.getParameter("book"))) {
-                
-                br.insertReview(request.getParameter("book"),
-                        ba.getCustomerID(getCookie(request.getCookies(), "LOGIN").getValue()),
-                        br.getOrderLineId(getCookie(request.getCookies(), "LOGIN").getValue(), request.getParameter("book")),
-                        request.getParameter("comment"),Integer.valueOf(request.getParameter("commentRate")));
-            }
-            
-        }
-        
-        //section9
-        
-        
-        
-        
-        
+            if (getCookie(request.getCookies(), "LOGIN") != null) {
+                if (br.checkHasOrdered(getCookie(request.getCookies(), "LOGIN").getValue(),
+                        request.getParameter("book"))) {
 
+                    br.insertReview(request.getParameter("book"),
+                            ba.getCustomerID(getCookie(request.getCookies(), "LOGIN").getValue()),
+                            br.getOrderLineId(getCookie(request.getCookies(), "LOGIN").getValue(), 
+                                    request.getParameter("book")),
+                            request.getParameter("comment"), Integer.valueOf(request.getParameter("commentRate")));
+                }
+            } else {
+                url = "/WEB-INF/jspLogin.jsp";
+            }
+            br.getReviews().clear();
+            br.setReviewsFromDB(request.getParameter("book"), 1);
+            request.setAttribute("reviews", br.getReviewsList());
+
+        }
+
+        //section9
         request.getRequestDispatcher(url).include(request, response);
     }
 

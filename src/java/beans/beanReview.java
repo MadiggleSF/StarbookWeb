@@ -65,7 +65,7 @@ public class beanReview implements Serializable{
         }else{
             bookRating = 11;
         }
-        this.bookRating = String.valueOf(bookRating);
+        this.bookRating = String.format("%.2g%n", bookRating);
     }
 
     public void setReviewsFromDB(String input, int type) {
