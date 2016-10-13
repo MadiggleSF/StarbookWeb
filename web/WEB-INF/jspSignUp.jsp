@@ -8,7 +8,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+       
     </head>
+     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
@@ -64,5 +66,7 @@
        
         <br><br><input type="submit" value="Valider" name="Validation" />
         </form>
+       
     </body>
+     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

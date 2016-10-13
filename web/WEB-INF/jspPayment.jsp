@@ -6,8 +6,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Starbook</title>
-        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+       
     </head>
+     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Paiement</h1>
 
@@ -97,7 +98,7 @@
         </form>
 
         <p><font color="red">${pMsgs}</font></p>
-        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+       
     </body>
-
+ <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

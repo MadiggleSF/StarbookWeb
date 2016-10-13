@@ -4,9 +4,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
+    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Fatal Error!</h1>
         <font color="red">${fatalerror}</font>
+       
     </body>
+     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

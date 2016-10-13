@@ -7,9 +7,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Starbook</title>
-        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+        
     </head>
-    
+    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Commande</h1>
         
@@ -41,7 +41,7 @@
         
             <p align="center"><a href="controllerBen?section=shippingAddresses">Suivant</a></p>
         
-        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+        
     </body>
-    
+    <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

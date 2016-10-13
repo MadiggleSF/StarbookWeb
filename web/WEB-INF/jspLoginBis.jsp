@@ -11,6 +11,7 @@ s'est ni encore inscrit ni encore connecté
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
         <h1>Connexion</h1>
         <form method="POST" action="controller" name ="CONNEXION_BIS">
@@ -21,6 +22,8 @@ s'est ni encore inscrit ni encore connecté
             <br><a href="controllerGab?section=signUp">S'inscrire</a>
         </form>
 ${msg}
+    
     </body>
+    <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>
 
