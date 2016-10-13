@@ -20,7 +20,7 @@
         </c:if>
 
         <c:if test="${!cartEmpty}" var="c">  
-            <table>
+            <table id="cartContent">
                 <tr>
                     <th> Aperçu </th>
                     <th> Titre </th>
@@ -49,7 +49,7 @@
                     <input type="hidden" name="section" value="" />
                     <input type="submit" name="" value="< Poursuivre vos achats" /><br>
                 </form>
-                <form id="btn_right" class="inner" method="POST" action="controllerML">
+                <form id="btn_right" class="inner" method="POST" action="controllerBen">
                     <input type="hidden" name="section" value="caddy" />
                     <input type="hidden" name="clean" value="ok" />
                     <input type="submit" name="cleanCart" value="Passer votre commande" />

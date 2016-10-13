@@ -58,9 +58,11 @@
             </table>
         
         ${msg} 
-        <br><br><input type="submit" value="Etape suivante >>" name="Etape suivante" />
-       
         
+        
+        
+       
+        <br><br><input type="submit" value="Valider" name="Validation" />
         </form>
     </body>
 </html>

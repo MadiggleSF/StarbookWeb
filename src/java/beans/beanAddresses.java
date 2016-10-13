@@ -173,8 +173,30 @@ public class beanAddresses implements Serializable {
 
     }
 
-    public void modify() {
+    public void update(int id, String street, String zipcode, String city, String country, String other) {
+        try (Connection cnn = cp.setConnection();) {
+            String query = "update sb_address set "
+                    + "address_street = ?, "
+                    + "address_city = ?, "
+                    + "address_zipcode = ?, "
+                    + "address_country = ?, "
+                    + "address_other = ? "
+                    + "where address_id = ?";
 
+            PreparedStatement pstmt = cnn.prepareStatement(query);
+            pstmt.setString(1, street);
+            pstmt.setString(2, city);
+            pstmt.setString(3, zipcode);
+            pstmt.setString(4, country);
+            pstmt.setString(5, other);
+            pstmt.setInt(6, id);
+
+            pstmt.execute();
+            pstmt.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void remove(int id) {
