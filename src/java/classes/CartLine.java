@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * EN CHANTIER *
 *************************************************
  */
-public class CartLine {
+public class CartLine implements Serializable {
 
     private Book bk;
     private int qty;
