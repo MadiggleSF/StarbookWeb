@@ -170,7 +170,7 @@ input[type=submit]:hover span:after {
 }
 
 
-/*TEST : Feuille style header*/
+/*Header*/
 .containerTop {
     display: flex;
     flex-direction: row;
@@ -222,12 +222,97 @@ input[type=search] {
     height: 35px;
 }
 
-select {
-   
+select { 
     font-family: 'PlayfairDisplay-Regular', Arial;
     width: 135px;
 }
+.topMenu {
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: 0.7em;
+}
+/*Sidebar*/
+.menuGroup{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    height: 85%;
+    overflow: auto;
+}
 
+.menuItem {
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: 13px;
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.menuItem a:hover{
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+}
+
+.menuItem a:link{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.menuItem a:visited{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.menuItem a:active{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+#monCompte {
+    font-size: 20px;
+}
+
+#monPanier {
+    font-size : 20px;
+}
+.menuItemTop a:link{
+    color: black;
+    text-decoration: none;
+}
+
+.menuItemTop a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+.menuItemTop a:active{
+    color: black;
+    text-decoration: none;
+}
+
+
+/*Footer*/
+.containerFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#bottomList {
+    list-style-type: none;
+
+    align-tems: baseline;
+}
+
+#bottomList li {
+    flex-direction: column;
+}
 
 
 /*LoginFrame

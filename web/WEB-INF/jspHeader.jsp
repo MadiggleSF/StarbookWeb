@@ -9,7 +9,7 @@
         <form class="element" method="POST" action="controllerSeb">
             <input type="hidden" name="section" value="search"/>
 
-            <input type="search" name="search" placeholder="Entrez votre recherche ici" size="70"/>
+            <input type="search" name="search" placeholder="Entrez votre recherche ici" size="65"/>
             <select name="searchCategory">
                 <option class="dropdown" value="title">Titre</option>
                 <option class="dropdown" value="author">Auteur</option>
@@ -23,22 +23,26 @@
         <nav class="element">
             <ul>
                 <li><a href="controllerGab"><img src="images/login.png"></a></li>
-                <li><a href="controllerGab"> Mon compte</a></li>
+                <li class="menuItem"><a id="monCompte" href="controllerGab"> <span class="topMenu">Mon compte</span></a></li>
                 <li><a href="controllerML?section=DisplayCaddy"><img src="images/panierIcone.png"></a></li>
-                <li><a href="controllerML?section=DisplayCaddy"> Mon panier</a></li>
+                <li class="menuItem"><a id="monPanier" href="controllerML?section=DisplayCaddy"> <span class="topMenu">Mon panier</span></a></li>
             </ul>
         </nav>
     </div>    
 
 
 
-    <div class="containerBottom">
-        <nav class="element">
+    <div class="sideBar">
+        <ul class="menuGroup">
+            <li class="menuItem"><a href="#home">Autobiographie</a></li>
+            <li class="menuItem"><a href="#news">Poésie</a></li>
+            <li class="menuItem"><a href="#contact">Roman</a></li>
+        </ul>
+        <!--<nav class="element">
             <ul>
                 <li><a href="controllerSeb?section=rayons">Rayons</a><br></li>
-                <li><a href="controllerSeb?section=events">Event</a><br></li>
 
             </ul>
-        </nav>
+        </nav>-->
     </div>
 </header>
