@@ -3,7 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
- 
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
@@ -11,6 +11,14 @@
         <jsp:include page="jspHeader.jsp" flush="true"/>
     </head>
     <body> 
+        <jsp:include page="jspNavBar.jsp" flush="true"/>
+        <!--<div class="sideBar">
+            <ul class="menuGroup">
+                <c:forEach var="genre" items="${genreList}">
+                    <li class="menuItem"><a href="controllerSeb?section=genreDetail&genreName=${genre.id}">${genre.name}</a></li>
+                    </c:forEach>
+            </ul>
+        </div>-->
         <c:if test="${cartEmpty}" var="c">
             <img id="panierVide" src="images/vide.jpg" alt="Panier vide !">
             <br>
@@ -57,10 +65,10 @@
                 </form>     
             </div>
         </c:if>
-            
-            
+
+
     </body>
     <jsp:include page="jspFooter.jsp" flush="true"/>
-   
+
 </html>
 

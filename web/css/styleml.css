@@ -79,8 +79,12 @@ input[type=submit]:hover span:after {
 
 /*Tableau panier*/
 #cartContent {
-    width: 100%;
+    width: 80%;
     font-family: 'PlayfairDisplay-Regular', Arial;
+    position: relative;
+    left: 15%;
+    margin-right: 0px;
+    
 }
 
 #cartContent th {
@@ -155,12 +159,12 @@ input[type=submit]:hover span:after {
 
 #btn_left {
     position: absolute;
-    left: 30px;
+    left: 210px;
 }
 
 #btn_right {
     position: absolute;
-    right: 30px;
+    right: 70px;
 }
 
 /*Image panier vide*/
@@ -240,11 +244,14 @@ select {
 }
 /*Sidebar*/
 .menuGroup{
+    overflow:auto;
+    z-index: 2;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: fixed;
-    height: 85%;
+    position: absolute;
+    left: 0;
+    height: 65%;
     overflow: auto;
 }
 
@@ -309,7 +316,7 @@ footer {
     position : absolute;
     bottom : 0px;
     height : 60px;
-
+    z-index: 1;
     width: 100%;
   }
   
@@ -318,6 +325,7 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 
 #bottomList {
