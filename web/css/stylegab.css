@@ -11,16 +11,17 @@ h1 {
 
 
 h2, h4 {
-    
+
     font-family: 'PlayfairDisplay-Regular',Arial;
-    
+
 }
 
 
 #login{
-/*    margin-left: 150px;*/
+   
     position : absolute;
     left : 150px;
+   
 }
 
 #signup{
@@ -47,4 +48,29 @@ h2, h4 {
 #profile {
     position : absolute;
     left : 150px;
+}
+
+
+.menuItem a:hover{
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+}
+
+.menuItem a:link{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.menuItem a:visited{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.menuItem a:active{
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
 }

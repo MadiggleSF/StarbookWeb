@@ -35,7 +35,7 @@
 
                 ${msg}
                 <br><br><input type="submit" value="Se connecter" name="Connexion"/><br><br>
-                <a href="controllerGab?section=signUp">S'inscrire</a>
+                <a class ="menuItem" href="controllerGab?section=signUp">S'inscrire</a>
             </form> 
         </div>
     </body>

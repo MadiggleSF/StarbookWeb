@@ -11,8 +11,8 @@
     <body>
         <div id="welcome">
         <h1>Welcome ${welcome}!</h1>
-        <a href="controllerGab?section=monProfil">Mon Profil</a><br><br>
-        <br><a href="controller?section=login&deconnect">Deconnexion</a>
+        <a class ="menuItem" href="controllerGab?section=monProfil">Mon Profil</a><br><br>
+        <br><a class ="menuItem" href="controller?section=login&deconnect">Deconnexion</a>
         </div>   
     </body>
     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>

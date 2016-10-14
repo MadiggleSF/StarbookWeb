@@ -13,7 +13,7 @@
     <body>
           <div id ="signupvalidation">
         <h1>Merci! Votre inscription a bien été validée !</h1>
-        <a href = "controllerGab?section=homepage">Retour Accueil</a>
+        <a class ="menuItem" href = "controllerGab?section=homepage">Retour Accueil</a>
           </div>
     </body>
     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
