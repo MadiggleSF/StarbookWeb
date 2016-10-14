@@ -261,7 +261,14 @@ public class controllerGab extends HttpServlet {
                 }
             }
         }
-
+        
+        if ("homepage".equals(request.getParameter("section"))) {
+            url = "/WEB-INF/jspHomepage.jsp";
+            
+            
+            
+            
+        }
         request.getRequestDispatcher(url).include(request, response);
 
     }
