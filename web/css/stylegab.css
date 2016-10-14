@@ -23,3 +23,28 @@ h2, h4 {
     left : 150px;
 }
 
+#signup{
+    position : absolute;
+    left : 150px;
+}
+
+#welcome{
+    position : absolute;
+    left : 150px;
+}
+
+#fatalerror{
+    position : absolute;
+    left : 150px;
+}
+
+
+#signupvalidation{
+    position : absolute;
+    left : 150px;
+}
+
+#profile {
+    position : absolute;
+    left : 150px;
+}

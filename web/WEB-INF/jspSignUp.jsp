@@ -14,7 +14,7 @@
     </head>
      <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
-        <div id ="divsignup">
+        <div id ="signup">
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
             <input type="hidden" name="section" value="signUp" /> 
