@@ -7,12 +7,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
        
     </head>
      <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
+        
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
             <input type="hidden" name="section" value="signUp" /> 
