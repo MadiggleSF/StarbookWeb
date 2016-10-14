@@ -16,7 +16,7 @@
             <br>
             <form class="inner" method="POST" action="controllerSeb">
                 <input type="hidden" name="section" value="" />
-                <input type="submit" name="" value="< Poursuivre vos achats" /><br>
+                <input id="achat" type="submit" name="" value="< Poursuivre vos achats" /><br>
             </form>
         </c:if>
 

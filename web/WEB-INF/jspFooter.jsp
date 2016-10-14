@@ -3,10 +3,10 @@
     <div class="containerFooter">
         <div class="company"> 
             <ul id="bottomList">
-                <li><a href="">Starbook</a></li>
-                <li><a href="">À propos</a></li>
-                <li><a href="">Nos services</a></li>
-                <li><a href="">Blog</a></li>
+                <li><a id="Sb" class="sbBottom" href="">Starbook</a></li>
+                <li><a class="sbBottom" href="">À propos</a></li>
+                <li><a class="sbBottom" href="">Nos services</a></li>
+                <li><a class="sbBottom" href="">Blog</a></li>
             </ul>
         </div> 
 

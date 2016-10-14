@@ -169,6 +169,14 @@ input[type=submit]:hover span:after {
     margin: auto;
 }
 
+#achat {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
 /*Header*/
 .containerTop {
@@ -297,7 +305,6 @@ select {
 
 
 /*Footer*/
-
 footer {
     position : absolute;
     bottom : 0px;
@@ -310,23 +317,57 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
 #bottomList {
     list-style-type: none;
-
-    align-tems: baseline;
+    //align-tems: baseline;
 }
 
 #bottomList li {
     flex-direction: column;
 }
 
+.address {
+    padding-right: 40px;
+}
+
+h6 {
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: small;
+    line-height: 0;
+}
+
+#Sb {
+    font-family:'LearningCurveProRegular', Arial;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.sbBottom:link{
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: small;
+    color: black;
+    text-decoration: none;
+}
+
+.sbBottom:visited{
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: small;
+    color: black;
+    text-decoration: none;
+}
+
+.sbBottom:active{
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    font-size: small;
+    color: black;
+    text-decoration: none;
+}
+
+
 
 /*Structure de la page*/
-
-
 html {
     height: 100%;
 }
@@ -338,21 +379,7 @@ header {
 footer {
     height: 20%;
 }
-/*
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
 
-header {
-    padding: 20px;
-}
-
-body {
-    padding: 20px;
-    padding-bottom: 60px;
-}
 
 /*LoginFrame
 #loginFrame
