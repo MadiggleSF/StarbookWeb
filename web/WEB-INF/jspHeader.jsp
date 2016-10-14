@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
     <div class="containerTop">
         <div class="element" id="titrePrincipal">
@@ -34,9 +35,9 @@
 
     <div class="sideBar">
         <ul class="menuGroup">
-            <li class="menuItem"><a href="#home">Autobiographie</a></li>
-            <li class="menuItem"><a href="#news">Poésie</a></li>
-            <li class="menuItem"><a href="#contact">Roman</a></li>
+            <c:forEach var="genre" items="${genreList}">
+                <li class="menuItem"><a href="controllerSeb?section=genreDetail&genreName=${genre.id}">${genre.name}</a></li>
+            </c:forEach>
         </ul>
         <!--<nav class="element">
             <ul>

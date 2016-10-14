@@ -51,9 +51,24 @@ public class controllerSeb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "/WEB-INF/jspHeader.jsp";
+        String url = "/WEB-INF/jspHomepage.jsp";
         HttpSession session = request.getSession();
-
+        
+        beanGenre bg = (beanGenre)session.getAttribute("beanGenre");
+        if (bg == null) {
+            bg = new beanGenre();
+            session.setAttribute("beanGenre", bg);
+        }
+        bg.fillGenre();
+        session.setAttribute("genreList", bg.getGenresList());
+        
+        beanEvents be = (beanEvents)session.getAttribute("beanEvents");
+        if (be == null) {
+            be= new beanEvents();
+            session.setAttribute("beanEvents", be);
+        }
+        be.fillEvents();
+        session.setAttribute("events", be.getEventBookList());
         //section1
         if ("search".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspSearchResult.jsp";
@@ -138,7 +153,7 @@ public class controllerSeb extends HttpServlet {
         //section4
         if ("eventDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspEvent.jsp";
-            beanEvents be = (beanEvents) session.getAttribute("beanEvents");
+            //beanEvents be = (beanEvents) session.getAttribute("beanEvents");
             if (be == null) {
                 be = new beanEvents();
                 session.setAttribute("beanEvents", be);
@@ -159,11 +174,12 @@ public class controllerSeb extends HttpServlet {
         //section5
         if ("events".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspSectionEvents.jsp";
-            beanEvents be = (beanEvents) session.getAttribute("beanEvents");
+            //beanEvents be = (beanEvents) session.getAttribute("beanEvents");
             if (be == null) {
                 be = new beanEvents();
                 session.setAttribute("beanEvents", be);
             }
+            
             be.fillEvents();
             session.setAttribute("events", be.getEventBookList());
         }
@@ -171,7 +187,7 @@ public class controllerSeb extends HttpServlet {
         //section6
         if ("rayons".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspSectionRayons.jsp";
-            beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
+            //beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
             if (bg == null) {
                 bg = new beanGenre();
                 session.setAttribute("beanGenre", bg);
@@ -184,7 +200,7 @@ public class controllerSeb extends HttpServlet {
         //section7
         if ("genreDetail".equals(request.getParameter("section"))) {
             url = "/WEB-INF/jspGenre.jsp";
-            beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
+            //beanGenre bg = (beanGenre) session.getAttribute("beanGenre");
             if (bg == null) {
                 bg = new beanGenre();
                 session.setAttribute("beanGenre", bg);

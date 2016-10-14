@@ -1,6 +1,41 @@
-.logo
-{
-    float: right contour
+#allEvent{
+    margin-left: 150px;
 }
 
+#eventInfo{
+    vertical-align: top;
+}
 
+h1{
+    font-family: 'PlayfairDisplay-Regular', Arial;   
+}
+
+h2{
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    line-height: 25%;
+}
+
+img{
+    float: left;    
+}
+
+.eventDetail{
+    font-family: 'PlayfairDisplay-Regular', Arial;
+    background-color: #009999;
+    color: white;
+    padding-top: 5px; 
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 8px;
+
+    /*    width:200px;
+    padding:20px;
+    margin:5px;*/
+    transition: all 0.5s;
+    cursor: pointer;
+}

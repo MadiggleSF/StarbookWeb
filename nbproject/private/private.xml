@@ -5,17 +5,20 @@
         <group>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspHeader.jsp</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspGenre.jsp</file>
+            <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/css/styleml.css</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/beans/beanReview.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspReviews.jsp</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/classes/Review.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/controller/controllerSeb.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspSearch.jsp</file>
+            <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspAllGenres.jsp</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/beans/beanCatalog.java</file>
+            <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/controller/controllerML.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspReview.jsp</file>
-            <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/classes/Genre.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspBook.jsp</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/beans/beanGenre.java</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspAddReview.jsp</file>
+            <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/css/styleHeader.css</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/web/WEB-INF/jspCatalog.jsp</file>
             <file>file:/D:/Projet%20StarBook/Web/StarbookWeb/src/java/beans/beanAddresses.java</file>
         </group>
