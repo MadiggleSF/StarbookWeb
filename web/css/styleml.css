@@ -265,7 +265,7 @@ select {
 }
 
 .menuItem a:hover{
-    background-color: #555;
+    background-color: #CEF6E3;
     color: white;
     text-decoration: none;
 }

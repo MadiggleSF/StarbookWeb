@@ -10,6 +10,17 @@
     margin-left: 150px;
 }
 
+#book{
+    margin-left: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#bookTitle{
+    margin-left: 150px;
+}
+
 .conteneur{
     display: flex;
 }

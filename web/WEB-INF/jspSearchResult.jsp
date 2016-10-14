@@ -11,7 +11,9 @@
         <jsp:include page="jspHeader.jsp" flush="true"/>
     </head>
     <body> 
-
+        <jsp:include flush="true" page="jspNavBar.jsp"/>
 <jsp:include page="jspCatalog.jsp" flush="true"/>
 
 <jsp:include page="jspFooter.jsp" flush="true"/>
+    </body>
+</html>

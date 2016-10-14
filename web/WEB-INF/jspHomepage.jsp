@@ -11,6 +11,7 @@
         <jsp:include page="jspHeader.jsp" flush="true"/>
     </head>
     <body> 
+        <jsp:include flush="true" page="jspNavBar.jsp"/>
         <jsp:include flush="true" page="jspAllEvents.jsp"/>
 
         <jsp:include page="jspFooter.jsp" flush="true"/>
