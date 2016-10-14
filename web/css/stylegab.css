@@ -1,28 +1,9 @@
-@font-face { 
-    font-family: 'LearningCurveProRegular';
-    src: url('LearningCurve_OT-webfont.eot');
-    src: url('LearningCurve_OT-webfont.eot?#iefix')
-        format('embedded-opentype'),
-        url('LearningCurve_OT-webfont.woff') format('woff'),
-        url('LearningCurve_OT-webfont.ttf') format('truetype'),
-        url('LearningCurve_OT-webfont.svg#LearningCurveProRegular')
-        format('svg');
-}
 
-@font-face {
-    font-family: 'PlayfairDisplay-Regular';
-    src: url('PlayfairDisplay-Regular.otf');
-}
-
-@font-face {
-    font-family: 'FiraSans-Regular';
-    src: url('FiraSans-Regular.otf');
-}
 
 
 h1 {
-    
-    font-family: 'LearningCurveProRegular';
+    margin-left: 150px;
+    font-family: 'LearningCurveProRegular',Arial;
     color: #00cc99;
 }
 
@@ -31,12 +12,14 @@ h1 {
 
 h2, h4 {
     
-    font-family: 'PlayfairDisplay-Regular';
+    font-family: 'PlayfairDisplay-Regular',Arial;
     
 }
 
 
-#divlogin{
-    margin-left: 150px;
+#login{
+/*    margin-left: 150px;*/
+    position : absolute;
+    left : 150px;
 }
 
