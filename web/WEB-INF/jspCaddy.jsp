@@ -3,6 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+ 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
@@ -57,7 +58,9 @@
             </div>
         </c:if>
             
-            <jsp:include page="jspFooter.jsp" flush="true"/>
+            
     </body>
+    <jsp:include page="jspFooter.jsp" flush="true"/>
+   
 </html>
 

@@ -1,11 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
-    <div class="containerTop">
+    <div id="containerHeader" class="containerTop">
         <div class="element" id="titrePrincipal">
             <a href="controllerSeb"><img id="logo" src="images/starbook_logoText.png" alt="superlogo" /></a>
         </div>
-        <!--<div class="element" id="titrePrincipal">
-            <h1>Starbook</h1>-->
 
         <form class="element" method="POST" action="controllerSeb">
             <input type="hidden" name="section" value="search"/>

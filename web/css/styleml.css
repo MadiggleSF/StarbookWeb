@@ -297,6 +297,15 @@ select {
 
 
 /*Footer*/
+
+footer {
+    position : absolute;
+    bottom : 0px;
+    height : 60px;
+
+    width: 100%;
+  }
+  
 .containerFooter {
     display: flex;
     flex-direction: row;
@@ -314,6 +323,36 @@ select {
     flex-direction: column;
 }
 
+
+/*Structure de la page*/
+
+
+html {
+    height: 100%;
+}
+
+header {
+    height: 20%;
+}
+
+footer {
+    height: 20%;
+}
+/*
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header {
+    padding: 20px;
+}
+
+body {
+    padding: 20px;
+    padding-bottom: 60px;
+}
 
 /*LoginFrame
 #loginFrame
