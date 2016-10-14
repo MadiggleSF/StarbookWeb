@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
        
+    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
-     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
     <body>
         <div id ="signup">
         <h1>Inscription</h1>

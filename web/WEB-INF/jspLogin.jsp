@@ -10,10 +10,11 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
-
-    </head>
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+    </head>
+    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
     <body>
+     
         <div id="login">
             <h1>Connexion</h1>
             <form method="POST" action="controllerGab" name ="CONNEXION">
