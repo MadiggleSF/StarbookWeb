@@ -15,6 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+          <div id ="profile">
         <h1>Profil</h1>
         
         
@@ -228,6 +229,6 @@
         
         
         <br><br>
-        
+          </div>
     </body>
 </html>

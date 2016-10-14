@@ -11,10 +11,10 @@
     </head>
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
-        
+          <div id ="signupvalidation">
         <h1>Merci! Votre inscription a bien été validée !</h1>
-        <a href = "controllerGab?section=homepage">Retour Accueil</a> 
-        
+        <a href = "controllerGab?section=homepage">Retour Accueil</a>
+          </div>
     </body>
     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

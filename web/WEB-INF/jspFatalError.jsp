@@ -10,9 +10,10 @@
     </head>
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
+        <div id="fatalerror">
         <h1>Fatal Error!</h1>
         <font color="red">${fatalerror}</font>
-       
+        </div>
     </body>
      <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

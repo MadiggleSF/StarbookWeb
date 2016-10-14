@@ -14,7 +14,7 @@
     </head>
      <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     <body>
-        
+        <div id ="signup">
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
             <input type="hidden" name="section" value="signUp" /> 
@@ -69,7 +69,7 @@
        
         <br><br><input type="submit" value="Valider" name="Validation" />
         </form>
-       
+        </div>
     </body>
      <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
 </html>

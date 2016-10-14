@@ -1,11 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
-    <div class="containerTop">
+    <div id="containerHeader" class="containerTop">
         <div class="element" id="titrePrincipal">
             <a href="controllerSeb"><img id="logo" src="images/starbook_logoText.png" alt="superlogo" /></a>
         </div>
-        <!--<div class="element" id="titrePrincipal">
-            <h1>Starbook</h1>-->
 
         <form class="element" method="POST" action="controllerSeb">
             <input type="hidden" name="section" value="search"/>
@@ -33,7 +31,7 @@
 
 
 
-    <div class="sideBar">
+    <!--<div class="sideBar">
         <ul class="menuGroup">
             <c:forEach var="genre" items="${genreList}">
                 <li class="menuItem"><a href="controllerSeb?section=genreDetail&genreName=${genre.id}">${genre.name}</a></li>
@@ -44,6 +42,6 @@
                 <li><a href="controllerSeb?section=rayons">Rayons</a><br></li>
 
             </ul>
-        </nav>-->
-    </div>
+        </nav>
+    </div>-->
 </header>
