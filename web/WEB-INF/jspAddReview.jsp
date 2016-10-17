@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form method="POST" action="controllerSeb">
 
-    <h1>Ajouter un commentaire</h1>
+    
     <textarea name="comment" rows="10" cols="50" >
     </textarea>
     <select name="commentRate" >

@@ -11,7 +11,7 @@
     <body> 
         <jsp:include flush="true" page="jspNavBar.jsp"/>
         <h1>${author.surname} ${author.firstname}</h1><br>
-        <h2 id="titreAuthor">${author.dob}/${author.dod}</h2><br>
+        <h2 class="titreBug">${author.dob}/${author.dod}</h2><br>
         <jsp:include page="/WEB-INF/jspCatalog.jsp" flush="true"/>
 
         <jsp:include page="jspFooter.jsp" flush="true"/>

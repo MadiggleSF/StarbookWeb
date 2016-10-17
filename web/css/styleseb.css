@@ -21,6 +21,10 @@
     margin-left: 150px;
 }
 
+#eventDates{
+    margin-left: 150px;
+    
+}
 .conteneur{
     display: flex;
 }
@@ -41,7 +45,7 @@ h2{
     line-height: 25%;
 }
 
-#titreAuthor{
+.titreBug{
     margin-left: 150px;
     
 }

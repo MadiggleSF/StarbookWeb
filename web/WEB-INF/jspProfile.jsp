@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
+    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
     <body>
           <div id ="profile">
         <h1>Profil</h1>

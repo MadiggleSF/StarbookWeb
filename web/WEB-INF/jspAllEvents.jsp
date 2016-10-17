@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<h1>Evénements</h1>
 <div id="allEvent">
-    <h1>Evénements</h1>
+
     <c:forEach var="event" items="${events}">
         <div class="conteneur">
-            
+
             <img src="images/${event.picture}" alt="${event.name}_image" height="200" width="140"/>
 
             <div class="element">

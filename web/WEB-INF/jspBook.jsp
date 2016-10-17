@@ -55,6 +55,7 @@
                 <br>
                 <jsp:include flush="true" page="/WEB-INF/jspReviews.jsp"/>
                 <hr>
+                <h2>Ajouter un commentaire</h2>
                 <jsp:include flush="true" page="/WEB-INF/jspAddReview.jsp"/>
                 <% if (request.getAttribute("login") != null) {%>
 

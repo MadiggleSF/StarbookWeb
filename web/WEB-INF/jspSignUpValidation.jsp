@@ -16,7 +16,7 @@
         <h1>Merci! Votre inscription a bien été validée !</h1>
         <a class ="menuItem" href = "controllerGab?section=homepage">Retour Accueil</a>
           </div>
-         <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+          <%--<jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>--%>
     </body>
    
 </html>

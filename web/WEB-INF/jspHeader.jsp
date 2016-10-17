@@ -21,7 +21,7 @@
 
         <nav class="element">
             <ul>
-                <li><a href="controllerGab"><img src="images/login.png"></a></li>
+                <li><a href="controllerGab?section=login"><img src="images/login.png"></a></li>
                 <li class="menuItem"><a id="monCompte" href="controllerGab"> <span class="topMenu">Mon compte</span></a></li>
                 <li><a href="controllerML?section=DisplayCaddy"><img src="images/panierIcone.png"></a></li>
                 <li class="menuItem"><a id="monPanier" href="controllerML?section=DisplayCaddy"> <span class="topMenu">Mon panier</span></a></li>

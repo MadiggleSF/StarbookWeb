@@ -9,12 +9,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
-        <title>JSP Page</title>
+        <title>Starbook</title>
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
-    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
+    
     <body>
-     
+     <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
         <div id="login">
             <h1>Connexion</h1>
             <form method="POST" action="controllerGab" name ="CONNEXION">
@@ -40,7 +40,7 @@
             </form> 
         </div>
     </body>
-    <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+    <%--<jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/> --%>
 </html>
 
 
