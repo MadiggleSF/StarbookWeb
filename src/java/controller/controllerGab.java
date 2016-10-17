@@ -39,9 +39,9 @@ public class controllerGab extends HttpServlet {
 
         // GESTION DU BEAN LOGIN 
         if ("login".equals(request.getParameter("section"))) {
-            if (getCookie(request.getCookies(), "LOGIN")!= null) {
-               url = "/WEB-INF/jspProfile.jsp";
-            }
+//            if (getCookie(request.getCookies(), "LOGIN")!= null) {
+//               url = "/WEB-INF/jspProfile.jsp";
+//            }
             if (request.getParameter("Connexion") != null) {
                 BeanLogin bLogin = (BeanLogin) session.getAttribute("beanLogin");
                 if (bLogin == null) {
