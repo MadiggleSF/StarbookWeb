@@ -11,7 +11,7 @@
                 </c:if>
                 <br>
                 <h3><c:forEach var="aut" items="${i.author}">
-                    /<a href="controllerSeb?section=authorDetail&authorId=${aut.id}">${aut.firstname} ${aut.surname}</a>
+                    <a href="controllerSeb?section=authorDetail&authorId=${aut.id}">${aut.firstname} ${aut.surname}</a>/
                     </c:forEach></h3>
                 <jsp:setProperty name="beanReview" property="bookRating" value="${i.isbn}" />
                 <% if (beanReview.getReviews().size() < 1) {%>
@@ -19,6 +19,7 @@
                 <%} else {%>
                 <h3>Note moyenne:</h3> <jsp:getProperty name="beanReview" property="bookRating"/>/10<br>
                 <%}%>
+                <h3>Résumé:</h3>
                 ${i.summary}
                 <br>
                 <h3>Prix:</h3> ${i.price} euro(s)
