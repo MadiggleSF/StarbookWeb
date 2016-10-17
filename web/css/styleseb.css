@@ -25,14 +25,25 @@
     display: flex;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+}
+
 h1{
     font-family: 'PlayfairDisplay-Regular', Arial;
     background-color: #CEF6E3;
+    margin-left: 150px;
 }
 
 h2{
     font-family: 'PlayfairDisplay-Regular', Arial;
     line-height: 25%;
+}
+
+#titreAuthor{
+    margin-left: 150px;
+    
 }
 
 img{

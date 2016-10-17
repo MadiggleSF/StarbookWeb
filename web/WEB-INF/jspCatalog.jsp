@@ -1,7 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean scope="request" id="beanReview" class="beans.beanReview"/>
 <div id="catalog">
-    <h1>Résultat de la recherche</h1>
     <c:forEach var="i" items="${catalog}">
         <div class="conteneur">
             <img src="images/${i.picture}"  alt="${i.title}_image" height="200" width="140" />
@@ -12,8 +11,8 @@
                 </c:if>
                 <br>
                 <h3><c:forEach var="aut" items="${i.author}">
-                    <a href="controllerSeb?section=authorDetail&authorId=${aut.id}">${aut.firstname} ${aut.surname}</a>
-                    <br></c:forEach></h3>
+                    /<a href="controllerSeb?section=authorDetail&authorId=${aut.id}">${aut.firstname} ${aut.surname}</a>
+                    </c:forEach></h3>
                 <jsp:setProperty name="beanReview" property="bookRating" value="${i.isbn}" />
                 <% if (beanReview.getReviews().size() < 1) {%>
                 <h3>Pas de note !<br></h3> 

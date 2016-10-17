@@ -7,11 +7,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/styleseb.css"/>
-        <title>JSP Page</title>
+        <title>Starbook</title>
         <jsp:include page="jspHeader.jsp" flush="true"/>
     </head>
     <body> 
         <jsp:include flush="true" page="jspNavBar.jsp"/>
+        <h1>Résultat de la recherche</h1>
 <jsp:include page="jspCatalog.jsp" flush="true"/>
 
 <jsp:include page="jspFooter.jsp" flush="true"/>
