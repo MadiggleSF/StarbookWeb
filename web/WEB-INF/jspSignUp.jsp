@@ -13,8 +13,9 @@
        
     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
-    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
+   
     <body>
+        <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/> 
         <div id ="signup">
         <h1>Inscription</h1>
         <form name="INSCRIPTION" action="controllerGab" method="POST">
@@ -71,6 +72,7 @@
         <br><br><input type="submit" value="Valider" name="Validation" />
         </form>
         </div>
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
-     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+     
 </html>

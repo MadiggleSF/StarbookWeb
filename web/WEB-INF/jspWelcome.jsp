@@ -15,6 +15,7 @@
         <a class ="menuItem" href="controllerGab?section=monProfil">Mon Profil</a><br><br>
         <br><a class ="menuItem" href="controller?section=login&deconnect">Deconnexion</a>
         </div>   
-    </body>
     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+    </body>
+    
 </html>

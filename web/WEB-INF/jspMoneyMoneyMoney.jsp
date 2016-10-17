@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/styleml.css"/>
         <title>Starbook</title>
         
     </head>
@@ -19,7 +20,7 @@
             <br>${cMail}</p>
         
         <p align="center"><a href="">Retour sur le site</a></p>
-        
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
-    <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+    
 </html>

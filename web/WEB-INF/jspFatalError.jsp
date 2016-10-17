@@ -15,6 +15,7 @@
         <h1>Fatal Error!</h1>
         <font color="red">${fatalerror}</font>
         </div>
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
-     <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+     
 </html>
