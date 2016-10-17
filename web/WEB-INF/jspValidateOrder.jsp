@@ -6,6 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/styleml.css"/>
         <title>Starbook</title>
         
     </head>
@@ -41,7 +42,7 @@
         
             <p align="center"><a href="controllerBen?section=shippingAddresses">Suivant</a></p>
         
-        
+      <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>  
     </body>
-    <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
+    
 </html>
