@@ -16,9 +16,10 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/styleseb.css"/>
         <title>JSP Page</title>
-        <jsp:include page="jspHeader.jsp" flush="true"/>
+        
     </head>
-    <body> 
+    <body>
+        <jsp:include page="jspHeader.jsp" flush="true"/>
         <jsp:include flush="true" page="jspNavBar.jsp"/>
         <h1 id="bookTitle">${book.title} </h1>
         <div id="book" >

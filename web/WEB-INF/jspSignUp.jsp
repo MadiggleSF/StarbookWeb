@@ -10,11 +10,9 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>Starbook</title>
-       
-    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
-   
     <body>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
         <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/> 
         <div id ="signup">
         <h1>Inscription</h1>
@@ -55,9 +53,11 @@
                 
                     <tr>
                         <td>Date de Naissance</td>
-                        <td><input type="text" name="dob_day" value="" size="2" maxlength="2"/>/<input
-                    type ="text" name="dob_month" value="" size="2" maxlength="2"/>/<input type =" text"
-                    name ="dob_year" value="" size="2" maxlength="4"/></td>
+                        <td>
+                            <input type="text" name="dob_day" value="" size="2" maxlength="2"/>/
+                            <input type ="text" name="dob_month" value="" size="2" maxlength="2"/>/
+                            <input type="text" name ="dob_year" value="" size="2" maxlength="4"/>
+                        </td>
                     </tr>
                  
                 

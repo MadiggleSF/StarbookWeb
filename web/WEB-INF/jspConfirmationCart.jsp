@@ -4,9 +4,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
-        <title>JSP Page</title>
+        <title>Starbook</title>
     </head>
     <body> 
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
         <div class="confirmation"><h5><span class="hop">Et hop !</span> C'est dans votre panier.</h5></div>
         <div id="containerConfirmation">
             <img class="mini" src="images/hamlet.jpg" alt="Hamlet" height="68" width="50"/>
@@ -74,6 +75,6 @@
     </div>
         
         
-        
+        <jsp:include page="/WEB-INF/jspFooter.jsp" flush="true"/>
     </body>
 </html>

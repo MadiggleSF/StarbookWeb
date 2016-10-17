@@ -8,9 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styleml.css"/>
         <title>JSP Page</title>
-        <jsp:include page="jspHeader.jsp" flush="true"/>
+        
     </head>
-    <body> 
+    <body>
+        <jsp:include page="jspHeader.jsp" flush="true"/>
         <jsp:include page="jspNavBar.jsp" flush="true"/>
         <!--<div class="sideBar">
             <ul class="menuGroup">

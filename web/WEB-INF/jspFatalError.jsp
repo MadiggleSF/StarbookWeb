@@ -6,11 +6,10 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
-        
-     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
     </head>
-    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
     <body>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
         <div id="fatalerror">
         <h1>Fatal Error!</h1>
         <font color="red">${fatalerror}</font>

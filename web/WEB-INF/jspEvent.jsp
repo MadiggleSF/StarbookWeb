@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="css/styleml.css"/>
         <link rel="stylesheet" href="css/styleseb.css"/>
         <title>Starbook</title>
-        <jsp:include page="jspHeader.jsp" flush="true"/>
+        
     </head>
     <body> 
+        <jsp:include page="jspHeader.jsp" flush="true"/>
         <jsp:include flush="true" page="jspNavBar.jsp"/>
         <h1>${event.name}</h1><br>
         <div id="eventDates">

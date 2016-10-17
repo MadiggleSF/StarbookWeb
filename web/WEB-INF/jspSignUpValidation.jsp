@@ -8,10 +8,13 @@
         <link rel="stylesheet" href="css/stylegab.css"/>
         <title>JSP Page</title>
         
-    <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+   
     </head>
-    <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
+    
+    
     <body>
+        <jsp:include page="/WEB-INF/jspNavBar.jsp" flush="true"/>
+         <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
           <div id ="signupvalidation">
         <h1>Merci! Votre inscription a bien été validée !</h1>
         <a class ="menuItem" href = "controllerGab?section=homepage">Retour Accueil</a>

@@ -9,8 +9,9 @@
         <title>Starbook</title>
        
     </head>
-     <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
+     
     <body>
+        <jsp:include page="/WEB-INF/jspHeader.jsp" flush="true"/>
         <h1>Paiement</h1>
 
         <p align="center">Validation du panier > Choix de l'adresse > <strong>Paiement</strong> > C'est parti !</p>
