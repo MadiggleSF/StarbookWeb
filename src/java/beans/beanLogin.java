@@ -49,12 +49,13 @@ public class BeanLogin implements Serializable {
                 // cas où le mail n'existe pas dans la base de données
                 if (!rs.getString("customer_mail").equals(login)) {
                     r = 3;
+                    
                 }
                 
                 // cas où le mail existe mais le mot de passe est incorrect 
                 if (rs.getString("customer_mail").equals(login)
                         && !rs.getString("customer_pwd").equals(password)){
-                    r = 4;
+                    return 4;
                 }
                         
                 
